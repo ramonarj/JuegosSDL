@@ -35,10 +35,15 @@ private:
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
 
-	// 
+	// Imagen de la reina 
 	SDL_Texture* m_pTexture;
 	SDL_Rect m_srcRect;
 	SDL_Rect m_destRect;
+
+	// Imagen del rey
+	SDL_Texture* m_pTextureKing;
+	SDL_Rect m_srcRectKing;
+	SDL_Rect m_destRectKing;
 };
 
 
