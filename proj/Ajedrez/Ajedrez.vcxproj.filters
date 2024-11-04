@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\PacMan\Main.cpp">
+    <ClCompile Include="..\..\src\Ajedrez\Main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\PacMan\Game.cpp">
+    <ClCompile Include="..\..\src\Ajedrez\Game.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\PacMan\TextureManager.cpp">
+    <ClCompile Include="..\..\src\Ajedrez\TextureManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\PacMan\Game.h">
+    <ClInclude Include="..\..\src\Ajedrez\Game.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\PacMan\TextureManager.h">
+    <ClInclude Include="..\..\src\Ajedrez\TextureManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

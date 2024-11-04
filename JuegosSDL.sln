@@ -7,7 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RamonLib", "proj\RamonLib\R
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "proj\Main\Main.vcxproj", "{C6C6BE2A-8131-4899-BB96-B618A7B545FC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacMan", "proj\PacMan\PacMan.vcxproj", "{E9833869-A094-4604-A607-5CC1B024669F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ajedrez", "proj\Ajedrez\Ajedrez.vcxproj", "{E9833869-A094-4604-A607-5CC1B024669F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
