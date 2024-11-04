@@ -1,4 +1,3 @@
-#include<iostream>
 #include "Game.h"
 
 // Esto es por si quiero usar un main normal y no la macro de SDL
@@ -10,7 +9,7 @@ int main(int argc, char* args[])
 {
 	// Inicializar el juego
 	g_game = new Game();
-	g_game->Init("Ajedrez", 100, 100, 640, 480, 0);
+	g_game->Init("Ajedrez", 100, 100, 640, 480, false);
 
 	// Bucle principal
 	while(g_game->Running())

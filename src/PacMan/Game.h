@@ -2,6 +2,9 @@
 #define __GAME__
 
 #include "SDL.h"
+#include <string>
+
+static std::string ASSETS_PATH = "../../bin/Assets/";
 
 class Game
 {
@@ -10,8 +13,8 @@ public:
 	~Game(){}
 
 	/* Inicializa SDL y crea la ventana y el renderer */
-	bool Init(const char* title, int xpos, int ypos, int
-		height, int width, int flags);
+	bool Init(const char* title, int xpos, int ypos, 
+		int height, int width, bool fullscreen);
 
 	/* Lee el input del usuario */
 	void HandleInput();
@@ -27,9 +30,15 @@ public:
 
 private:
 	// Variables (g = global, m = member, p = pointer, b = bool)
-	SDL_Window* m_pWindow = 0;
-	SDL_Renderer* m_pRenderer = 0;
-	bool m_bRunning = true;
+	// SDL
+	SDL_Window* m_pWindow;
+	SDL_Renderer* m_pRenderer;
+	bool m_bRunning;
+
+	// 
+	SDL_Texture* m_pTexture;
+	SDL_Rect m_srcRect;
+	SDL_Rect m_destRect;
 };
 
 
