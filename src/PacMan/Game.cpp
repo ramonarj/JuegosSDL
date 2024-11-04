@@ -1,6 +1,8 @@
 #include "Game.h"
+
 #include <iostream>
 #include "SDL_image.h"
+#include "TextureManager.h"
 
 bool Game::Init(const char* title, int xpos, int ypos, 
 	int height, int width, bool fullscreen)
@@ -49,27 +51,13 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	m_bRunning = true;
 
 
-	// Cosas específicas del juego: IMAGEN (sin SDL_Image)
-	// 1) Cargar un bmp en una surface y transformarlo a textura
-	std::string file = "Reina.bmp";
-	SDL_Surface* tempSurface = SDL_LoadBMP((ASSETS_PATH + file).c_str());
-	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, tempSurface);
-	SDL_FreeSurface(tempSurface);
+	// IMAGEN (con SDL_Image y TextureManager)
+	m_destRectKing = { 200,200,100,100 };
+	m_textureManager.Load("Caballo.png", "caballo", m_pRenderer);
+	m_textureManager.Load("Piezas.jpg", "piezas", m_pRenderer);
 
-	// 2) Establecer las dimensiones de origen y destino de la textura
-	SDL_QueryTexture(m_pTexture, NULL, NULL, &m_srcRect.w, &m_srcRect.h);
-	m_srcRect.x = m_srcRect.y = 0;
-	m_destRect = { 0,0,m_srcRect.w, m_srcRect.h };
-
-	// IMAGEN (con SDL_Image)
-	std::string fileKing = "Caballo.png";
-	tempSurface = IMG_Load((ASSETS_PATH + fileKing).c_str());
-	m_pTextureKing = SDL_CreateTextureFromSurface(m_pRenderer, tempSurface);
-	SDL_FreeSurface(tempSurface);
-
-	SDL_QueryTexture(m_pTextureKing, NULL, NULL, &m_srcRectKing.w, &m_srcRectKing.h);
-	m_srcRectKing.x = m_srcRectKing.y = 0;
-	m_destRectKing = { 100,100,m_srcRectKing.w, m_srcRectKing.h };
+	frameRow = 0;
+	frameCol = 0;
 
 	return true;
 }
@@ -85,6 +73,20 @@ void Game::HandleInput()
 		case SDL_QUIT:
 			m_bRunning = false;
 			break;
+		// Teclas normales (flechas)
+		case SDL_KEYDOWN:
+			switch(event.key.keysym.sym)
+			{
+			case SDLK_RIGHT:
+				frameCol = (frameCol+1) % 6;
+				break;
+			case SDLK_DOWN:
+				frameRow = (frameRow + 1) % 2;
+				break;
+			default:
+				break;
+			}
+
 		default:
 			break;
 		}
@@ -93,7 +95,6 @@ void Game::HandleInput()
 
 void Game::Update()
 {
-	m_destRect.x = (int)(m_destRect.x + 1) % 640;
 	m_destRectKing.y = (int)(m_destRectKing.y + 1) % 480;
 }
 
@@ -104,8 +105,8 @@ void Game::Render()
 
 	// Renderizado de la textura
 	//SDL_RenderCopy(m_pRenderer, m_pTexture, NULL, NULL);
-	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_srcRect, &m_destRect);
-	SDL_RenderCopyEx(m_pRenderer, m_pTextureKing, &m_srcRectKing, &m_destRectKing, 0, NULL, SDL_FLIP_VERTICAL);
+	m_textureManager.Draw("caballo", m_destRectKing.x, m_destRectKing.y, 100, 100, m_pRenderer, SDL_FLIP_VERTICAL);
+	m_textureManager.DrawFrame("piezas", 350, 350, 46, 62, frameRow, frameCol, m_pRenderer);
 
 	// Mostrar la ventana
 	SDL_RenderPresent(m_pRenderer);

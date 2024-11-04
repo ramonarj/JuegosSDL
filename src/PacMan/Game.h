@@ -3,8 +3,7 @@
 
 #include "SDL.h"
 #include <string>
-
-static std::string ASSETS_PATH = "../../bin/Assets/";
+#include "TextureManager.h"
 
 class Game
 {
@@ -35,15 +34,15 @@ private:
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
 
-	// Imagen de la reina 
-	SDL_Texture* m_pTexture;
-	SDL_Rect m_srcRect;
-	SDL_Rect m_destRect;
+	// Managers
+	TextureManager m_textureManager;
 
-	// Imagen del rey
-	SDL_Texture* m_pTextureKing;
-	SDL_Rect m_srcRectKing;
+	// Caballo
 	SDL_Rect m_destRectKing;
+
+	// Cambio de frame
+	int frameCol;
+	int frameRow;
 };
 
 
