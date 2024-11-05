@@ -51,10 +51,13 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	m_bRunning = true;
 
 
-	// IMAGEN (con SDL_Image y TextureManager)
-	m_destRectKing = { 200,200,100,100 };
+	// Carga de recursos con TextureManager
 	TextureManager::Instance()->Load("Caballo.png", "caballo", m_pRenderer);
 	TextureManager::Instance()->Load("Piezas.jpg", "piezas", m_pRenderer);
+
+	// Inicializar GameObjects
+	caballo.Load(200, 200, 100, 100, "caballo");
+	piezaCambiante.Load(350, 350, 46, 62, "piezas");
 
 	frameRow = 0;
 	frameCol = 0;
@@ -79,9 +82,11 @@ void Game::HandleInput()
 			{
 			case SDLK_RIGHT:
 				frameCol = (frameCol+1) % 6;
+				piezaCambiante.SetTextureFrame(frameRow, frameCol);
 				break;
 			case SDLK_DOWN:
 				frameRow = (frameRow + 1) % 2;
+				piezaCambiante.SetTextureFrame(frameRow, frameCol);
 				break;
 			default:
 				break;
@@ -96,8 +101,8 @@ void Game::HandleInput()
 void Game::Update()
 {
 	// Movimiento independiente del framerate
-	//m_destRectKing.y = (int)(m_destRectKing.y + 1) % 480;
-	m_destRectKing.y = int(((SDL_GetTicks() / 10) % 480));
+	int nuevaPosY = int(((SDL_GetTicks() / 10) % 480));
+	caballo.SetPos(caballo.GetPosX(), nuevaPosY);
 }
 
 void Game::Render()
@@ -105,10 +110,10 @@ void Game::Render()
 	// Limpiar la ventana con ese color
 	SDL_RenderClear(m_pRenderer);
 
-	// Renderizado de la textura
-	//SDL_RenderCopy(m_pRenderer, m_pTexture, NULL, NULL);
-	TextureManager::Instance()->Draw("caballo", m_destRectKing.x, m_destRectKing.y, 100, 100, m_pRenderer, SDL_FLIP_VERTICAL);
-	TextureManager::Instance()->DrawFrame("piezas", 350, 350, 46, 62, frameRow, frameCol, m_pRenderer);
+	// Renderizado de los GameObjects
+	//SDL_RenderCopy(m_pRenderer, m_pTexture, NULL, NULL)
+	caballo.Draw(m_pRenderer);
+	piezaCambiante.Draw(m_pRenderer);
 
 	// Mostrar la ventana
 	SDL_RenderPresent(m_pRenderer);

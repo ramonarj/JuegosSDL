@@ -3,7 +3,8 @@
 
 #include "SDL.h"
 #include <string>
-#include "TextureManager.h"
+#include "Pieza.h"
+
 
 class Game
 {
@@ -35,9 +36,10 @@ private:
 	bool m_bRunning;
 
 	// Caballo
-	SDL_Rect m_destRectKing;
+	GameObject caballo;
+	GameObject piezaCambiante;
 
-	// Cambio de frame
+	// Cambio de frame para la pieza
 	int frameCol;
 	int frameRow;
 };
