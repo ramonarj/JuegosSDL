@@ -160,14 +160,18 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Ajedrez\Game.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\GameObject.cpp" />
+    <ClCompile Include="..\..\src\Ajedrez\LoaderParams.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\Main.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\Pieza.cpp" />
+    <ClCompile Include="..\..\src\Ajedrez\SDLGameObject.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Ajedrez\Game.h" />
     <ClInclude Include="..\..\src\Ajedrez\GameObject.h" />
+    <ClInclude Include="..\..\src\Ajedrez\LoaderParams.h" />
     <ClInclude Include="..\..\src\Ajedrez\Pieza.h" />
+    <ClInclude Include="..\..\src\Ajedrez\SDLGameObject.h" />
     <ClInclude Include="..\..\src\Ajedrez\TextureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

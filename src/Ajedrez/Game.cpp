@@ -4,6 +4,8 @@
 #include "SDL_image.h"
 #include "TextureManager.h"
 
+Game* Game::s_pInstance = 0;
+
 bool Game::Init(const char* title, int xpos, int ypos, 
 	int height, int width, bool fullscreen)
 {
@@ -55,9 +57,15 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	TextureManager::Instance()->Load("Caballo.png", "caballo", m_pRenderer);
 	TextureManager::Instance()->Load("Piezas.jpg", "piezas", m_pRenderer);
 
-	// Inicializar GameObjects
-	caballo.Load(200, 200, 100, 100, "caballo");
-	piezaCambiante.Load(350, 350, 46, 62, "piezas");
+	// Inicializar GameObjects y añadirlos a la lista
+	LoaderParams* pCaballoParams = new LoaderParams(200, 200, 100, 100, "caballo");
+	LoaderParams* pPiezaParams = new LoaderParams(350, 350, 46, 62, "piezas");
+
+	caballo = new Pieza(pCaballoParams);
+	piezaCambiante = new SDLGameObject(pPiezaParams);
+
+	m_gameObjects.push_back(caballo);
+	m_gameObjects.push_back(piezaCambiante);
 
 	frameRow = 0;
 	frameCol = 0;
@@ -82,11 +90,11 @@ void Game::HandleInput()
 			{
 			case SDLK_RIGHT:
 				frameCol = (frameCol+1) % 6;
-				piezaCambiante.SetTextureFrame(frameRow, frameCol);
+				piezaCambiante->SetTextureFrame(frameRow, frameCol);
 				break;
 			case SDLK_DOWN:
 				frameRow = (frameRow + 1) % 2;
-				piezaCambiante.SetTextureFrame(frameRow, frameCol);
+				piezaCambiante->SetTextureFrame(frameRow, frameCol);
 				break;
 			default:
 				break;
@@ -100,9 +108,9 @@ void Game::HandleInput()
 
 void Game::Update()
 {
-	// Movimiento independiente del framerate
-	int nuevaPosY = int(((SDL_GetTicks() / 10) % 480));
-	caballo.SetPos(caballo.GetPosX(), nuevaPosY);
+	// Actualizar cada uno de los GameObjects
+	for (GameObject* o : m_gameObjects)
+		o->Update();
 }
 
 void Game::Render()
@@ -110,10 +118,9 @@ void Game::Render()
 	// Limpiar la ventana con ese color
 	SDL_RenderClear(m_pRenderer);
 
-	// Renderizado de los GameObjects
-	//SDL_RenderCopy(m_pRenderer, m_pTexture, NULL, NULL)
-	caballo.Draw(m_pRenderer);
-	piezaCambiante.Draw(m_pRenderer);
+	// Renderizar cada uno de los GameObjects
+	for (GameObject* o : m_gameObjects)
+		o->Draw();
 
 	// Mostrar la ventana
 	SDL_RenderPresent(m_pRenderer);

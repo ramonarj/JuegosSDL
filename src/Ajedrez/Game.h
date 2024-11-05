@@ -3,13 +3,25 @@
 
 #include "SDL.h"
 #include <string>
+#include <vector>
 #include "Pieza.h"
 
-
+/* Clase singleton para la gestión del juego */
 class Game
 {
 public:
-	Game(){}
+
+	/* Devuelve la instancia */
+	static Game* Instance()
+	{
+		if (s_pInstance == 0)
+		{
+			s_pInstance = new Game();
+			return s_pInstance;
+		}
+		return s_pInstance;
+	}
+
 	~Game(){}
 
 	/* Inicializa SDL y crea la ventana y el renderer */
@@ -28,16 +40,25 @@ public:
 	/* ¿Está el juego ejecutándose? */
 	bool Running() { return m_bRunning; }
 
+	/* Getters */
+	SDL_Renderer* GetRenderer() const { return m_pRenderer; }
+
 private:
+
+	Game() {}
+	static Game* s_pInstance;
+
 	// Variables (g = global, m = member, p = pointer, b = bool, s = singleton)
 	// SDL
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
 
-	// Caballo
-	GameObject caballo;
-	GameObject piezaCambiante;
+	// Lista de GameObjects
+	std::vector<GameObject*> m_gameObjects;
+
+	Pieza* caballo;
+	SDLGameObject* piezaCambiante;
 
 	// Cambio de frame para la pieza
 	int frameCol;
