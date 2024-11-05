@@ -63,7 +63,7 @@ private:
 	int frameRow;
 
 	// Prueba de vectores
-	Vector2D v1;
+	Vector2D velCaballo;
 };
 
 

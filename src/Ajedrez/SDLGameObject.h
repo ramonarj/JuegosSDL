@@ -13,8 +13,8 @@ public:
 	SDLGameObject(const LoaderParams* pParams);
 
 	// Heredados de GameObject
+	virtual void Update();
 	virtual void Draw();
-	virtual void Update(){}
 	virtual void Clean(){}
 
 	inline void SetTextureFrame(int row, int col) { m_textureRow = row; m_textureCol = col; }
@@ -22,8 +22,10 @@ public:
 protected:
 	/* 'Protected' porque queremos que otras clases puedan heredar de SDLGameObject
 y acceder a las variables de este */
-	// Posición
+	// Posición y velocidad
 	Vector2D m_position;
+	Vector2D m_velocity;
+	Vector2D m_acceleration;
 
 	// Tamaño
 	int m_width;

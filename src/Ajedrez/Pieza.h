@@ -9,7 +9,11 @@ class Pieza : public SDLGameObject
 public:
 
 	/* Constructora */
-	Pieza(const LoaderParams* pParams) : SDLGameObject(pParams){}
+	Pieza(const LoaderParams* pParams) : SDLGameObject(pParams) 
+	{
+		m_velocity = Vector2D(1, 1); 
+		//m_acceleration = Vector2D(1, 1); 
+	}
 
 	virtual void Draw();
 	/* Por ahora, es una prueba de movimiento */

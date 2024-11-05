@@ -55,7 +55,7 @@ bool Game::Init(const char* title, int xpos, int ypos,
 
 	// Carga de recursos con TextureManager
 	TextureManager::Instance()->Load("Caballo.png", "caballo", m_pRenderer);
-	TextureManager::Instance()->Load("Piezas.jpg", "piezas", m_pRenderer);
+	TextureManager::Instance()->Load("Piezas.png", "piezas", m_pRenderer);
 
 	// Inicializar GameObjects y añadirlos a la lista
 	LoaderParams* pCaballoParams = new LoaderParams(200, 200, 100, 100, "caballo");
@@ -70,7 +70,9 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	frameRow = 0;
 	frameCol = 0;
 
-	v1 = Vector2D(1, 0);
+
+	velCaballo = Vector2D(1, 1);
+
 
 	return true;
 }
@@ -107,6 +109,7 @@ void Game::HandleInput()
 		}
 	}
 }
+
 
 void Game::Update()
 {
