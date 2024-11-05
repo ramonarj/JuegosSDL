@@ -70,6 +70,8 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	frameRow = 0;
 	frameCol = 0;
 
+	v1 = Vector2D(1, 0);
+
 	return true;
 }
 
@@ -92,7 +94,7 @@ void Game::HandleInput()
 				frameCol = (frameCol+1) % 6;
 				piezaCambiante->SetTextureFrame(frameRow, frameCol);
 				break;
-			case SDLK_DOWN:
+			case SDLK_LEFT:
 				frameRow = (frameRow + 1) % 2;
 				piezaCambiante->SetTextureFrame(frameRow, frameCol);
 				break;

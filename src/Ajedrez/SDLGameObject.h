@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "SDL.h"
 #include <string>
+#include "Vector2D.h"
 
 /* GameObject específico para usar con SDL */
 class SDLGameObject : public GameObject
@@ -22,8 +23,7 @@ protected:
 	/* 'Protected' porque queremos que otras clases puedan heredar de SDLGameObject
 y acceder a las variables de este */
 	// Posición
-	int m_x;
-	int m_y;
+	Vector2D m_position;
 
 	// Tamaño
 	int m_width;

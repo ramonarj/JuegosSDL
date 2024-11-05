@@ -1,8 +1,6 @@
 #ifndef __GAME__
 #define __GAME__
 
-#include "SDL.h"
-#include <string>
 #include <vector>
 #include "Pieza.h"
 
@@ -63,6 +61,9 @@ private:
 	// Cambio de frame para la pieza
 	int frameCol;
 	int frameRow;
+
+	// Prueba de vectores
+	Vector2D v1;
 };
 
 
