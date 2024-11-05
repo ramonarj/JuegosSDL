@@ -3,6 +3,7 @@
 #include <iostream>
 #include "SDL_image.h"
 #include "TextureManager.h"
+#include "InputHandler.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -52,6 +53,8 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	std::cout << "init success\n";
 	m_bRunning = true;
 
+	// Iniciar el InputHandler
+	InputHandler::Instance()->InitialiseJoysticks();
 
 	// Carga de recursos con TextureManager
 	TextureManager::Instance()->Load("Caballo.png", "caballo", m_pRenderer);
@@ -79,6 +82,12 @@ bool Game::Init(const char* title, int xpos, int ypos,
 
 void Game::HandleInput()
 {
+	// Eventos de mandos
+	InputHandler::Instance()->Update();
+
+
+	// Otros eventos
+	/*
 	SDL_Event event;
 	if (SDL_PollEvent(&event))
 	{
@@ -108,6 +117,8 @@ void Game::HandleInput()
 			break;
 		}
 	}
+	*/
+
 }
 
 
@@ -134,6 +145,8 @@ void Game::Render()
 void Game::Clean()
 {
 	std::cout << "cleaning game\n";
+	InputHandler::Instance()->Clean();
+
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit(); // cerrar todos los subsistemas

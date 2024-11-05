@@ -20,7 +20,7 @@ public:
 		return s_pInstance;
 	}
 
-	~Game(){}
+
 
 	/* Inicializa SDL y crea la ventana y el renderer */
 	bool Init(const char* title, int xpos, int ypos, 
@@ -38,12 +38,19 @@ public:
 	/* ¿Está el juego ejecutándose? */
 	bool Running() { return m_bRunning; }
 
+	/* Cierra el juego */
+	void Quit() { SDL_Quit(); }
+
 	/* Getters */
 	SDL_Renderer* GetRenderer() const { return m_pRenderer; }
 
-private:
+	// Público para pruebas
+	SDLGameObject* piezaCambiante;
 
+private:
 	Game() {}
+	~Game() {}
+
 	static Game* s_pInstance;
 
 	// Variables (g = global, m = member, p = pointer, b = bool, s = singleton)
@@ -56,7 +63,7 @@ private:
 	std::vector<GameObject*> m_gameObjects;
 
 	Pieza* caballo;
-	SDLGameObject* piezaCambiante;
+
 
 	// Cambio de frame para la pieza
 	int frameCol;

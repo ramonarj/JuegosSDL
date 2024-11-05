@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Ajedrez\Game.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\GameObject.cpp" />
+    <ClCompile Include="..\..\src\Ajedrez\InputHandler.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\LoaderParams.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\Main.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\Pieza.cpp" />
@@ -169,6 +170,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\Ajedrez\Game.h" />
     <ClInclude Include="..\..\src\Ajedrez\GameObject.h" />
+    <ClInclude Include="..\..\src\Ajedrez\InputHandler.h" />
     <ClInclude Include="..\..\src\Ajedrez\LoaderParams.h" />
     <ClInclude Include="..\..\src\Ajedrez\Pieza.h" />
     <ClInclude Include="..\..\src\Ajedrez\SDLGameObject.h" />

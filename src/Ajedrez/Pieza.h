@@ -15,11 +15,16 @@ public:
 		//m_acceleration = Vector2D(1, 1); 
 	}
 
+	/* Heredadas*/
 	virtual void Draw();
 	/* Por ahora, es una prueba de movimiento */
 	virtual void Update();
 	//void Draw(SDL_Renderer* pRenderer) {}
 	virtual void Clean(){}
+
+private:
+	// Para el input
+	void HandleInput();
 };
 
 #endif /* defined(__Pieza__) */
