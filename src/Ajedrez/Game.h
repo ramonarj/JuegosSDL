@@ -28,14 +28,11 @@ public:
 	bool Running() { return m_bRunning; }
 
 private:
-	// Variables (g = global, m = member, p = pointer, b = bool)
+	// Variables (g = global, m = member, p = pointer, b = bool, s = singleton)
 	// SDL
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
-
-	// Managers
-	TextureManager m_textureManager;
 
 	// Caballo
 	SDL_Rect m_destRectKing;

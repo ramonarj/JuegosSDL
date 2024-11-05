@@ -2,6 +2,8 @@
 
 #include "SDL_image.h"
 
+TextureManager* TextureManager::s_pInstance = 0;
+
 bool TextureManager::Load(std::string fileName, std::string id, SDL_Renderer* pRenderer)
 {
 	// Creamos la textura con SDL_Image a partir de una surface

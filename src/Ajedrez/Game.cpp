@@ -53,8 +53,8 @@ bool Game::Init(const char* title, int xpos, int ypos,
 
 	// IMAGEN (con SDL_Image y TextureManager)
 	m_destRectKing = { 200,200,100,100 };
-	m_textureManager.Load("Caballo.png", "caballo", m_pRenderer);
-	m_textureManager.Load("Piezas.jpg", "piezas", m_pRenderer);
+	TextureManager::Instance()->Load("Caballo.png", "caballo", m_pRenderer);
+	TextureManager::Instance()->Load("Piezas.jpg", "piezas", m_pRenderer);
 
 	frameRow = 0;
 	frameCol = 0;
@@ -95,7 +95,9 @@ void Game::HandleInput()
 
 void Game::Update()
 {
-	m_destRectKing.y = (int)(m_destRectKing.y + 1) % 480;
+	// Movimiento independiente del framerate
+	//m_destRectKing.y = (int)(m_destRectKing.y + 1) % 480;
+	m_destRectKing.y = int(((SDL_GetTicks() / 10) % 480));
 }
 
 void Game::Render()
@@ -105,8 +107,8 @@ void Game::Render()
 
 	// Renderizado de la textura
 	//SDL_RenderCopy(m_pRenderer, m_pTexture, NULL, NULL);
-	m_textureManager.Draw("caballo", m_destRectKing.x, m_destRectKing.y, 100, 100, m_pRenderer, SDL_FLIP_VERTICAL);
-	m_textureManager.DrawFrame("piezas", 350, 350, 46, 62, frameRow, frameCol, m_pRenderer);
+	TextureManager::Instance()->Draw("caballo", m_destRectKing.x, m_destRectKing.y, 100, 100, m_pRenderer, SDL_FLIP_VERTICAL);
+	TextureManager::Instance()->DrawFrame("piezas", 350, 350, 46, 62, frameRow, frameCol, m_pRenderer);
 
 	// Mostrar la ventana
 	SDL_RenderPresent(m_pRenderer);
