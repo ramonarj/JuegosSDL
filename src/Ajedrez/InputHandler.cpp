@@ -22,8 +22,19 @@ void InputHandler::InitialiseJoysticks()
 			SDL_Joystick* joy = SDL_JoystickOpen(i);
 			if (joy != NULL)
 			{
+				// Añadir a la lista de mandos
 				m_joysticks.push_back(joy);
+				// Añadir los joysticks
 				m_joystickValues.push_back(std::make_pair(new Vector2D(0, 0), new Vector2D(0, 0))); // add our pair
+				// Y los botones
+				std::vector<bool> tempButtons;
+				for (int j = 0; j < SDL_JoystickNumButtons(joy); j++)
+				{
+					tempButtons.push_back(false);
+				}
+				m_buttonStates.push_back(tempButtons);
+				// Y las crucetas
+				m_hatStates.push_back(0);
 			}
 			else
 			{
@@ -82,7 +93,33 @@ void InputHandler::Update()
 		{
 			Game::Instance()->Quit();
 		}
-		// Eventos del mando
+		// Botón pulsado
+		if (event.type == SDL_JOYBUTTONDOWN)
+		{
+#if _DEBUG
+			std::cout << "Boton " << (int)event.jbutton.button << std::endl;
+#endif
+			int whichOne = event.jaxis.which;
+			m_buttonStates[whichOne][event.jbutton.button] = true;
+		}
+		
+		// Botón levantado
+		if (event.type == SDL_JOYBUTTONUP)
+		{
+			int whichOne = event.jaxis.which;
+			m_buttonStates[whichOne][event.jbutton.button] = false;
+		}
+		// Cruceta
+		if(event.type == SDL_JOYHATMOTION)
+		{
+#if _DEBUG
+			std::cout << "Hat " << (int)event.jhat.value << std::endl;
+#endif
+			int whichOne = event.jhat.which;
+			m_hatStates[whichOne] = (int)event.jhat.value;
+		}
+
+		// Movimiento de joystick
 		if (event.type == SDL_JOYAXISMOTION)
 		{
 			/* Por ahora, esto está transformando la señal analógica del mando
@@ -162,10 +199,12 @@ void InputHandler::Update()
 
 #if _DEBUG
 			// Información de depuración
+			/*
 			std::cout << "Izquierdo: (" << m_joystickValues[whichOne].first->GetX() << "," <<
 				m_joystickValues[whichOne].first->GetY() << ") | Derecho: (" <<
 				m_joystickValues[whichOne].second->GetX() << "," << 
-				m_joystickValues[whichOne].second->GetY() << ")" << std::endl;			
+				m_joystickValues[whichOne].second->GetY() << ")" << std::endl;
+			*/
 #endif
 		}
 	}

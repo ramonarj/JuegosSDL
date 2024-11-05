@@ -62,15 +62,7 @@ private:
 	// Lista de GameObjects
 	std::vector<GameObject*> m_gameObjects;
 
-	Pieza* caballo;
-
-
-	// Cambio de frame para la pieza
-	int frameCol;
-	int frameRow;
-
-	// Prueba de vectores
-	Vector2D velCaballo;
+	Pieza* piezaViva;
 };
 
 

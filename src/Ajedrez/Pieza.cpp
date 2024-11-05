@@ -6,12 +6,33 @@
 
 void Pieza::HandleInput()
 {
-	float vel = 2;
+	float vel = 3;
 	if (InputHandler::Instance()->JoysticksInitialised())
 	{
-		// Movimiento en 8 direcciones
+		// Movimiento en 8 direcciones con el joystick
 		m_velocity.SetX(vel * InputHandler::Instance()->Xvalue(0, 1));
 		m_velocity.SetY(vel * InputHandler::Instance()->Yvalue(0, 1));
+
+		// Movimiento discreto con los triggers
+		if (InputHandler::Instance()->GetButtonState(0, 6))
+			m_position -= Vector2D(20, 0);
+		if (InputHandler::Instance()->GetButtonState(0, 7))
+			m_position += Vector2D(20, 0);
+
+		// Cambio de color con un botón
+		if (InputHandler::Instance()->GetButtonState(0, 0))
+		{
+			frameRow = (frameRow + 1) % 2;
+			SetTextureFrame(frameRow, frameCol);
+		}
+
+		// Cambio de pieza con la cruceta
+		if(InputHandler::Instance()->GetHat(0) == 2)
+		{
+			frameCol = (frameCol + 1) % 6;
+			SetTextureFrame(frameRow, frameCol);
+		}
+
 
 		// Joystick izquierdo
 		/*

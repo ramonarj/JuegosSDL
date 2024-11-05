@@ -57,24 +57,12 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	InputHandler::Instance()->InitialiseJoysticks();
 
 	// Carga de recursos con TextureManager
-	TextureManager::Instance()->Load("Caballo.png", "caballo", m_pRenderer);
 	TextureManager::Instance()->Load("Piezas.png", "piezas", m_pRenderer);
 
 	// Inicializar GameObjects y añadirlos a la lista
-	LoaderParams* pCaballoParams = new LoaderParams(200, 200, 100, 100, "caballo");
 	LoaderParams* pPiezaParams = new LoaderParams(350, 350, 46, 62, "piezas");
-
-	caballo = new Pieza(pCaballoParams);
-	piezaCambiante = new SDLGameObject(pPiezaParams);
-
-	m_gameObjects.push_back(caballo);
-	m_gameObjects.push_back(piezaCambiante);
-
-	frameRow = 0;
-	frameCol = 0;
-
-
-	velCaballo = Vector2D(1, 1);
+	piezaViva = new Pieza(pPiezaParams);
+	m_gameObjects.push_back(piezaViva);
 
 
 	return true;
