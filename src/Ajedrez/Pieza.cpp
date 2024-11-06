@@ -3,8 +3,7 @@
 #include "InputHandler.h"
 #include <iostream>
 
-
-void Pieza::HandleInput()
+void Pieza::InputConMando()
 {
 	float vel = 3;
 	if (InputHandler::Instance()->JoysticksInitialised())
@@ -27,7 +26,7 @@ void Pieza::HandleInput()
 		}
 
 		// Cambio de pieza con la cruceta
-		if(InputHandler::Instance()->GetHat(0) == 2)
+		if (InputHandler::Instance()->GetHat(0) == 2)
 		{
 			frameCol = (frameCol + 1) % 6;
 			SetTextureFrame(frameRow, frameCol);
@@ -64,11 +63,49 @@ void Pieza::HandleInput()
 	}
 }
 
+void Pieza::InputConRaton()
+{
+	// Con el clic izquierdo mantenemos la pieza parada hasta soltarlo
+	if(InputHandler::Instance()->GetMouseButtonState(LEFT))
+	{
+		if(m_velocity.Length() > 0)
+		{
+			prevVel = m_velocity;
+			
+		}
+		m_velocity = Vector2D(0, 0);
+		m_acceleration = Vector2D(0, 0);
+	}
+	else if (m_velocity.Length() < 0.1)
+	{
+		m_velocity = prevVel;
+	}
+
+	// Con el clic derecho reseteamos la velocidad y aceleración
+	if(InputHandler::Instance()->GetMouseButtonState(RIGHT))
+	{
+		std::cout << "Clic derecho" << std::endl;
+		m_velocity.Normalize();
+		m_acceleration = Vector2D(0, 0);
+	}
+
+	// Con el botón del medio cambiamos el color
+	if(InputHandler::Instance()->GetMouseButtonState(MIDDLE))
+	{
+		m_position = *InputHandler::Instance()->GetMousePosition();
+	}
+}
+
+void Pieza::HandleInput()
+{
+	//InputConMando();
+	InputConRaton();
+}
+
 void Pieza::Update()
 {
-	/*
 	// Movimiento independiente del framerate
-	int nuevaY = int(((SDL_GetTicks() / 10) % 480));
+	//int nuevaY = int(((SDL_GetTicks() / 10) % 480));
 
 	// Para el salvapantallas
 	if (m_position.GetX() > 640)
@@ -85,7 +122,6 @@ void Pieza::Update()
 	m_acceleration = m_velocity;
 	m_acceleration.Normalize(); // vector unitario de la velocidad
 	m_acceleration /= 50;
-	*/
 
 
 	// Mira a ver qué se ha pulsado en el mando

@@ -13,7 +13,8 @@ public:
 	{
 		frameRow = 0;
 		frameCol = 0;
-		m_velocity = Vector2D(1, 1); 
+		initialVel = Vector2D(1, 1);
+		m_velocity = initialVel;
 		//m_acceleration = Vector2D(1, 1); 
 	}
 
@@ -27,6 +28,12 @@ public:
 private:
 	// Para el input
 	void HandleInput();
+
+	// Para pruebas
+	void InputConMando();
+	void InputConRaton();
+	Vector2D initialVel;
+	Vector2D prevVel;
 
 	// Cambio de frame para la pieza
 	int frameCol;

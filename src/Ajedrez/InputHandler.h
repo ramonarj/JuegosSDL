@@ -5,6 +5,13 @@
 #include "SDL.h"
 #include "Vector2D.h"
 
+enum mouse_buttons
+{
+	LEFT = 0,
+	MIDDLE = 1,
+	RIGHT = 2
+};
+
 /* Clase Singleton para gestionar los dispositivos de entrada (mandos, ratón, etc) */
 class InputHandler
 {
@@ -19,12 +26,17 @@ public:
 		}
 		return s_pInstance;
 	}
-
+	/* Recorre todos los eventos que llegan y los procesa */
 	void Update();
 	/* Cierra los dispositivos */
 	void Clean();
 
-	/* Mandos */
+	/* RATÓN */
+	/* Getters */
+	inline Vector2D* GetMousePosition(){return m_mousePosition;}
+	inline bool GetMouseButtonState(int buttonNumber) { return m_mouseButtonStates[buttonNumber]; }
+
+	/* MANDOS */
 	/* Comprueba si hay mandos conectados y los registra */
 	void InitialiseJoysticks();
 	inline bool JoysticksInitialised() { return m_bJoysticksInitialised; }
@@ -61,6 +73,7 @@ public:
 	2 -> Derecha
 	4 -> Abajo
 	8 -> Izquierda
+	Para las diagonales, se suman (ej: arriba-izquierda = 1 + 8 = 9)
 	*/
 	inline int GetHat(int joy)
 	{
@@ -69,7 +82,7 @@ public:
 
 
 private:
-	InputHandler(){}
+	InputHandler();
 	~InputHandler() {}
 
 	bool m_bJoysticksInitialised;
@@ -77,6 +90,13 @@ private:
 	/* Instancia */
 	static InputHandler* s_pInstance;
 
+	/* RATÓN */
+	/* Posición del ratón */
+	Vector2D* m_mousePosition;
+	/* Botones del ratón */
+	std::vector<bool> m_mouseButtonStates;
+
+	/* MANDOS */
 	/* Lista de mandos conectados */
 	std::vector<SDL_Joystick*> m_joysticks;
 	/* Posiciones de los joysticks de cada mando*/

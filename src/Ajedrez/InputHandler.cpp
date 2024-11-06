@@ -5,6 +5,17 @@
 
 InputHandler* InputHandler::s_pInstance = 0;
 
+InputHandler::InputHandler()
+{
+	// Inicializar ratón
+	for (int i = 0; i < 3; i++)
+	{
+		m_mouseButtonStates.push_back(false);
+	}
+	m_mousePosition = new Vector2D(0, 0);
+}
+
+
 void InputHandler::InitialiseJoysticks()
 {
 	// Nos aseguramos de que el subsistema de joystick esté iniciado
@@ -93,6 +104,51 @@ void InputHandler::Update()
 		{
 			Game::Instance()->Quit();
 		}
+
+		/* EVENTOS DEL RATÓN */
+		/* Movimiento del ratón */
+		if (event.type == SDL_MOUSEMOTION)
+		{
+			m_mousePosition->SetX(event.motion.x);
+			m_mousePosition->SetY(event.motion.y);
+		}
+
+		/* Botón pulsado */
+		if (event.type == SDL_MOUSEBUTTONDOWN)
+		{
+			if (event.button.button == SDL_BUTTON_LEFT)
+			{
+				m_mouseButtonStates[LEFT] = true;
+			}
+			if (event.button.button == SDL_BUTTON_MIDDLE)
+			{
+				m_mouseButtonStates[MIDDLE] = true;
+			}
+			if (event.button.button == SDL_BUTTON_RIGHT)
+			{
+				m_mouseButtonStates[RIGHT] = true;
+			}
+		}
+
+		/* Botón levantado */
+		if (event.type == SDL_MOUSEBUTTONUP)
+		{
+			if (event.button.button == SDL_BUTTON_LEFT)
+			{
+				m_mouseButtonStates[LEFT] = false;
+			}
+			if (event.button.button == SDL_BUTTON_MIDDLE)
+			{
+				m_mouseButtonStates[MIDDLE] = false;
+			}
+			if (event.button.button == SDL_BUTTON_RIGHT)
+			{
+				m_mouseButtonStates[RIGHT] = false;
+			}
+		}
+
+
+		/* EVENTOS DEL MANDO */
 		// Botón pulsado
 		if (event.type == SDL_JOYBUTTONDOWN)
 		{
