@@ -95,176 +95,228 @@ int InputHandler::Yvalue(int joy, int stick)
 	return 0;
 }
 
+bool InputHandler::IsKeyDown(SDL_Scancode key)
+{
+	// Comprobar que tiene la referencia al teclado
+	if (m_keystates != 0)
+	{
+		if (m_keystates[key] == 1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	return false;
+}
+
 void InputHandler::Update()
 {
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
-		if (event.type == SDL_QUIT)
+		switch(event.type)
 		{
+			// Cruz roja de la ventana
+		case SDL_QUIT:
 			Game::Instance()->Quit();
-		}
-
-		/* EVENTOS DEL RATÓN */
-		/* Movimiento del ratón */
-		if (event.type == SDL_MOUSEMOTION)
-		{
-			m_mousePosition->SetX(event.motion.x);
-			m_mousePosition->SetY(event.motion.y);
-		}
-
-		/* Botón pulsado */
-		if (event.type == SDL_MOUSEBUTTONDOWN)
-		{
-			if (event.button.button == SDL_BUTTON_LEFT)
-			{
-				m_mouseButtonStates[LEFT] = true;
-			}
-			if (event.button.button == SDL_BUTTON_MIDDLE)
-			{
-				m_mouseButtonStates[MIDDLE] = true;
-			}
-			if (event.button.button == SDL_BUTTON_RIGHT)
-			{
-				m_mouseButtonStates[RIGHT] = true;
-			}
-		}
-
-		/* Botón levantado */
-		if (event.type == SDL_MOUSEBUTTONUP)
-		{
-			if (event.button.button == SDL_BUTTON_LEFT)
-			{
-				m_mouseButtonStates[LEFT] = false;
-			}
-			if (event.button.button == SDL_BUTTON_MIDDLE)
-			{
-				m_mouseButtonStates[MIDDLE] = false;
-			}
-			if (event.button.button == SDL_BUTTON_RIGHT)
-			{
-				m_mouseButtonStates[RIGHT] = false;
-			}
-		}
-
-
-		/* EVENTOS DEL MANDO */
-		// Botón pulsado
-		if (event.type == SDL_JOYBUTTONDOWN)
-		{
-#if _DEBUG
-			std::cout << "Boton " << (int)event.jbutton.button << std::endl;
-#endif
-			int whichOne = event.jaxis.which;
-			m_buttonStates[whichOne][event.jbutton.button] = true;
-		}
-		
-		// Botón levantado
-		if (event.type == SDL_JOYBUTTONUP)
-		{
-			int whichOne = event.jaxis.which;
-			m_buttonStates[whichOne][event.jbutton.button] = false;
-		}
-		// Cruceta
-		if(event.type == SDL_JOYHATMOTION)
-		{
-#if _DEBUG
-			std::cout << "Hat " << (int)event.jhat.value << std::endl;
-#endif
-			int whichOne = event.jhat.which;
-			m_hatStates[whichOne] = (int)event.jhat.value;
-		}
-
-		// Movimiento de joystick
-		if (event.type == SDL_JOYAXISMOTION)
-		{
-			/* Por ahora, esto está transformando la señal analógica del mando
-			a una digital (0/1) teniendo en cuenta la deadzone */
-			int whichOne = event.jaxis.which;
-			std::cout << "- AxisMotion del mando " << whichOne << " -\n";
-
-			/* JOYSTICK IZQUIERDO (.first) */
-			// izquierda/derecha
-			if (event.jaxis.axis == 0)
-			{
-				// Movimiento teniendo en cuenta las zonas muertas; lo convertimos de analógico a digital
-				if (event.jaxis.value > m_joystickDeadZone)
-				{
-					m_joystickValues[whichOne].first->SetX(1);
-				}
-				else if (event.jaxis.value < -m_joystickDeadZone)
-				{
-					m_joystickValues[whichOne].first->SetX(-1);
-				}
-				else
-				{
-					m_joystickValues[whichOne].first->SetX(0);
-				}
-			}
-
-			// arriba/abajo
-			if (event.jaxis.axis == 1)
-			{
-				if (event.jaxis.value > m_joystickDeadZone)
-				{
-					m_joystickValues[whichOne].first->SetY(1);
-				}
-				else if (event.jaxis.value < -m_joystickDeadZone)
-				{
-					m_joystickValues[whichOne].first->SetY(-1);
-				}
-				else
-				{
-					m_joystickValues[whichOne].first->SetY(0);
-				}
-			}
-			/* JOYSTICK DERECHO (.second) */
-			// izquierda/derecha
-			if (event.jaxis.axis == 2)
-			{
-				if (event.jaxis.value > m_joystickDeadZone)
-				{
-					m_joystickValues[whichOne].second->SetX(1);
-				}
-				else if (event.jaxis.value < -m_joystickDeadZone)
-				{
-					m_joystickValues[whichOne].second->SetX(-1);
-				}
-				else
-				{
-					m_joystickValues[whichOne].second->SetX(0);
-				}
-			}
-
-			// arriba/abajo
-			if (event.jaxis.axis == 3)
-			{
-				if (event.jaxis.value > m_joystickDeadZone)
-				{
-					m_joystickValues[whichOne].second->SetY(1);
-				}
-				else if (event.jaxis.value < -m_joystickDeadZone)
-				{
-					m_joystickValues[whichOne].second->SetY(-1);
-				}
-				else
-				{
-					m_joystickValues[whichOne].second->SetY(0);
-				}
-			}
-
-#if _DEBUG
-			// Información de depuración
-			/*
-			std::cout << "Izquierdo: (" << m_joystickValues[whichOne].first->GetX() << "," <<
-				m_joystickValues[whichOne].first->GetY() << ") | Derecho: (" <<
-				m_joystickValues[whichOne].second->GetX() << "," << 
-				m_joystickValues[whichOne].second->GetY() << ")" << std::endl;
-			*/
-#endif
+			break;
+			/* EVENTOS DEL TECLADO */
+			// Simplemente actualizamos el array de teclas
+		case SDL_KEYDOWN:
+			m_keystates = (Uint8*)SDL_GetKeyboardState(0);
+			break;
+		case SDL_KEYUP:
+			m_keystates = (Uint8*)SDL_GetKeyboardState(0);
+			break;
+			/* EVENTOS DEL RATÓN */
+			// Movimiento 
+		case SDL_MOUSEMOTION:
+			OnMouseMove(event);
+			break;
+			// Botón pulsado
+		case SDL_MOUSEBUTTONDOWN:
+			OnMouseButtonDown(event);
+			break;
+			// Botón levantado
+		case SDL_MOUSEBUTTONUP:
+			OnMouseButtonUp(event);
+			break;
+			/* EVENTOS DEL MANDO */
+			// Joysticks
+		case SDL_JOYAXISMOTION:
+			OnJoystickAxisMove(event);
+			break;
+			// Botón pulsado
+		case SDL_JOYBUTTONDOWN:
+			OnJoystickButtonDown(event);
+			break;
+			// Botón levantado
+		case SDL_JOYBUTTONUP:
+			OnJoystickButtonUp(event);
+			break;
+			// Cruceta
+		case SDL_JOYHATMOTION:
+			OnJoystickHatMove(event);
+			break;
+		default:
+			break;
 		}
 	}
 }
+
+void InputHandler::OnMouseMove(SDL_Event& event)
+{
+	m_mousePosition->SetX(event.motion.x);
+	m_mousePosition->SetY(event.motion.y);
+}
+
+void InputHandler::OnMouseButtonDown(SDL_Event& event)
+{
+	if (event.button.button == SDL_BUTTON_LEFT)
+	{
+		m_mouseButtonStates[LEFT] = true;
+	}
+	if (event.button.button == SDL_BUTTON_MIDDLE)
+	{
+		m_mouseButtonStates[MIDDLE] = true;
+	}
+	if (event.button.button == SDL_BUTTON_RIGHT)
+	{
+		m_mouseButtonStates[RIGHT] = true;
+	}
+}
+
+void InputHandler::OnMouseButtonUp(SDL_Event& event)
+{
+	if (event.button.button == SDL_BUTTON_LEFT)
+	{
+		m_mouseButtonStates[LEFT] = false;
+	}
+	if (event.button.button == SDL_BUTTON_MIDDLE)
+	{
+		m_mouseButtonStates[MIDDLE] = false;
+	}
+	if (event.button.button == SDL_BUTTON_RIGHT)
+	{
+		m_mouseButtonStates[RIGHT] = false;
+	}
+}
+
+void InputHandler::OnJoystickAxisMove(SDL_Event& event)
+{
+	/* Por ahora, esto está transformando la señal analógica del mando
+			a una digital (0/1) teniendo en cuenta la deadzone */
+	int whichOne = event.jaxis.which;
+	std::cout << "- AxisMotion del mando " << whichOne << " -\n";
+
+	/* JOYSTICK IZQUIERDO (.first) */
+	// izquierda/derecha
+	if (event.jaxis.axis == 0)
+	{
+		// Movimiento teniendo en cuenta las zonas muertas; lo convertimos de analógico a digital
+		if (event.jaxis.value > m_joystickDeadZone)
+		{
+			m_joystickValues[whichOne].first->SetX(1);
+		}
+		else if (event.jaxis.value < -m_joystickDeadZone)
+		{
+			m_joystickValues[whichOne].first->SetX(-1);
+		}
+		else
+		{
+			m_joystickValues[whichOne].first->SetX(0);
+		}
+	}
+
+	// arriba/abajo
+	if (event.jaxis.axis == 1)
+	{
+		if (event.jaxis.value > m_joystickDeadZone)
+		{
+			m_joystickValues[whichOne].first->SetY(1);
+		}
+		else if (event.jaxis.value < -m_joystickDeadZone)
+		{
+			m_joystickValues[whichOne].first->SetY(-1);
+		}
+		else
+		{
+			m_joystickValues[whichOne].first->SetY(0);
+		}
+	}
+	/* JOYSTICK DERECHO (.second) */
+	// izquierda/derecha
+	if (event.jaxis.axis == 2)
+	{
+		if (event.jaxis.value > m_joystickDeadZone)
+		{
+			m_joystickValues[whichOne].second->SetX(1);
+		}
+		else if (event.jaxis.value < -m_joystickDeadZone)
+		{
+			m_joystickValues[whichOne].second->SetX(-1);
+		}
+		else
+		{
+			m_joystickValues[whichOne].second->SetX(0);
+		}
+	}
+
+	// arriba/abajo
+	if (event.jaxis.axis == 3)
+	{
+		if (event.jaxis.value > m_joystickDeadZone)
+		{
+			m_joystickValues[whichOne].second->SetY(1);
+		}
+		else if (event.jaxis.value < -m_joystickDeadZone)
+		{
+			m_joystickValues[whichOne].second->SetY(-1);
+		}
+		else
+		{
+			m_joystickValues[whichOne].second->SetY(0);
+		}
+	}
+
+#if _DEBUG
+	// Información de depuración
+	/*
+	std::cout << "Izquierdo: (" << m_joystickValues[whichOne].first->GetX() << "," <<
+		m_joystickValues[whichOne].first->GetY() << ") | Derecho: (" <<
+		m_joystickValues[whichOne].second->GetX() << "," <<
+		m_joystickValues[whichOne].second->GetY() << ")" << std::endl;
+	*/
+#endif
+}
+
+void InputHandler::OnJoystickButtonDown(SDL_Event& event)
+{
+#if _DEBUG
+	std::cout << "Boton " << (int)event.jbutton.button << std::endl;
+#endif
+	int whichOne = event.jaxis.which;
+	m_buttonStates[whichOne][event.jbutton.button] = true;
+}
+
+void InputHandler::OnJoystickButtonUp(SDL_Event& event)
+{
+	int whichOne = event.jaxis.which;
+	m_buttonStates[whichOne][event.jbutton.button] = false;
+}
+
+void InputHandler::OnJoystickHatMove(SDL_Event& event)
+{
+#if _DEBUG
+	std::cout << "Hat " << (int)event.jhat.value << std::endl;
+#endif
+	int whichOne = event.jhat.which;
+	m_hatStates[whichOne] = (int)event.jhat.value;
+}
+
 
 void InputHandler::Clean()
 {

@@ -32,6 +32,7 @@ private:
 	// Para pruebas
 	void InputConMando();
 	void InputConRaton();
+	void InputConTeclado();
 	Vector2D initialVel;
 	Vector2D prevVel;
 

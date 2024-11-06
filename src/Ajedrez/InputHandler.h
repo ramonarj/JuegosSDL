@@ -36,6 +36,9 @@ public:
 	inline Vector2D* GetMousePosition(){return m_mousePosition;}
 	inline bool GetMouseButtonState(int buttonNumber) { return m_mouseButtonStates[buttonNumber]; }
 
+	/* TECLADO */
+	bool IsKeyDown(SDL_Scancode key);
+
 	/* MANDOS */
 	/* Comprueba si hay mandos conectados y los registra */
 	void InitialiseJoysticks();
@@ -96,6 +99,10 @@ private:
 	/* Botones del ratón */
 	std::vector<bool> m_mouseButtonStates;
 
+	/* TECLADO */
+	/* Puntero al array de estado de las teclas */
+	Uint8* m_keystates;
+
 	/* MANDOS */
 	/* Lista de mandos conectados */
 	std::vector<SDL_Joystick*> m_joysticks;
@@ -105,9 +112,23 @@ private:
 	std::vector<std::vector<bool>> m_buttonStates;
 	/* Estado de las crucetas de cada mando */
 	std::vector<int> m_hatStates;
-
 	/* Zonas muertas */
 	const int m_joystickDeadZone = 10000;
+
+
+	/* Funciones privadas de gestión de eventos */
+	// teclado (por ahora no se usan)
+	void OnKeyDown();
+	void OnKeyUp();
+	// ratón
+	void OnMouseMove(SDL_Event& event);
+	void OnMouseButtonDown(SDL_Event& event);
+	void OnMouseButtonUp(SDL_Event& event);
+	// mandos
+	void OnJoystickAxisMove(SDL_Event& event);
+	void OnJoystickButtonDown(SDL_Event& event);
+	void OnJoystickButtonUp(SDL_Event& event);
+	void OnJoystickHatMove(SDL_Event& event);
 };
 
 #endif /* defined(__InputHandler__) */
