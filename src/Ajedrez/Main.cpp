@@ -13,7 +13,7 @@ int main(int argc, char* args[])
 
 	// Inicializar el juego
 	std::cout << "game init attempt...\n";
-	if(Game::Instance()->Init("Ajedrez", 100, 100, 640, 480, false))
+	if(Game::Instance()->Init("Ajedrez", 100, 100, 500, 500, false))
 	{
 		// Bucle principal
 		std::cout << "game init success!\n";

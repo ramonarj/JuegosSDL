@@ -3,20 +3,24 @@
 
 #include "SDLGameObject.h"
 
+enum tipo_pieza
+{
+	Peon, Torre, Cabllo, Alfil, Reina, Rey
+};
+
+enum equipo_pieza
+{
+	Blancas, Negras
+};
+
+
 /* Hereda de GameObject */
 class Pieza : public SDLGameObject
 {
 public:
 
 	/* Constructora */
-	Pieza(const LoaderParams* pParams) : SDLGameObject(pParams) 
-	{
-		frameRow = 0;
-		frameCol = 0;
-		initialVel = Vector2D(1, 1);
-		m_velocity = initialVel;
-		//m_acceleration = Vector2D(1, 1); 
-	}
+	Pieza(const LoaderParams* pParams, tipo_pieza tipo, equipo_pieza equipo);
 
 	/* Heredadas*/
 	virtual void Draw();
@@ -33,12 +37,13 @@ private:
 	void InputConMando();
 	void InputConRaton();
 	void InputConTeclado();
-	Vector2D initialVel;
-	Vector2D prevVel;
 
 	// Cambio de frame para la pieza
 	int frameCol;
 	int frameRow;
+
+	//tipo
+	tipo_pieza m_tipo;
 };
 
 #endif /* defined(__Pieza__) */

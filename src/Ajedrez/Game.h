@@ -4,6 +4,11 @@
 #include "GameStateMachine.h"
 #include "SDL.h"
 
+enum posicion_equipo
+{
+	Arriba, Abajo
+};
+
 /* Clase singleton para la gestión del juego */
 class Game
 {
@@ -23,7 +28,7 @@ public:
 
 	/* Inicializa SDL y crea la ventana y el renderer */
 	bool Init(const char* title, int xpos, int ypos, 
-		int height, int width, bool fullscreen);
+		int width, int height, bool fullscreen);
 
 	/* Lee el input del usuario */
 	void HandleInput();

@@ -8,7 +8,7 @@
 Game* Game::s_pInstance = 0;
 
 bool Game::Init(const char* title, int xpos, int ypos, 
-	int height, int width, bool fullscreen)
+	int width, int height, bool fullscreen)
 {
 	// Para la pantalla completa
 	int flags = 0;
@@ -20,7 +20,7 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	{
 		std::cout << "SDL init success\n";
 		// Si todo va bien, creamos la ventana
-		m_pWindow = SDL_CreateWindow(title, xpos, ypos, height, width, flags);
+		m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
 
 		// Si la ventana se crea bien, creamos el renderer
 		if (m_pWindow != 0)
@@ -35,13 +35,13 @@ bool Game::Init(const char* title, int xpos, int ypos,
 			else
 			{
 				std::cout << "renderer init fail\n";
-				return false; // fallo de inicialización del renderer
+				return false; // fallo de inicializaci n del renderer
 			}
 		}
 		else
 		{
 			std::cout << "window init fail\n";
-			return false; // fallo de inicialización de la ventana
+			return false; // fallo de inicializaci n de la ventana
 		}
 	}
 	else
@@ -53,7 +53,8 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	// Iniciar el InputHandler
 	InputHandler::Instance()->InitialiseJoysticks();
 
-	// Iniciar la máquina de estados y cargar el estado del menú
+<<<<<<< HEAD
+	// Iniciar la m quina de estados y cargar el estado del men 
 	m_pGameStateMachine = new GameStateMachine();
 	m_pGameStateMachine->ChangeState(new MenuState());
 
@@ -86,6 +87,35 @@ void Game::Render()
 
 	// Mostrar la ventana
 	SDL_RenderPresent(m_pRenderer);
+}
+
+void Game::CreaEquipo(equipo_pieza equipo, posicion_equipo posicion)
+{
+	// Todas las piezas blancas
+	for (int i = 0; i < 16; i++)
+	{
+		// Posici n donde ir  la pieza
+		int posX = EQUIPO_X;
+		int posY = (posicion == Arriba) ? EQUIPO_ARRIBA_Y : EQUIPO_ABAJO_Y;
+
+		tipo_pieza tipo;
+		if (i >= 8) //peones
+		{
+			tipo = Peon;
+			if (posicion == Arriba)
+				posY += TAM_CASILLA;
+			else
+				posY -= TAM_CASILLA;
+		}
+		else if (i < 5) 
+			tipo = (tipo_pieza)(i + 1);
+		else
+			tipo = (tipo_pieza)(8 - i);
+
+		SDLGameObject* pieza = new Pieza(new LoaderParams(posX + TAM_CASILLA * (i % 8), posY,
+			ANCHO_PIEZA, ALTO_PIEZA, "piezas"), tipo, equipo);
+		m_gameObjects.push_back(pieza);
+	}
 }
 
 void Game::Clean()

@@ -5,6 +5,15 @@
 #include "Game.h"
 #include "GameOverState.h"
 
+Pieza::Pieza(const LoaderParams* pParams, tipo_pieza tipo, equipo_pieza equipo) : SDLGameObject(pParams)
+{
+	m_tipo = tipo;
+	frameCol = tipo;
+	frameRow = equipo;
+	SetTextureFrame(frameRow, frameCol);
+}
+
+
 void Pieza::InputConMando()
 {
 	float vel = 3;
@@ -67,6 +76,7 @@ void Pieza::InputConMando()
 
 void Pieza::InputConRaton()
 {
+	/*
 	// Con el clic izquierdo mantenemos la pieza parada hasta soltarlo
 	if(InputHandler::Instance()->GetMouseButtonState(LEFT))
 	{
@@ -96,6 +106,7 @@ void Pieza::InputConRaton()
 	{
 		m_position = *InputHandler::Instance()->GetMousePosition();
 	}
+	*/
 }
 
 void Pieza::InputConTeclado()
@@ -122,52 +133,16 @@ void Pieza::InputConTeclado()
 void Pieza::HandleInput()
 {
 	//InputConMando();
-	InputConTeclado();
-	InputConRaton();
+	//InputConTeclado();
+	//InputConRaton();
+
+
 }
 
 void Pieza::Update()
 {
 	// Mira a ver qué se ha pulsado en el mando
 	HandleInput();
-
-	// Movimiento independiente del framerate
-	//int nuevaY = int(((SDL_GetTicks() / 10) % 480));
-
-	// Prueba para GameOverState; si la pieza toca una pared, perdemos
-	// Dejamos comentado lo del salvapantallas
-	bool gameover = false;
-	if (m_position.GetX() > 640)
-	{
-		//m_velocity.SetX(-m_velocity.GetX());
-		gameover = true;
-	}
-	else if (m_position.GetX() < 0)
-	{
-		//m_velocity.SetX(-m_velocity.GetX());
-		gameover = true;
-	}
-
-	if (m_position.GetY() > 480)
-	{
-		//m_velocity.SetY(-m_velocity.GetY());
-		gameover = true;
-	}
-
-	else if (m_position.GetY() < 0)
-	{
-		//m_velocity.SetY(-m_velocity.GetY());
-		gameover = true;
-	}
-	if(gameover)
-		Game::Instance()->GetStateMachine()->ChangeState(new GameOverState());
-
-
-	// Para probar la aceleración
-	m_acceleration = m_velocity;
-	m_acceleration.Normalize(); // vector unitario de la velocidad
-	m_acceleration /= 50;
-	
 
 	// Llamada a la clase padre
 	SDLGameObject::Update();
