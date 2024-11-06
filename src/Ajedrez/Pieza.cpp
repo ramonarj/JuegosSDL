@@ -5,9 +5,11 @@
 #include "Game.h"
 #include "GameOverState.h"
 
-Pieza::Pieza(const LoaderParams* pParams, tipo_pieza tipo, equipo_pieza equipo) : SDLGameObject(pParams)
+Pieza::Pieza(const LoaderParams* pParams, tipo_pieza tipo, equipo_pieza equipo, Vector2D posTablero)
+	: SDLGameObject(pParams)
 {
 	m_tipo = tipo;
+	m_posTablero = posTablero;
 	frameCol = tipo;
 	frameRow = equipo;
 	SetTextureFrame(frameRow, frameCol);

@@ -4,6 +4,7 @@
 #include "InputHandler.h"
 #include "MenuState.h"
 #include "PlayState.h"
+#include <fstream>
 
 Game* Game::s_pInstance = 0;
 
@@ -53,20 +54,22 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	// Iniciar el InputHandler
 	InputHandler::Instance()->InitialiseJoysticks();
 
-<<<<<<< HEAD
+
 	// Iniciar la m quina de estados y cargar el estado del men 
 	m_pGameStateMachine = new GameStateMachine();
 	m_pGameStateMachine->ChangeState(new MenuState());
 
+
 	std::cout << "init success\n";
 	m_bRunning = true;
+
 
 	return true;
 }
 
 void Game::HandleInput()
 {
-	// Eventos de mandos
+	// Gestor de eventos
 	InputHandler::Instance()->Update();
 }
 
@@ -89,14 +92,62 @@ void Game::Render()
 	SDL_RenderPresent(m_pRenderer);
 }
 
-void Game::CreaEquipo(equipo_pieza equipo, posicion_equipo posicion)
+
+void Game::LeeTablero(std::string fileName)
+{
+	std::ifstream archivo(FILES_PATH + fileName);
+	if (archivo.is_open())
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			// Leemos una l nea (descarta el salto de l nea del final)
+			std::string fila;
+			std::getline(archivo, fila);
+			for (int j = 0; j < 8; j++)
+			{
+				equipo_pieza equipo;
+				int tipoPieza = fila[j * 2];
+				// No hay nada (salimos)
+				if (tipoPieza == '0')
+					break;
+				// Pieza negra
+				if (tipoPieza > '6')
+				{
+					equipo = Negras;
+					tipoPieza -= 'a';
+				}
+				// Pieza blanca
+				else
+				{
+					equipo = Blancas;
+					tipoPieza -= '1';
+				}
+					
+				//int tipoPieza = fila[j * 2] - '0' - 1;
+				// Crea la pieza con la informaci n del archivo
+				m_tablero[i][j] = new Pieza(new LoaderParams(EQUIPO_X + j*TAM_CASILLA, EQUIPO_ARRIBA_Y + i*TAM_CASILLA, 
+					ANCHO_PIEZA, ALTO_PIEZA, "piezas"),  (tipo_pieza)tipoPieza, equipo, Vector2D(i, j));
+				// La a ade a los GO
+				m_gameObjects.push_back(m_tablero[i][j]);
+			}
+		}
+		// De qui n es el turno ahora
+		std::string turnoStr;
+		std::getline(archivo, turnoStr);
+		m_turno = (equipo_pieza)(turnoStr[0] - '0');
+	}
+	archivo.close();
+}
+
+/*
+void Game::CreaEquipo()
 {
 	// Todas las piezas blancas
 	for (int i = 0; i < 16; i++)
 	{
 		// Posici n donde ir  la pieza
 		int posX = EQUIPO_X;
-		int posY = (posicion == Arriba) ? EQUIPO_ARRIBA_Y : EQUIPO_ABAJO_Y;
+		int posY = (posicion == Arriba) ? EQUIPO_ARRIBA_Y : EQUIPO_ARRIBA_Y + 7 * TAM_CASILLA;
 
 		tipo_pieza tipo;
 		if (i >= 8) //peones
@@ -112,15 +163,29 @@ void Game::CreaEquipo(equipo_pieza equipo, posicion_equipo posicion)
 		else
 			tipo = (tipo_pieza)(8 - i);
 
-		SDLGameObject* pieza = new Pieza(new LoaderParams(posX + TAM_CASILLA * (i % 8), posY,
+		// Crear la pieza
+		Pieza* pieza = new Pieza(new LoaderParams(posX + TAM_CASILLA * (i % 8), posY,
 			ANCHO_PIEZA, ALTO_PIEZA, "piezas"), tipo, equipo);
 		m_gameObjects.push_back(pieza);
+
+		// Meterla en el tablero
+		//if(posicion == Arriba)
+		//	m_tablero[i / 8][i % 8] = pieza;
+		//else
+		//	m_tablero[1 - (i / 8) + 6][i % 8] = pieza;
 	}
 }
+*/
 
 void Game::Clean()
 {
 	std::cout << "cleaning game\n";
+	for(SDLGameObject* go : m_gameObjects)
+	{
+		delete go;
+		go = nullptr;
+	}
+
 	InputHandler::Instance()->Clean();
 
 	SDL_DestroyWindow(m_pWindow);

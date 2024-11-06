@@ -5,7 +5,7 @@
 
 enum tipo_pieza
 {
-	Peon, Torre, Cabllo, Alfil, Reina, Rey
+	Peon, Torre, Caballo, Alfil, Reina, Rey
 };
 
 enum equipo_pieza
@@ -20,7 +20,7 @@ class Pieza : public SDLGameObject
 public:
 
 	/* Constructora */
-	Pieza(const LoaderParams* pParams, tipo_pieza tipo, equipo_pieza equipo);
+	Pieza(const LoaderParams* pParams, tipo_pieza tipo, equipo_pieza equipo, Vector2D posTablero);
 
 	/* Heredadas*/
 	virtual void Draw();
@@ -44,6 +44,8 @@ private:
 
 	//tipo
 	tipo_pieza m_tipo;
+	// Posición que ocupa en el tablero
+	Vector2D m_posTablero;
 };
 
 #endif /* defined(__Pieza__) */

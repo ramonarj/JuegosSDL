@@ -4,6 +4,8 @@
 #include "GameStateMachine.h"
 #include "SDL.h"
 
+static const std::string FILES_PATH = "../../bin/Assets/";
+
 enum posicion_equipo
 {
 	Arriba, Abajo
@@ -60,6 +62,7 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
+
 
 	/* Máquina de estados finita */
 	GameStateMachine* m_pGameStateMachine;
