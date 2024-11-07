@@ -4,6 +4,8 @@
 #include "SDL_image.h"
 #include "TextureManager.h"
 #include "InputHandler.h"
+#include "MenuState.h"
+#include "PlayState.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -50,20 +52,19 @@ bool Game::Init(const char* title, int xpos, int ypos,
 		return false; // sdl no se pudo inicializar
 	}
 
-	std::cout << "init success\n";
-	m_bRunning = true;
+	// Iniciar la máquina de estados y cargar el estado del menú
+	m_pGameStateMachine = new GameStateMachine();
+	m_pGameStateMachine->ChangeState(new MenuState());
 
 	// Iniciar el InputHandler
 	InputHandler::Instance()->InitialiseJoysticks();
 
 	// Carga de recursos con TextureManager
 	TextureManager::Instance()->Load("Piezas.png", "piezas", m_pRenderer);
+	TextureManager::Instance()->Load("PlayButton.png", "playButton", m_pRenderer);
 
-	// Inicializar GameObjects y añadirlos a la lista
-	LoaderParams* pPiezaParams = new LoaderParams(350, 350, 46, 62, "piezas");
-	piezaViva = new Pieza(pPiezaParams);
-	m_gameObjects.push_back(piezaViva);
-
+	std::cout << "init success\n";
+	m_bRunning = true;
 
 	return true;
 }
@@ -73,48 +74,27 @@ void Game::HandleInput()
 	// Eventos de mandos
 	InputHandler::Instance()->Update();
 
-
-	// Otros eventos
-	/*
-	SDL_Event event;
-	if (SDL_PollEvent(&event))
+	// Con Enter, pasamos al PlayState
+	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_RETURN))
 	{
-		switch (event.type)
-		{
-		// Cerrar la ventana (clicando en la X)
-		case SDL_QUIT:
-			m_bRunning = false;
-			break;
-		// Teclas normales (flechas)
-		case SDL_KEYDOWN:
-			switch(event.key.keysym.sym)
-			{
-			case SDLK_RIGHT:
-				frameCol = (frameCol+1) % 6;
-				piezaCambiante->SetTextureFrame(frameRow, frameCol);
-				break;
-			case SDLK_LEFT:
-				frameRow = (frameRow + 1) % 2;
-				piezaCambiante->SetTextureFrame(frameRow, frameCol);
-				break;
-			default:
-				break;
-			}
-
-		default:
-			break;
-		}
+		m_pGameStateMachine->ChangeState(new PlayState());
 	}
-	*/
-
+	// Con el escape, salimos al menú
+	else if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_ESCAPE))
+	{
+		m_pGameStateMachine->ChangeState(new MenuState());
+	}
 }
 
 
 void Game::Update()
 {
+	// Actualizar el estado actual
+	m_pGameStateMachine->Update();
+
 	// Actualizar cada uno de los GameObjects
-	for (GameObject* o : m_gameObjects)
-		o->Update();
+	//for (GameObject* o : m_gameObjects)
+	//	o->Update();
 }
 
 void Game::Render()
@@ -122,9 +102,12 @@ void Game::Render()
 	// Limpiar la ventana con ese color
 	SDL_RenderClear(m_pRenderer);
 
+	// Renderizar el estado actual
+	m_pGameStateMachine->Render();
+
 	// Renderizar cada uno de los GameObjects
-	for (GameObject* o : m_gameObjects)
-		o->Draw();
+	//for (GameObject* o : m_gameObjects)
+	//	o->Draw();
 
 	// Mostrar la ventana
 	SDL_RenderPresent(m_pRenderer);

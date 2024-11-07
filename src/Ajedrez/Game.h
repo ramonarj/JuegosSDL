@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Pieza.h"
+#include "GameStateMachine.h"
 
 /* Clase singleton para la gestión del juego */
 class Game
@@ -19,7 +20,6 @@ public:
 		}
 		return s_pInstance;
 	}
-
 
 
 	/* Inicializa SDL y crea la ventana y el renderer */
@@ -53,16 +53,17 @@ private:
 
 	static Game* s_pInstance;
 
-	// Variables (g = global, m = member, p = pointer, b = bool, s = singleton)
+	// Variables (g = global, m = member, p = pointer, b = bool, s = static)
 	// SDL
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
 
-	// Lista de GameObjects
-	std::vector<GameObject*> m_gameObjects;
+	/* Lista de GameObjects */
+	//std::vector<GameObject*> m_gameObjects;
 
-	Pieza* piezaViva;
+	/* Máquina de estados finita */
+	GameStateMachine* m_pGameStateMachine;
 };
 
 

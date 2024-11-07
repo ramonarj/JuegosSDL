@@ -34,4 +34,4 @@ private:
 	std::string m_textureID;
 };
 
-#endif /* defined(__TextureManager__) */
+#endif /* defined(__LoaderParams__) */

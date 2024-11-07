@@ -116,10 +116,6 @@ void Pieza::InputConTeclado()
 		frameRow = (frameRow + 1) % 2;
 		SetTextureFrame(frameRow, frameCol);
 	}
-
-	// Con el escape, salimos del juego
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_ESCAPE))
-		Game::Instance()->Quit();
 }
 
 void Pieza::HandleInput()

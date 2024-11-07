@@ -159,20 +159,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Ajedrez\Game.cpp" />
-    <ClCompile Include="..\..\src\Ajedrez\GameObject.cpp" />
+    <ClCompile Include="..\..\src\Ajedrez\GameStateMachine.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\InputHandler.cpp" />
-    <ClCompile Include="..\..\src\Ajedrez\LoaderParams.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\Main.cpp" />
+    <ClCompile Include="..\..\src\Ajedrez\MenuState.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\Pieza.cpp" />
+    <ClCompile Include="..\..\src\Ajedrez\PlayState.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\SDLGameObject.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Ajedrez\Game.h" />
     <ClInclude Include="..\..\src\Ajedrez\GameObject.h" />
+    <ClInclude Include="..\..\src\Ajedrez\GameState.h" />
+    <ClInclude Include="..\..\src\Ajedrez\GameStateMachine.h" />
     <ClInclude Include="..\..\src\Ajedrez\InputHandler.h" />
     <ClInclude Include="..\..\src\Ajedrez\LoaderParams.h" />
+    <ClInclude Include="..\..\src\Ajedrez\MenuState.h" />
     <ClInclude Include="..\..\src\Ajedrez\Pieza.h" />
+    <ClInclude Include="..\..\src\Ajedrez\PlayState.h" />
     <ClInclude Include="..\..\src\Ajedrez\SDLGameObject.h" />
     <ClInclude Include="..\..\src\Ajedrez\TextureManager.h" />
     <ClInclude Include="..\..\src\Ajedrez\Vector2D.h" />
