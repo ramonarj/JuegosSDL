@@ -24,6 +24,8 @@ public:
 
 	/* Carga una textura a partir de una imagen y la almacena con el identificador dado */
 	bool Load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
+	/* Elimina una textura del diccionario */
+	inline void ClearFromTextureMap(std::string id) { m_textureMap.erase(id); }
 
 	/* Dibuja la textura entera en el rectángulo destino dado */
 	void Draw(std::string id, int x, int y, int width, int height, 
@@ -36,8 +38,8 @@ public:
 private:
 	/* Constructora privada; solo se puede acceder a la clase con Instance() */
 	TextureManager() {}
-
 	static TextureManager* s_pInstance;
+	/* Diccionario de punteros a texturas */
 	std::map<std::string, SDL_Texture*> m_textureMap;
 };
 

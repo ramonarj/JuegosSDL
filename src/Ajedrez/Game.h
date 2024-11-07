@@ -1,9 +1,8 @@
 #ifndef __GAME__
 #define __GAME__
 
-#include <vector>
-#include "Pieza.h"
 #include "GameStateMachine.h"
+#include "SDL.h"
 
 /* Clase singleton para la gestión del juego */
 class Game
@@ -39,28 +38,22 @@ public:
 	bool Running() { return m_bRunning; }
 
 	/* Cierra el juego */
-	void Quit() { SDL_Quit(); }
+	inline void Quit() { SDL_Quit(); }
 
 	/* Getters */
 	SDL_Renderer* GetRenderer() const { return m_pRenderer; }
-
-	// Público para pruebas
-	SDLGameObject* piezaCambiante;
 
 private:
 	Game() {}
 	~Game() {}
 
+	// Variables (g = global, m = member, p = pointer, b = bool, s = static)
 	static Game* s_pInstance;
 
-	// Variables (g = global, m = member, p = pointer, b = bool, s = static)
 	// SDL
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
-
-	/* Lista de GameObjects */
-	//std::vector<GameObject*> m_gameObjects;
 
 	/* Máquina de estados finita */
 	GameStateMachine* m_pGameStateMachine;

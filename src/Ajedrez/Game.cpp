@@ -1,8 +1,6 @@
 #include "Game.h"
 
 #include <iostream>
-#include "SDL_image.h"
-#include "TextureManager.h"
 #include "InputHandler.h"
 #include "MenuState.h"
 #include "PlayState.h"
@@ -52,16 +50,12 @@ bool Game::Init(const char* title, int xpos, int ypos,
 		return false; // sdl no se pudo inicializar
 	}
 
-	// Iniciar la máquina de estados y cargar el estado del menú
-	m_pGameStateMachine = new GameStateMachine();
-	m_pGameStateMachine->ChangeState(new MenuState());
-
 	// Iniciar el InputHandler
 	InputHandler::Instance()->InitialiseJoysticks();
 
-	// Carga de recursos con TextureManager
-	TextureManager::Instance()->Load("Piezas.png", "piezas", m_pRenderer);
-	TextureManager::Instance()->Load("PlayButton.png", "playButton", m_pRenderer);
+	// Iniciar la máquina de estados y cargar el estado del menú
+	m_pGameStateMachine = new GameStateMachine();
+	m_pGameStateMachine->ChangeState(new MenuState());
 
 	std::cout << "init success\n";
 	m_bRunning = true;
@@ -91,10 +85,6 @@ void Game::Update()
 {
 	// Actualizar el estado actual
 	m_pGameStateMachine->Update();
-
-	// Actualizar cada uno de los GameObjects
-	//for (GameObject* o : m_gameObjects)
-	//	o->Update();
 }
 
 void Game::Render()
@@ -104,10 +94,6 @@ void Game::Render()
 
 	// Renderizar el estado actual
 	m_pGameStateMachine->Render();
-
-	// Renderizar cada uno de los GameObjects
-	//for (GameObject* o : m_gameObjects)
-	//	o->Draw();
 
 	// Mostrar la ventana
 	SDL_RenderPresent(m_pRenderer);

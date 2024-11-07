@@ -19,4 +19,4 @@ private:
 	std::vector<GameState*> m_gameStates;
 };
 
-#endif
+#endif /* defined(__GameStateMachine__) */

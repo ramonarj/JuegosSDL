@@ -1,7 +1,8 @@
 #ifndef __MENUSTATE__
 #define __MENUSTATE__
 #include "GameState.h"
-#include "SDLGameObject.h"
+#include "MenuButton.h"
+#include <vector>
 
 class MenuState : public GameState
 {
@@ -17,7 +18,8 @@ public:
 private:
 	static const std::string s_menuID;
 
-	SDLGameObject* m_botonPlay;
+	/* Lista de GameObjects */
+	std::vector<GameObject*> m_gameObjects;
 };
 
 #endif /* defined(__MenuState__) */
