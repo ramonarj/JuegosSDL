@@ -35,6 +35,8 @@ public:
 	/* Getters */
 	inline Vector2D* GetMousePosition(){return m_mousePosition;}
 	inline bool GetMouseButtonState(int buttonNumber) { return m_mouseButtonStates[buttonNumber]; }
+	/* Reinicia el estado del ratón */
+	void Reset();
 
 	/* TECLADO */
 	bool IsKeyDown(SDL_Scancode key);

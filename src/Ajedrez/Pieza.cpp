@@ -3,6 +3,7 @@
 #include "InputHandler.h"
 #include <iostream>
 #include "Game.h"
+#include "GameOverState.h"
 
 void Pieza::InputConMando()
 {
@@ -133,24 +134,40 @@ void Pieza::Update()
 	// Movimiento independiente del framerate
 	//int nuevaY = int(((SDL_GetTicks() / 10) % 480));
 
-	// Para el salvapantallas
-	
+	// Prueba para GameOverState; si la pieza toca una pared, perdemos
+	// Dejamos comentado lo del salvapantallas
+	bool gameover = false;
 	if (m_position.GetX() > 640)
-		m_velocity.SetX(-m_velocity.GetX());
+	{
+		//m_velocity.SetX(-m_velocity.GetX());
+		gameover = true;
+	}
 	else if (m_position.GetX() < 0)
-		m_velocity.SetX(-m_velocity.GetX());
+	{
+		//m_velocity.SetX(-m_velocity.GetX());
+		gameover = true;
+	}
 
 	if (m_position.GetY() > 480)
-		m_velocity.SetY(-m_velocity.GetY());
+	{
+		//m_velocity.SetY(-m_velocity.GetY());
+		gameover = true;
+	}
+
 	else if (m_position.GetY() < 0)
-		m_velocity.SetY(-m_velocity.GetY());
+	{
+		//m_velocity.SetY(-m_velocity.GetY());
+		gameover = true;
+	}
+	if(gameover)
+		Game::Instance()->GetStateMachine()->ChangeState(new GameOverState());
+
 
 	// Para probar la aceleración
 	m_acceleration = m_velocity;
 	m_acceleration.Normalize(); // vector unitario de la velocidad
 	m_acceleration /= 50;
 	
-
 
 	// Llamada a la clase padre
 	SDLGameObject::Update();

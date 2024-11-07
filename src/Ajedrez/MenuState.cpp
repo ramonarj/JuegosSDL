@@ -10,17 +10,13 @@ const std::string MenuState::s_menuID = "MENU";
 void MenuState::Update()
 {
 	// Update de todas las entidades
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->Update();
-	}
+	for (GameObject* o : m_gameObjects)
+		o->Update();
 }
 void MenuState::Render()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->Draw();
-	}
+	for (GameObject* o : m_gameObjects)
+		o->Draw();
 }
 bool MenuState::OnEnter()
 {
@@ -45,10 +41,9 @@ bool MenuState::OnEnter()
 }
 bool MenuState::OnExit()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->Clean();
-	}
+	for (GameObject* o : m_gameObjects)
+		o->Clean();
+
 	m_gameObjects.clear();
 	TextureManager::Instance()->ClearFromTextureMap("playButton");
 
@@ -59,7 +54,7 @@ bool MenuState::OnExit()
 void MenuState::s_menuToPlay()
 {
 	std::cout << "Botón Jugar" << std::endl;
-	Game::Instance()->GetStateMachine()->PushState(new PlayState());
+	Game::Instance()->GetStateMachine()->ChangeState(new PlayState());
 }
 
 void MenuState::s_exitFromMenu()

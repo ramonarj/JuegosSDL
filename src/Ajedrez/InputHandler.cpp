@@ -15,6 +15,13 @@ InputHandler::InputHandler()
 	m_mousePosition = new Vector2D(0, 0);
 }
 
+void InputHandler::Reset()
+{
+	// Devolver los botones del ratón al estado inicial
+	for (int i = 0; i < 3; i++)
+		m_mouseButtonStates[i] = false;
+}
+
 
 void InputHandler::InitialiseJoysticks()
 {

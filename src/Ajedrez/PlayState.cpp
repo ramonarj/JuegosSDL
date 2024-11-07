@@ -5,20 +5,22 @@
 #include "InputHandler.h"
 #include "Game.h"
 #include "MenuState.h"
+#include "PauseState.h"
+#include "GameOverState.h"
 #include "Pieza.h"
 
 const std::string PlayState::s_playID = "PLAY";
 
 void PlayState::Update()
 {
-	for (GameObject* o : m_gameObjects)
-		o->Update();
-
 	// Con el escape, salimos al menú
 	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_ESCAPE))
 	{
-		Game::Instance()->GetStateMachine()->PopState();
+		Game::Instance()->GetStateMachine()->PushState(new PauseState());
 	}
+
+	for (GameObject* o : m_gameObjects)
+		o->Update();
 }
 
 void PlayState::Render()
@@ -38,7 +40,7 @@ bool PlayState::OnEnter()
 	}
 
 	// Los LoaderParams habrá que borrarlos también no???
-	GameObject* piezaViva = new Pieza(new LoaderParams(350, 350, 46, 62, "piezas"));
+	GameObject* piezaViva = new Pieza(new LoaderParams(320, 240, 46, 62, "piezas"));
 	m_gameObjects.push_back(piezaViva);
 
 	return true;
@@ -46,10 +48,9 @@ bool PlayState::OnEnter()
 
 bool PlayState::OnExit()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->Clean();
-	}
+	for (GameObject* o : m_gameObjects)
+		o->Clean();
+
 	m_gameObjects.clear();
 	TextureManager::Instance()->ClearFromTextureMap("piezas");
 
