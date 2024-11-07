@@ -42,6 +42,7 @@ public:
 
 	/* Getters */
 	SDL_Renderer* GetRenderer() const { return m_pRenderer; }
+	GameStateMachine* GetStateMachine() { return m_pGameStateMachine; }
 
 private:
 	Game() {}

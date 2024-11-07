@@ -29,6 +29,18 @@ void SDLGameObject::Update()
 
 void SDLGameObject::Draw()
 {
-	TextureManager::Instance()->DrawFrame(m_textureID, (int)m_position.GetX(), (int)m_position.GetY(),
-		m_width, m_height, m_textureRow, m_textureCol, Game::Instance()->GetRenderer());
+	/* Esto de invertir la imagen en función de la velocidad será deseable según 
+	el juego que hagamos creo yo */
+	// Entidad moviéndose hacia la derecha
+	if (m_velocity.GetX() >= 0)
+	{
+		TextureManager::Instance()->DrawFrame(m_textureID, (int)m_position.GetX(), (int)m_position.GetY(),
+			m_width, m_height, m_textureRow, m_textureCol, Game::Instance()->GetRenderer());
+	}
+	// " " hacia la izquierda
+	else
+	{
+		TextureManager::Instance()->DrawFrame(m_textureID, (int)m_position.GetX(), (int)m_position.GetY(),
+			m_width, m_height, m_textureRow, m_textureCol, Game::Instance()->GetRenderer(), SDL_FLIP_HORIZONTAL);
+	}
 }

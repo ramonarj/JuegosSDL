@@ -20,6 +20,10 @@ private:
 
 	/* Lista de GameObjects */
 	std::vector<GameObject*> m_gameObjects;
+
+	/* Callbacks para los botones (deben ser estáticas) */
+	static void s_menuToPlay();
+	static void s_exitFromMenu();
 };
 
 #endif /* defined(__MenuState__) */

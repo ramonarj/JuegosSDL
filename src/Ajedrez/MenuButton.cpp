@@ -1,7 +1,7 @@
 #include "MenuButton.h"
 #include "InputHandler.h"
 
-MenuButton::MenuButton(const LoaderParams* pParams) : SDLGameObject(pParams)
+MenuButton::MenuButton(const LoaderParams* pParams, void(*callback)()) : SDLGameObject(pParams), m_callback(callback)
 {
 	SetTextureFrame(0, MOUSE_OUT);
 }
@@ -16,11 +16,18 @@ void MenuButton::Update()
 		&& pMousePos->GetY() < (m_position.GetY() + m_height)
 		&& pMousePos->GetY() > m_position.GetY())
 	{
-		m_textureCol = MOUSE_OVER;
 		// Ratón clicado sobre el botón
-		if (InputHandler::Instance()->GetMouseButtonState(LEFT))
+		if (InputHandler::Instance()->GetMouseButtonState(LEFT) && m_bReleased)
 		{
 			m_textureCol = CLICKED;
+			if(m_callback != nullptr) // añadido por seguridad
+				m_callback(); // call our callback function
+			m_bReleased = false;
+		}
+		else if (!InputHandler::Instance()->GetMouseButtonState(LEFT))
+		{
+			m_bReleased = true;
+			m_textureCol = MOUSE_OVER;
 		}
 	}
 	// Ratón fuera de las lindes

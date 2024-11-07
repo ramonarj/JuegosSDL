@@ -67,17 +67,6 @@ void Game::HandleInput()
 {
 	// Eventos de mandos
 	InputHandler::Instance()->Update();
-
-	// Con Enter, pasamos al PlayState
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_RETURN))
-	{
-		m_pGameStateMachine->ChangeState(new PlayState());
-	}
-	// Con el escape, salimos al menú
-	else if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_ESCAPE))
-	{
-		m_pGameStateMachine->ChangeState(new MenuState());
-	}
 }
 
 
