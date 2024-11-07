@@ -33,7 +33,7 @@ public:
 
 	/* Dibuja un fotograma de la textura con los parámetros dados */
 	void DrawFrame(std::string id, int x, int y, int width, int height, 
-		int row, int col, SDL_Renderer* pRenderer, bool centered = true, SDL_RendererFlip flip = SDL_FLIP_NONE);
+		int row, int col, SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 private:
 	/* Constructora privada; solo se puede acceder a la clase con Instance() */

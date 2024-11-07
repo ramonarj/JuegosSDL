@@ -2,6 +2,7 @@
 #define __PIEZA__
 
 #include "SDLGameObject.h"
+class PlayState;
 
 enum tipo_pieza
 {
@@ -20,7 +21,7 @@ class Pieza : public SDLGameObject
 public:
 
 	/* Constructora */
-	Pieza(const LoaderParams* pParams, tipo_pieza tipo, equipo_pieza equipo, Vector2D posTablero);
+	Pieza(const LoaderParams* pParams, tipo_pieza tipo, equipo_pieza equipo, Vector2D posTablero, PlayState* const playState);
 
 	/* Heredadas*/
 	virtual void Draw();
@@ -33,11 +34,6 @@ private:
 	// Para el input
 	void HandleInput();
 
-	// Para pruebas
-	void InputConMando();
-	void InputConRaton();
-	void InputConTeclado();
-
 	// Cambio de frame para la pieza
 	int frameCol;
 	int frameRow;
@@ -46,6 +42,8 @@ private:
 	tipo_pieza m_tipo;
 	// Posición que ocupa en el tablero
 	Vector2D m_posTablero;
+	// referencia al playstate
+	PlayState* m_playState;
 
 	// Funciones auxiliares
 	bool DentroTablero(Vector2D pos);
