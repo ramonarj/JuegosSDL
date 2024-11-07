@@ -63,7 +63,6 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	std::cout << "init success\n";
 	m_bRunning = true;
 
-
 	return true;
 }
 
@@ -71,6 +70,11 @@ void Game::HandleInput()
 {
 	// Gestor de eventos
 	InputHandler::Instance()->Update();
+
+	if(InputHandler::Instance()->GetMouseButtonState(LEFT) && m_piezaSeleccionada != nullptr)
+	{
+		std::cout << "ee";
+	}
 }
 
 
@@ -124,8 +128,9 @@ void Game::LeeTablero(std::string fileName)
 				}
 					
 				//int tipoPieza = fila[j * 2] - '0' - 1;
+
 				// Crea la pieza con la informaci n del archivo
-				m_tablero[i][j] = new Pieza(new LoaderParams(EQUIPO_X + j*TAM_CASILLA, EQUIPO_ARRIBA_Y + i*TAM_CASILLA, 
+				m_tablero[i][j] = new Pieza(new LoaderParams(BORDE_TABLERO + j*TAM_CASILLA, BORDE_TABLERO + i*TAM_CASILLA, 
 					ANCHO_PIEZA, ALTO_PIEZA, "piezas"),  (tipo_pieza)tipoPieza, equipo, Vector2D(i, j));
 				// La a ade a los GO
 				m_gameObjects.push_back(m_tablero[i][j]);
@@ -139,43 +144,12 @@ void Game::LeeTablero(std::string fileName)
 	archivo.close();
 }
 
-/*
-void Game::CreaEquipo()
+void Game::PiezaSeleccionada(Pieza* pieza)
 {
-	// Todas las piezas blancas
-	for (int i = 0; i < 16; i++)
-	{
-		// Posici n donde ir  la pieza
-		int posX = EQUIPO_X;
-		int posY = (posicion == Arriba) ? EQUIPO_ARRIBA_Y : EQUIPO_ARRIBA_Y + 7 * TAM_CASILLA;
-
-		tipo_pieza tipo;
-		if (i >= 8) //peones
-		{
-			tipo = Peon;
-			if (posicion == Arriba)
-				posY += TAM_CASILLA;
-			else
-				posY -= TAM_CASILLA;
-		}
-		else if (i < 5) 
-			tipo = (tipo_pieza)(i + 1);
-		else
-			tipo = (tipo_pieza)(8 - i);
-
-		// Crear la pieza
-		Pieza* pieza = new Pieza(new LoaderParams(posX + TAM_CASILLA * (i % 8), posY,
-			ANCHO_PIEZA, ALTO_PIEZA, "piezas"), tipo, equipo);
-		m_gameObjects.push_back(pieza);
-
-		// Meterla en el tablero
-		//if(posicion == Arriba)
-		//	m_tablero[i / 8][i % 8] = pieza;
-		//else
-		//	m_tablero[1 - (i / 8) + 6][i % 8] = pieza;
-	}
+	m_piezaSeleccionada = pieza;
+	m_seleccion->SetActive(true);
+	m_seleccion->SetPosition(pieza->GetPosition());
 }
-*/
 
 void Game::Clean()
 {

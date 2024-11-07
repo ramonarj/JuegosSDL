@@ -51,6 +51,7 @@ public:
 	SDL_Renderer* GetRenderer() const { return m_pRenderer; }
 	GameStateMachine* GetStateMachine() { return m_pGameStateMachine; }
 
+
 private:
 	Game() {}
 	~Game() {}
@@ -62,7 +63,6 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
-
 
 	/* Máquina de estados finita */
 	GameStateMachine* m_pGameStateMachine;

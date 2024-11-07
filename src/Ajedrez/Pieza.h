@@ -46,6 +46,9 @@ private:
 	tipo_pieza m_tipo;
 	// Posición que ocupa en el tablero
 	Vector2D m_posTablero;
+
+	// Funciones auxiliares
+	bool DentroTablero(Vector2D pos);
 };
 
 #endif /* defined(__Pieza__) */

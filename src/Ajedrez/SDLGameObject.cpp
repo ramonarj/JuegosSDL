@@ -17,6 +17,8 @@ SDLGameObject::SDLGameObject(const LoaderParams* pParams) : GameObject(pParams)
 
 	m_textureRow = 0;
 	m_textureCol = 0;
+
+	m_active = true;
 }
 
 void SDLGameObject::Update()

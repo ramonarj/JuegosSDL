@@ -17,6 +17,13 @@ public:
 	virtual void Draw();
 	virtual void Clean(){}
 
+	//Nuevo
+	inline bool IsActive() { return m_active; }
+	inline void SetActive(bool active) { m_active = active; }
+
+	inline void SetPosition(Vector2D position) { m_position = position; }
+	inline Vector2D GetPosition() { return m_position; }
+
 protected:
 	/* 'Protected' porque queremos que otras clases puedan heredar de SDLGameObject
 y acceder a las variables de este */
@@ -38,6 +45,9 @@ y acceder a las variables de este */
 
 	// Métodos auxiliares
 	inline void SetTextureFrame(int row, int col) { m_textureRow = row; m_textureCol = col; }
+
+	// Si está activo o no
+	bool m_active;
 };
 
 #endif

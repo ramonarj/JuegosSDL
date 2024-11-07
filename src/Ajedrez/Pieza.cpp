@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Game.h"
 #include "GameOverState.h"
+#include "TextureManager.h"
 
 Pieza::Pieza(const LoaderParams* pParams, tipo_pieza tipo, equipo_pieza equipo, Vector2D posTablero)
 	: SDLGameObject(pParams)
@@ -31,7 +32,7 @@ void Pieza::InputConMando()
 		if (InputHandler::Instance()->GetButtonState(0, 7))
 			m_position += Vector2D(20, 0);
 
-		// Cambio de color con un botón
+		// Cambio de color con un bot n
 		if (InputHandler::Instance()->GetButtonState(0, 0))
 		{
 			frameRow = (frameRow + 1) % 2;
@@ -95,7 +96,7 @@ void Pieza::InputConRaton()
 		m_velocity = prevVel;
 	}
 
-	// Con el clic derecho reseteamos la velocidad y aceleración
+	// Con el clic derecho reseteamos la velocidad y aceleraci n
 	if(InputHandler::Instance()->GetMouseButtonState(RIGHT))
 	{
 		std::cout << "Clic derecho" << std::endl;
@@ -103,7 +104,7 @@ void Pieza::InputConRaton()
 		m_acceleration = Vector2D(0, 0);
 	}
 
-	// Con el botón del medio cambiamos el color
+	// Con el bot n del medio cambiamos el color
 	if(InputHandler::Instance()->GetMouseButtonState(MIDDLE))
 	{
 		m_position = *InputHandler::Instance()->GetMousePosition();
@@ -134,16 +135,27 @@ void Pieza::InputConTeclado()
 
 void Pieza::HandleInput()
 {
+	// Vemos si nos han clicado
+	if(InputHandler::Instance()->GetMouseButtonState(LEFT))
+	{
+		float mouseX = InputHandler::Instance()->GetMousePosition()->GetX();
+		float mouseY = InputHandler::Instance()->GetMousePosition()->GetY();
+
+		if (abs(mouseX - m_position.GetX()) < 25 && abs(mouseY - m_position.GetY()) < 20)
+		{
+			//std::cout << "Clicado en pieza de " << m_posTablero.GetX() << ", " << m_posTablero.GetY() << ")\n";
+			Game::Instance()->PiezaSeleccionada(this);
+		}
+			
+	}
 	//InputConMando();
 	//InputConTeclado();
 	//InputConRaton();
-
-
 }
 
 void Pieza::Update()
 {
-	// Mira a ver qué se ha pulsado en el mando
+	// Mira a ver qu  se ha pulsado en el mando
 	HandleInput();
 
 	// Llamada a la clase padre
@@ -153,5 +165,12 @@ void Pieza::Update()
 
 void Pieza::Draw() 
 {
-	SDLGameObject::Draw();
+	TextureManager::Instance()->DrawFrame(m_textureID, (int)m_position.GetX(), (int)m_position.GetY(),
+		m_width, m_height, m_textureRow, m_textureCol, Game::Instance()->GetRenderer(), true);
+	//SDLGameObject::Draw();
+}
+
+bool Pieza::DentroTablero(Vector2D pos)
+{
+	return (pos.GetX() > 0 && pos.GetX() < 8 && pos.GetY() > 0 && pos.GetY() < 8);
 }
