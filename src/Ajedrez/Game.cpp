@@ -51,6 +51,9 @@ bool Game::Init(const char* title, int xpos, int ypos,
 		return false; // sdl no se pudo inicializar
 	}
 
+	// Registrar los tipos de entidades que vamos a usar
+	GameObjectFactory::Instance()->RegisterType("MenuButton", new MenuButtonCreator());
+
 	// Iniciar el InputHandler
 	InputHandler::Instance()->InitialiseJoysticks();
 

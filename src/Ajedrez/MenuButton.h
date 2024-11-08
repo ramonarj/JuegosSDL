@@ -1,6 +1,8 @@
 #ifndef __MENUBUTTON__
 #define __MENUBUTTON__
+
 #include "SDLGameObject.h"
+#include "GameObjectFactory.h"
 
 class MenuButton : public SDLGameObject
 {
@@ -34,6 +36,14 @@ private:
 
 	/* Para el clic del ratón */
 	bool m_bReleased;
+};
+
+class MenuButtonCreator : public BaseCreator
+{
+	GameObject* CreateGameObject() const
+	{
+		return new MenuButton();
+	}
 };
 
 #endif /* defined(__MenuButton__) */

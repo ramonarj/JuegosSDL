@@ -4,6 +4,7 @@
 #include "Game.h"
 #include <iostream>
 #include "PlayState.h"
+#include "StateParser.h"
 
 const std::string MainMenuState::s_menuID = "MENU";
 
@@ -30,18 +31,25 @@ bool MainMenuState::OnEnter()
 		return false;
 	}
 
+	// Lectura del estado actual del XML
+	StateParser stateParser;
+	stateParser.ParseState("menu.xml", s_menuID, &m_gameObjects, &m_textureIDList);
+
+
 	// Añade los callbacks a la lista
 	m_callbacks.push_back(0); 
 	m_callbacks.push_back(s_menuToPlay);
 	m_callbacks.push_back(s_exitFromMenu);
 	
 	// Crea los GameObjects y los añade a la lista
+	/*
 	GameObject* botonPlay = new MenuButton();
 	GameObject* botonExit = new MenuButton();
 	dynamic_cast<MenuButton*>(botonPlay)->Load(new LoaderParams(200, 200, 250, 104, "playButton", 1, 1, 0));
 	dynamic_cast<MenuButton*>(botonExit)->Load(new LoaderParams(200, 350, 250, 93, "exitButton", 1, 2, 0));
 	m_gameObjects.push_back(botonPlay);
 	m_gameObjects.push_back(botonExit);
+	*/
 
 	// Asigna los callbacks a los botones
 	SetCallbacks(m_callbacks);
@@ -51,11 +59,16 @@ bool MainMenuState::OnEnter()
 }
 bool MainMenuState::OnExit()
 {
+	// clear gameobjects
 	for (GameObject* o : m_gameObjects)
 		o->Clean();
 
 	m_gameObjects.clear();
-	TextureManager::Instance()->ClearFromTextureMap("playButton");
+	// clear the texture manager
+	for (int i = 0; i < m_textureIDList.size(); i++)
+	{
+		TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
+	}
 
 	std::cout << "exiting MenuState\n";
 	return true;
