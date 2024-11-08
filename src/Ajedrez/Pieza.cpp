@@ -5,6 +5,13 @@
 #include "Game.h"
 #include "GameOverState.h"
 
+void Pieza::Load(const LoaderParams* pParams)
+{
+	SDLGameObject::Load(pParams);
+	initialVel = Vector2D(1, 1);
+	m_velocity = initialVel;
+}
+
 void Pieza::InputConMando()
 {
 	float vel = 3;

@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "InputHandler.h"
-#include "MenuState.h"
+#include "MainMenuState.h"
 #include "PlayState.h"
 
 Game* Game::s_pInstance = 0;
@@ -56,7 +56,7 @@ bool Game::Init(const char* title, int xpos, int ypos,
 
 	// Iniciar la máquina de estados y cargar el estado del menú
 	m_pGameStateMachine = new GameStateMachine();
-	m_pGameStateMachine->ChangeState(new MenuState());
+	m_pGameStateMachine->ChangeState(new MainMenuState());
 
 	std::cout << "init success\n";
 	m_bRunning = true;

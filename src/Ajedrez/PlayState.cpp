@@ -53,8 +53,10 @@ bool PlayState::OnEnter()
 	}
 
 	// Los LoaderParams habrá que borrarlos también no???
-	GameObject* piezaViva = new Pieza(new LoaderParams(320, 240, 46, 62, "piezas"));
-	GameObject* fuego = new AnimatedGraphic(new LoaderParams(200, 200, 70, 95, "fuego", 4), 6);
+	GameObject* piezaViva = new Pieza();
+	GameObject* fuego = new AnimatedGraphic();
+	dynamic_cast<Pieza*>(piezaViva)->Load(new LoaderParams(320, 240, 46, 62, "piezas"));
+	dynamic_cast<AnimatedGraphic*>(fuego)->Load(new LoaderParams(200, 200, 70, 95, "fuego", 4, 0, 6));
 	m_gameObjects.push_back(piezaViva);
 	m_gameObjects.push_back(fuego);
 

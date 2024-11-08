@@ -10,6 +10,9 @@ class GameObject
 /* Los métodos son virtuales para poder usar el polimorfismo */
 public:
 
+	/* Inicializa el GameObject */
+	virtual void Load(const LoaderParams* pParams) = 0;
+
 	/* Dibuja el GameObject */
 	virtual void Draw() = 0;
 	/* Actualiza el GameObject */
@@ -18,8 +21,7 @@ public:
 	virtual void Clean() = 0;
 
 protected:
-	/* Constructora con los parámetros de carga */
-	GameObject(const LoaderParams* pParams) {}
+	GameObject() {}
 	virtual ~GameObject() {}
 };
 

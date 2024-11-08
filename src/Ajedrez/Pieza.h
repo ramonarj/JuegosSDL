@@ -2,6 +2,7 @@
 #define __PIEZA__
 
 #include "SDLGameObject.h"
+#include "GameObjectFactory.h"
 
 /* Hereda de GameObject */
 class Pieza : public SDLGameObject
@@ -9,11 +10,8 @@ class Pieza : public SDLGameObject
 public:
 
 	/* Constructora */
-	Pieza(const LoaderParams* pParams) : SDLGameObject(pParams) 
-	{
-		initialVel = Vector2D(1, 1);
-		m_velocity = initialVel;
-	}
+	Pieza() : SDLGameObject() {}
+	virtual void Load(const LoaderParams* pParams);
 
 	/* Heredadas*/
 	virtual void Draw();

@@ -4,26 +4,17 @@
 #include "MenuButton.h"
 #include <vector>
 
+/* Clase abstracta para estados que tengan botones con callbacks */
 class MenuState : public GameState
 {
-public:
-	virtual void Update();
-	virtual void Render();
+protected:
+	typedef void(*Callback)();
 
-	virtual bool OnEnter();
-	virtual bool OnExit();
+	/* Función que asigna a cada botón su callback */
+	virtual void SetCallbacks(const std::vector<Callback>& callbacks)= 0;
 
-	virtual std::string GetStateID() const { return s_menuID; }
-
-private:
-	static const std::string s_menuID;
-
-	/* Lista de GameObjects */
-	std::vector<GameObject*> m_gameObjects;
-
-	/* Callbacks para los botones (deben ser estáticas) */
-	static void s_menuToPlay();
-	static void s_exitFromMenu();
+	/* Vector de callbacks */
+	std::vector<Callback> m_callbacks;
 };
 
 #endif /* defined(__MenuState__) */

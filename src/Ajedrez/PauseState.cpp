@@ -4,7 +4,7 @@
 #include "Game.h"
 #include <iostream>
 #include "PlayState.h"
-#include "MenuState.h"
+#include "MainMenuState.h"
 #include "InputHandler.h"
 
 const std::string PauseState::s_PauseID = "PAUSE";
@@ -30,12 +30,22 @@ bool PauseState::OnEnter()
 	{
 		return false;
 	}
+
+	// Añade los callbacks a la lista
+	m_callbacks.push_back(0);
+	m_callbacks.push_back(s_resumePlay);
+	m_callbacks.push_back(s_pauseToMenu);
 	
 	// Crea los GameObjects y los añade a la lista
-	GameObject* botonResume = new MenuButton(new LoaderParams(200, 200, 200, 80, "resumeButton"), s_resumePlay);
-	GameObject* botonMenu = new MenuButton(new LoaderParams(200, 350, 200, 80, "menuButton"), s_pauseToMenu);
+	GameObject* botonResume = new MenuButton();
+	GameObject* botonMenu = new MenuButton();
+	dynamic_cast<MenuButton*>(botonResume)->Load(new LoaderParams(200, 200, 200, 80, "resumeButton", 1, 1, 0));
+	dynamic_cast<MenuButton*>(botonMenu)->Load(new LoaderParams(200, 350, 200, 80, "menuButton", 1, 2, 0));
 	m_gameObjects.push_back(botonResume);
 	m_gameObjects.push_back(botonMenu);
+
+	// Asigna los callbacks a los botones
+	SetCallbacks(m_callbacks);
 
 	std::cout << "entering PauseState\n";
 	return true;
@@ -63,5 +73,22 @@ void PauseState::s_resumePlay()
 
 void PauseState::s_pauseToMenu()
 {
-	Game::Instance()->GetStateMachine()->ChangeState(new MenuState());
+	Game::Instance()->GetStateMachine()->ChangeState(new MainMenuState());
+}
+
+void PauseState::SetCallbacks(const std::vector<Callback>& callbacks)
+{
+	// go through the game objects
+	if (!m_gameObjects.empty())
+	{
+		for (int i = 0; i < m_gameObjects.size(); i++)
+		{
+			// if they are of type MenuButton then assign a callback based on the id passed in from the file
+			MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);
+			if (pButton != nullptr) //duck typing
+			{
+				pButton->SetCallback(callbacks[pButton->GetCallbackID()]);
+			}
+		}
+	}
 }

@@ -10,7 +10,9 @@
 class SDLGameObject : public GameObject
 {
 public:
-	SDLGameObject(const LoaderParams* pParams);
+	SDLGameObject() : GameObject() {}
+
+	virtual void Load(const LoaderParams* pParams);
 
 	// Heredados de GameObject
 	virtual void Update();

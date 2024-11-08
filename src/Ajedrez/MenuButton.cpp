@@ -1,8 +1,10 @@
 #include "MenuButton.h"
 #include "InputHandler.h"
 
-MenuButton::MenuButton(const LoaderParams* pParams, void(*callback)()) : SDLGameObject(pParams), m_callback(callback)
+void MenuButton::Load(const LoaderParams* pParams)
 {
+	SDLGameObject::Load(pParams);
+	m_callbackID = pParams->getCallbackID();
 	m_textureCol = MOUSE_OUT;
 }
 

@@ -4,7 +4,7 @@
 #include "Game.h"
 #include <iostream>
 #include "PlayState.h"
-#include "MenuState.h"
+#include "MainMenuState.h"
 #include "InputHandler.h"
 #include "AnimatedGraphic.h"
 
@@ -35,14 +35,26 @@ bool GameOverState::OnEnter()
 	{
 		return false;
 	}
+
+	// Añade los callbacks a la lista
+	m_callbacks.push_back(0);
+	m_callbacks.push_back(s_restartPlay);
+	m_callbacks.push_back(s_gameoverToMenu);
 	
 	// Crea los GameObjects y los añade a la lista
-	GameObject* botonRestart = new MenuButton(new LoaderParams(200, 200, 200, 80, "restartButton"), s_restartPlay);
-	GameObject* botonMenu = new MenuButton(new LoaderParams(200, 350, 200, 80, "menuButton"), s_gameoverToMenu);
-	GameObject* gameoverImage = new AnimatedGraphic(new LoaderParams(200, 100, 190, 30, "gameover", 2), 2);
+	GameObject* botonRestart = new MenuButton();
+	GameObject* botonMenu = new MenuButton();
+	GameObject* gameoverImage = new AnimatedGraphic();
+	dynamic_cast<MenuButton*>(botonRestart)->Load(new LoaderParams(200, 200, 200, 80, "restartButton", 1, 1, 0));
+	dynamic_cast<MenuButton*>(botonMenu)->Load(new LoaderParams(200, 350, 200, 80, "menuButton", 1, 2, 0));
+	dynamic_cast<AnimatedGraphic*>(gameoverImage)->Load(new LoaderParams(200, 100, 190, 30, "gameover", 2, 0, 2));
 	m_gameObjects.push_back(botonRestart);
 	m_gameObjects.push_back(botonMenu);
 	m_gameObjects.push_back(gameoverImage);
+
+
+	// Asigna los callbacks a los botones
+	SetCallbacks(m_callbacks);
 
 	std::cout << "entering GameOverState\n";
 	return true;
@@ -65,13 +77,28 @@ bool GameOverState::OnExit()
 
 void GameOverState::s_restartPlay()
 {
-	std::cout << "Restart" << std::endl;
 	// Volver al PlayState
 	Game::Instance()->GetStateMachine()->ChangeState(new PlayState());
 }
 
 void GameOverState::s_gameoverToMenu()
 {
-	std::cout << "Go to menu" << std::endl;
-	Game::Instance()->GetStateMachine()->ChangeState(new MenuState());
+	Game::Instance()->GetStateMachine()->ChangeState(new MainMenuState());
+}
+
+void GameOverState::SetCallbacks(const std::vector<Callback>& callbacks)
+{
+	// go through the game objects
+	if (!m_gameObjects.empty())
+	{
+		for (int i = 0; i < m_gameObjects.size(); i++)
+		{
+			// if they are of type MenuButton then assign a callback based on the id passed in from the file
+			MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);
+			if (pButton != nullptr) //duck typing
+			{
+				pButton->SetCallback(callbacks[pButton->GetCallbackID()]);
+			}
+		}
+	}
 }
