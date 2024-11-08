@@ -23,15 +23,13 @@ void Pieza::InputConMando()
 		// Cambio de color con un botón
 		if (InputHandler::Instance()->GetButtonState(0, 0))
 		{
-			frameRow = (frameRow + 1) % 2;
-			SetTextureFrame(frameRow, frameCol);
+			m_textureRow = (m_textureRow + 1) % 2;
 		}
 
 		// Cambio de pieza con la cruceta
 		if (InputHandler::Instance()->GetHat(0) == 2)
 		{
-			frameCol = (frameCol + 1) % 6;
-			SetTextureFrame(frameRow, frameCol);
+			m_textureCol = (m_textureCol + 1) % 6;
 		}
 
 
@@ -86,7 +84,6 @@ void Pieza::InputConRaton()
 	// Con el clic derecho reseteamos la velocidad y aceleración
 	if(InputHandler::Instance()->GetMouseButtonState(RIGHT))
 	{
-		std::cout << "Clic derecho" << std::endl;
 		m_velocity.Normalize();
 		m_acceleration = Vector2D(0, 0);
 	}
@@ -106,16 +103,14 @@ void Pieza::InputConTeclado()
 	{
 		if (InputHandler::Instance()->IsKeyDown(SDL_Scancode(uno + i)))
 		{
-			frameCol = i;
-			SetTextureFrame(frameRow, frameCol);
+			m_textureCol = i;
 		}
 	}
 
 	// Con la barra espaciadora cambiamos el color
 	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_SPACE))
 	{
-		frameRow = (frameRow + 1) % 2;
-		SetTextureFrame(frameRow, frameCol);
+		m_textureRow = (m_textureRow + 1) % 2;
 	}
 }
 
@@ -136,31 +131,24 @@ void Pieza::Update()
 
 	// Prueba para GameOverState; si la pieza toca una pared, perdemos
 	// Dejamos comentado lo del salvapantallas
-	bool gameover = false;
 	if (m_position.GetX() > 640)
 	{
-		//m_velocity.SetX(-m_velocity.GetX());
-		gameover = true;
+		m_velocity.SetX(-m_velocity.GetX());
 	}
 	else if (m_position.GetX() < 0)
 	{
-		//m_velocity.SetX(-m_velocity.GetX());
-		gameover = true;
+		m_velocity.SetX(-m_velocity.GetX());
 	}
 
 	if (m_position.GetY() > 480)
 	{
-		//m_velocity.SetY(-m_velocity.GetY());
-		gameover = true;
+		m_velocity.SetY(-m_velocity.GetY());
 	}
 
 	else if (m_position.GetY() < 0)
 	{
-		//m_velocity.SetY(-m_velocity.GetY());
-		gameover = true;
+		m_velocity.SetY(-m_velocity.GetY());
 	}
-	if(gameover)
-		Game::Instance()->GetStateMachine()->ChangeState(new GameOverState());
 
 
 	// Para probar la aceleración

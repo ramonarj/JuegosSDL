@@ -3,7 +3,7 @@
 
 MenuButton::MenuButton(const LoaderParams* pParams, void(*callback)()) : SDLGameObject(pParams), m_callback(callback)
 {
-	SetTextureFrame(0, MOUSE_OUT);
+	m_textureCol = MOUSE_OUT;
 }
 
 void MenuButton::Update()

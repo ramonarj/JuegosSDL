@@ -11,11 +11,8 @@ public:
 	/* Constructora */
 	Pieza(const LoaderParams* pParams) : SDLGameObject(pParams) 
 	{
-		frameRow = 0;
-		frameCol = 0;
 		initialVel = Vector2D(1, 1);
 		m_velocity = initialVel;
-		//m_acceleration = Vector2D(1, 1); 
 	}
 
 	/* Heredadas*/
@@ -35,10 +32,6 @@ private:
 	void InputConTeclado();
 	Vector2D initialVel;
 	Vector2D prevVel;
-
-	// Cambio de frame para la pieza
-	int frameCol;
-	int frameRow;
 };
 
 #endif /* defined(__Pieza__) */

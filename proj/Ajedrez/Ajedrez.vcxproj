@@ -158,6 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Ajedrez\AnimatedGraphic.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\Game.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\GameOverState.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\GameStateMachine.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="..\..\src\Ajedrez\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Ajedrez\AnimatedGraphic.h" />
     <ClInclude Include="..\..\src\Ajedrez\Game.h" />
     <ClInclude Include="..\..\src\Ajedrez\GameObject.h" />
     <ClInclude Include="..\..\src\Ajedrez\GameOverState.h" />

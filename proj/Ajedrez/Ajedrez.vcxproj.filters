@@ -57,6 +57,9 @@
     <ClCompile Include="..\..\src\Ajedrez\PlayState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Ajedrez\AnimatedGraphic.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Ajedrez\Game.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Ajedrez\PlayState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Ajedrez\AnimatedGraphic.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

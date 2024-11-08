@@ -8,8 +8,8 @@ class LoaderParams
 {
 public:
 	/* Constructora */
-	LoaderParams(int x, int y, int width, int height, std::string textureID) : 
-		m_x(x), m_y(y), m_width(width), m_height(height), m_textureID(textureID)
+	LoaderParams(int x, int y, int width, int height, std::string textureID, int numFrames = 1) : 
+		m_x(x), m_y(y), m_width(width), m_height(height), m_textureID(textureID), m_numFrames(numFrames)
 	{
 	}
 
@@ -20,6 +20,8 @@ public:
 	int getWidth() const { return m_width; }
 	int getHeight() const { return m_height; }
 
+	int getNumFrames() const { return m_numFrames; }
+
 	std::string getTextureID() const { return m_textureID; }
 private:
 	// Posición
@@ -29,6 +31,9 @@ private:
 	// Tamaño
 	int m_width;
 	int m_height;
+
+	// Número de frames
+	int m_numFrames;
 
 	// Nombre de la textura
 	std::string m_textureID;

@@ -6,6 +6,7 @@
 #include "PlayState.h"
 #include "MenuState.h"
 #include "InputHandler.h"
+#include "AnimatedGraphic.h"
 
 const std::string GameOverState::s_gameoverID = "GAMEOVER";
 
@@ -38,12 +39,12 @@ bool GameOverState::OnEnter()
 	// Crea los GameObjects y los añade a la lista
 	GameObject* botonRestart = new MenuButton(new LoaderParams(200, 200, 200, 80, "restartButton"), s_restartPlay);
 	GameObject* botonMenu = new MenuButton(new LoaderParams(200, 350, 200, 80, "menuButton"), s_gameoverToMenu);
-	GameObject* gameoverImage = new SDLGameObject(new LoaderParams(200, 100, 190, 30, "gameover"));
+	GameObject* gameoverImage = new AnimatedGraphic(new LoaderParams(200, 100, 190, 30, "gameover", 2), 2);
 	m_gameObjects.push_back(botonRestart);
 	m_gameObjects.push_back(botonMenu);
 	m_gameObjects.push_back(gameoverImage);
 
-	std::cout << "entering entering GameOverState\n";
+	std::cout << "entering GameOverState\n";
 	return true;
 }
 bool GameOverState::OnExit()

@@ -2,7 +2,7 @@
 #define __PLAYSTATE__
 
 #include "GameState.h"
-#include "GameObject.h"
+#include "SDLGameObject.h"
 #include <vector>
 
 class PlayState : public GameState
@@ -21,6 +21,9 @@ private:
 
 	/* Lista de GameObjects */
 	std::vector<GameObject*> m_gameObjects;
+
+	/* Comprobación de colisiones entre 2 gameobjects */
+	bool CheckCollision(SDLGameObject* p1, SDLGameObject* p2);
 };
 
 
