@@ -7,7 +7,8 @@
 class MenuButton : public SDLGameObject
 {
 public:
-	MenuButton(){}
+	/* Constructora por defecto */
+	MenuButton() : m_callback(nullptr), m_bReleased(true), m_callbackID(0){}
 	void Load(const LoaderParams* pParams);
 
 	// Heredadas

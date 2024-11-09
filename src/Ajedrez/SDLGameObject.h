@@ -10,7 +10,7 @@
 class SDLGameObject : public GameObject
 {
 public:
-	SDLGameObject() : GameObject() {}
+	SDLGameObject() : GameObject(), m_width(0), m_height(0), m_textureRow(1), m_textureCol(1) {}
 
 	virtual void Load(const LoaderParams* pParams);
 
@@ -46,4 +46,4 @@ y acceder a las variables de este */
 	std::string m_textureID;
 };
 
-#endif
+#endif /* defined(__SDLGameObject__) */

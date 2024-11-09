@@ -57,7 +57,7 @@ bool PlayState::OnExit()
 
 	m_gameObjects.clear();
 	// clear the texture manager
-	for (int i = 0; i < m_textureIDList.size(); i++)
+	for (size_t i = 0; i < m_textureIDList.size(); i++)
 	{
 		TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
 	}
@@ -73,16 +73,16 @@ bool PlayState::CheckCollision(SDLGameObject* p1, SDLGameObject* p2)
 	int topA, topB;
 	int bottomA, bottomB;
 
-	leftA = p1->GetPosition().GetX();
-	rightA = p1->GetPosition().GetX() + p1->GetWidth();
-	topA = p1->GetPosition().GetY();
-	bottomA = p1->GetPosition().GetY() + p1->GetHeight();
+	leftA = (int)p1->GetPosition().GetX();
+	rightA = (int)p1->GetPosition().GetX() + p1->GetWidth();
+	topA = (int)p1->GetPosition().GetY();
+	bottomA = (int)p1->GetPosition().GetY() + p1->GetHeight();
 
 	//Calculate the sides of rect B
-	leftB = p2->GetPosition().GetX();
-	rightB = p2->GetPosition().GetX() + p2->GetWidth();
-	topB = p2->GetPosition().GetY();
-	bottomB = p2->GetPosition().GetY() + p2->GetHeight();
+	leftB = (int)p2->GetPosition().GetX();
+	rightB = (int)p2->GetPosition().GetX() + p2->GetWidth();
+	topB = (int)p2->GetPosition().GetY();
+	bottomB = (int)p2->GetPosition().GetY() + p2->GetHeight();
 
 	//If any of the sides from A are outside of B
 	if (bottomA <= topB) { return false; }

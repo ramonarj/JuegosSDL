@@ -6,7 +6,7 @@
 /* Llama explícitamente a la constructora de GameObject */
 void SDLGameObject::Load(const LoaderParams* pParams)
 {
-	m_position = Vector2D(pParams->getX(), pParams->getY());
+	m_position = Vector2D((float)pParams->getX(), (float)pParams->getY());
 	m_velocity = Vector2D(0, 0);
 	m_acceleration = Vector2D(0, 0);
 

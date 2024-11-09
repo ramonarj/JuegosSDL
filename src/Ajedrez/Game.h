@@ -45,7 +45,8 @@ public:
 	GameStateMachine* GetStateMachine() { return m_pGameStateMachine; }
 
 private:
-	Game() {}
+	/* Constructora por defecto */
+	Game() : m_bRunning(false), m_pRenderer(nullptr), m_pWindow(nullptr), m_pGameStateMachine (nullptr) {}
 	~Game() {}
 
 	// Variables (g = global, m = member, p = pointer, b = bool, s = static)

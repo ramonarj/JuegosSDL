@@ -5,7 +5,7 @@
 
 InputHandler* InputHandler::s_pInstance = 0;
 
-InputHandler::InputHandler()
+InputHandler::InputHandler() : m_keystates(nullptr), m_bJoysticksInitialised(false)
 {
 	// Inicializar ratón
 	for (int i = 0; i < 3; i++)
@@ -76,11 +76,11 @@ int InputHandler::Xvalue(int joy, int stick)
 	{
 		if (stick == 1)
 		{
-			return m_joystickValues[joy].first->GetX();
+			return (int)m_joystickValues[joy].first->GetX();
 		}
 		else if (stick == 2)
 		{
-			return m_joystickValues[joy].second->GetX();
+			return (int)m_joystickValues[joy].second->GetX();
 		}
 	}
 	return 0;
@@ -92,11 +92,11 @@ int InputHandler::Yvalue(int joy, int stick)
 	{
 		if (stick == 1)
 		{
-			return m_joystickValues[joy].first->GetY();
+			return (int)m_joystickValues[joy].first->GetY();
 		}
 		else if (stick == 2)
 		{
-			return m_joystickValues[joy].second->GetY();
+			return (int)m_joystickValues[joy].second->GetY();
 		}
 	}
 	return 0;
@@ -176,8 +176,8 @@ void InputHandler::Update()
 
 void InputHandler::OnMouseMove(SDL_Event& event)
 {
-	m_mousePosition->SetX(event.motion.x);
-	m_mousePosition->SetY(event.motion.y);
+	m_mousePosition->SetX((float)event.motion.x);
+	m_mousePosition->SetY((float)event.motion.y);
 }
 
 void InputHandler::OnMouseButtonDown(SDL_Event& event)
@@ -329,7 +329,7 @@ void InputHandler::Clean()
 {
 	if (m_bJoysticksInitialised)
 	{
-		for (unsigned int i = 0; i < SDL_NumJoysticks(); i++)
+		for (int i = 0; i < SDL_NumJoysticks(); i++)
 		{
 			SDL_JoystickClose(m_joysticks[i]);
 		}

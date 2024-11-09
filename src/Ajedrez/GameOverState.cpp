@@ -72,7 +72,7 @@ bool GameOverState::OnExit()
 
 	m_gameObjects.clear();
 	// clear the texture manager
-	for (int i = 0; i < m_textureIDList.size(); i++)
+	for (size_t i = 0; i < m_textureIDList.size(); i++)
 	{
 		TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
 	}
@@ -99,7 +99,7 @@ void GameOverState::SetCallbacks(const std::vector<Callback>& callbacks)
 	// go through the game objects
 	if (!m_gameObjects.empty())
 	{
-		for (int i = 0; i < m_gameObjects.size(); i++)
+		for (size_t i = 0; i < m_gameObjects.size(); i++)
 		{
 			// if they are of type MenuButton then assign a callback based on the id passed in from the file
 			MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);

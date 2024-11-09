@@ -7,12 +7,12 @@
 class AnimatedGraphic : public SDLGameObject
 {
 public:
-	AnimatedGraphic() : SDLGameObject() {}
+	/* Constructora por defecto */
+	AnimatedGraphic() : SDLGameObject(), m_numFrames(1), m_animSpeed(0) {}
 
-	// No me deja usar las listas de inicialización en el .cpp
+	/* Heredados */
 	virtual void Load(const LoaderParams* pParams);
 
-	/* Heredado */
 	virtual void Update();
 
 protected:
@@ -20,7 +20,7 @@ protected:
 	/* Número de frames de animación */
 	int m_numFrames;
 	/* Número de frames/segundo */
-	float m_animSpeed;
+	int m_animSpeed;
 };
 
 
