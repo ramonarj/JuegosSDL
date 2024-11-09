@@ -9,6 +9,7 @@
 #include "GameOverState.h"
 #include "Pieza.h"
 #include "AnimatedGraphic.h"
+#include "StateParser.h"
 
 const std::string PlayState::s_playID = "PLAY";
 
@@ -40,26 +41,12 @@ void PlayState::Render()
 
 bool PlayState::OnEnter()
 {
+	// Lectura del estado actual del XML
+	StateParser stateParser;
+	stateParser.ParseState("play.xml", s_playID, &m_gameObjects, &m_textureIDList);
+
+
 	std::cout << "entering PlayState\n";
-
-	// Carga de recursos con TextureManager
-	if (!TextureManager::Instance()->Load("Piezas.png", "piezas", Game::Instance()->GetRenderer()))
-	{
-		return false;
-	}
-	if (!TextureManager::Instance()->Load("Fuego.png", "fuego", Game::Instance()->GetRenderer()))
-	{
-		return false;
-	}
-
-	// Los LoaderParams habrá que borrarlos también no???
-	GameObject* piezaViva = new Pieza();
-	GameObject* fuego = new AnimatedGraphic();
-	dynamic_cast<Pieza*>(piezaViva)->Load(new LoaderParams(320, 240, 46, 62, "piezas"));
-	dynamic_cast<AnimatedGraphic*>(fuego)->Load(new LoaderParams(200, 200, 70, 95, "fuego", 4, 0, 6));
-	m_gameObjects.push_back(piezaViva);
-	m_gameObjects.push_back(fuego);
-
 	return true;
 }
 
@@ -69,7 +56,11 @@ bool PlayState::OnExit()
 		o->Clean();
 
 	m_gameObjects.clear();
-	TextureManager::Instance()->ClearFromTextureMap("piezas");
+	// clear the texture manager
+	for (int i = 0; i < m_textureIDList.size(); i++)
+	{
+		TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
+	}
 
 	std::cout << "exiting PlayState\n";
 	return true;

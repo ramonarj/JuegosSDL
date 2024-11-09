@@ -4,6 +4,8 @@
 #include "InputHandler.h"
 #include "MainMenuState.h"
 #include "PlayState.h"
+#include "Pieza.h"
+#include "AnimatedGraphic.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -53,6 +55,8 @@ bool Game::Init(const char* title, int xpos, int ypos,
 
 	// Registrar los tipos de entidades que vamos a usar
 	GameObjectFactory::Instance()->RegisterType("MenuButton", new MenuButtonCreator());
+	GameObjectFactory::Instance()->RegisterType("Pieza", new PiezaCreator());
+	GameObjectFactory::Instance()->RegisterType("AnimatedGraphic", new AnimatedGraphicCreator());
 
 	// Iniciar el InputHandler
 	InputHandler::Instance()->InitialiseJoysticks();

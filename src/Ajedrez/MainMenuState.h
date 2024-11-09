@@ -23,8 +23,6 @@ private:
 
 	/* Lista de GameObjects */
 	std::vector<GameObject*> m_gameObjects;
-	/* Lista de IDs de texturas */
-	std::vector<std::string> m_textureIDList;
 
 	/* Callbacks para los botones (deben ser estáticas) */
 	static void s_menuToPlay();

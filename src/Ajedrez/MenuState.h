@@ -1,8 +1,8 @@
 #ifndef __MENUSTATE__
 #define __MENUSTATE__
+
 #include "GameState.h"
 #include "MenuButton.h"
-#include <vector>
 
 /* Clase abstracta para estados que tengan botones con callbacks */
 class MenuState : public GameState

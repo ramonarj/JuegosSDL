@@ -3,7 +3,6 @@
 
 #include "GameState.h"
 #include "SDLGameObject.h"
-#include <vector>
 
 class PlayState : public GameState
 {

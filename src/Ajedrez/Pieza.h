@@ -32,4 +32,14 @@ private:
 	Vector2D prevVel;
 };
 
+
+class PiezaCreator : public BaseCreator
+{
+	GameObject* CreateGameObject() const
+	{
+		return new Pieza();
+	}
+};
+
+
 #endif /* defined(__Pieza__) */

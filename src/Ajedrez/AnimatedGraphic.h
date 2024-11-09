@@ -2,6 +2,7 @@
 #define __ANIMATEDGRAPHIC__
 
 #include "SDLGameObject.h"
+#include "GameObjectFactory.h"
 
 class AnimatedGraphic : public SDLGameObject
 {
@@ -21,5 +22,15 @@ protected:
 	/* Número de frames/segundo */
 	float m_animSpeed;
 };
+
+
+class AnimatedGraphicCreator : public BaseCreator
+{
+	GameObject* CreateGameObject() const
+	{
+		return new AnimatedGraphic();
+	}
+};
+
 
 #endif /* defined(__AnimatedGraphic__) */

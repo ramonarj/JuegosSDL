@@ -3,7 +3,6 @@
 
 #include "MenuState.h"
 #include "MenuButton.h"
-#include <vector>
 
 class GameOverState : public MenuState
 {

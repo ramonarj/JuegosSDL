@@ -2,6 +2,7 @@
 #define __GAMESTATE__
 
 #include <string>
+#include <vector>
 
 /* Clase abstracta, igual que GameObject, para un estado de juego */
 class GameState
@@ -14,6 +15,10 @@ public:
 	virtual bool OnExit() = 0;
 
 	virtual std::string GetStateID() const = 0;
+
+protected:
+	/* Lista de IDs de texturas */
+	std::vector<std::string> m_textureIDList;
 };
 
 

@@ -21,35 +21,14 @@ void MainMenuState::Render()
 }
 bool MainMenuState::OnEnter()
 {
-	// Carga las texturas necesarias para este estado
-	if (!TextureManager::Instance()->Load("PlayButton.png", "playButton", Game::Instance()->GetRenderer()))
-	{
-		return false;
-	}
-	if (!TextureManager::Instance()->Load("ExitButton.png", "exitButton", Game::Instance()->GetRenderer()))
-	{
-		return false;
-	}
-
 	// Lectura del estado actual del XML
 	StateParser stateParser;
 	stateParser.ParseState("menu.xml", s_menuID, &m_gameObjects, &m_textureIDList);
-
 
 	// Añade los callbacks a la lista
 	m_callbacks.push_back(0); 
 	m_callbacks.push_back(s_menuToPlay);
 	m_callbacks.push_back(s_exitFromMenu);
-	
-	// Crea los GameObjects y los añade a la lista
-	/*
-	GameObject* botonPlay = new MenuButton();
-	GameObject* botonExit = new MenuButton();
-	dynamic_cast<MenuButton*>(botonPlay)->Load(new LoaderParams(200, 200, 250, 104, "playButton", 1, 1, 0));
-	dynamic_cast<MenuButton*>(botonExit)->Load(new LoaderParams(200, 350, 250, 93, "exitButton", 1, 2, 0));
-	m_gameObjects.push_back(botonPlay);
-	m_gameObjects.push_back(botonExit);
-	*/
 
 	// Asigna los callbacks a los botones
 	SetCallbacks(m_callbacks);

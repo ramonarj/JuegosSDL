@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<STATES>
+	<PLAY>
+		<TEXTURES>
+			<texture filename="Piezas.png" ID="piezas"/>
+			<texture filename="Fuego.png" ID="fuego"/>
+		</TEXTURES>
+		<OBJECTS>
+			<object type="Pieza" x="320" y="240" width="46" height="62" 
+			textureID="piezas" numFrames="1"/>
+			<object type="AnimatedGraphic" x="200" y="200" width="70" height="95" 
+			textureID="fuego" numFrames="4" animSpeed="6"/>
+		</OBJECTS>
+	</PLAY>
+	<GAMEOVER>
+	</GAMEOVER>
+</STATES>
