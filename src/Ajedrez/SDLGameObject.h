@@ -10,44 +10,42 @@
 class SDLGameObject : public GameObject
 {
 public:
-	SDLGameObject(const LoaderParams* pParams);
+	SDLGameObject() : GameObject() {}
+
+	virtual void Load(const LoaderParams* pParams);
 
 	// Heredados de GameObject
 	virtual void Update();
 	virtual void Draw();
 	virtual void Clean(){}
 
-	//Nuevo
-	inline bool IsActive() { return m_active; }
-	inline void SetActive(bool active) { m_active = active; }
-
+	/* Getters y setters */
+	inline Vector2D& GetPosition() { return m_position; }
 	inline void SetPosition(Vector2D position) { m_position = position; }
-	inline Vector2D GetPosition() { return m_position; }
+
+	inline int GetWidth() { return m_width; }
+	inline int GetHeight() { return m_height; }
 
 protected:
 	/* 'Protected' porque queremos que otras clases puedan heredar de SDLGameObject
 y acceder a las variables de este */
-	// Posición y velocidad
+	/* Posición */
 	Vector2D m_position;
+	/* Velocidad */
 	Vector2D m_velocity;
+	/* Aceleración */
 	Vector2D m_acceleration;
 
-	// Tamaño
+	/* Tamaño en píxeles que ocupará en pantalla */
 	int m_width;
 	int m_height;
 
-	// Frame actual
+	/* Fila y columna de la textura que se usarán para pintar la entidad */
 	int m_textureRow;
 	int m_textureCol;
 
-	// Nombre de la textura
+	/* Identificador de la textura usada */
 	std::string m_textureID;
-
-	// Métodos auxiliares
-	inline void SetTextureFrame(int row, int col) { m_textureRow = row; m_textureCol = col; }
-
-	// Si está activo o no
-	bool m_active;
 };
 
 #endif

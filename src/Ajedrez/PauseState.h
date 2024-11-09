@@ -1,10 +1,10 @@
 #ifndef __PAUSESTATE__
 #define __PAUSESTATE__
-#include "GameState.h"
-#include "MenuButton.h"
-#include <vector>
 
-class PauseState : public GameState
+#include "MenuState.h"
+#include "MenuButton.h"
+
+class PauseState : public MenuState
 {
 public:
 	virtual void Update();
@@ -12,6 +12,9 @@ public:
 
 	virtual bool OnEnter();
 	virtual bool OnExit();
+
+	// Lo hereda de MenuState
+	virtual void SetCallbacks(const std::vector<Callback>& callbacks);
 
 	virtual std::string GetStateID() const { return s_PauseID; }
 

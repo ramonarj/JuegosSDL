@@ -10,6 +10,9 @@ class GameObject
 /* Los métodos son virtuales para poder usar el polimorfismo */
 public:
 
+	/* Inicializa el GameObject */
+	virtual void Load(const LoaderParams* pParams) = 0;
+
 	/* Dibuja el GameObject */
 	virtual void Draw() = 0;
 	/* Actualiza el GameObject */
@@ -17,10 +20,17 @@ public:
 	/* Destruye y limpia el GameObject */
 	virtual void Clean() = 0;
 
+
+	//Nuevo
+	inline bool IsActive() { return m_active; }
+	inline void SetActive(bool active) { m_active = active; }
+
 protected:
-	/* Constructora con los parámetros de carga */
-	GameObject(const LoaderParams* pParams) {}
+	GameObject() {}
 	virtual ~GameObject() {}
+
+	// Si está activo o no
+	bool m_active;
 };
 
 #endif /* defined(__GameObject__) */

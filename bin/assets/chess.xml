@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<STATES>
+	<PLAY>
+		<TEXTURES>
+			<texture filename="Tablero.png" ID="tablero"/>
+			<texture filename="Seleccion.png" ID="seleccion"/>
+			<texture filename="Piezas.png" ID="piezas"/>
+		</TEXTURES>
+		<OBJECTS>
+			<object type="AnimatedGraphic" x="0" y="0" width="500" height="500" 
+			textureID="tablero" numFrames="1" animSpeed="1"/>
+			<object type="AnimatedGraphic" x="32" y="32" width="55" height="55" 
+			textureID="seleccion" numFrames="1" animSpeed="1"/>
+			<!--
+			<object type="Pieza" x="200" y="200" width="45" height="62" 
+			textureID="piezas" numFrames="1"/>
+			-->
+		</OBJECTS>
+	</PLAY>
+	<GAMEOVER>
+	</GAMEOVER>
+</STATES>

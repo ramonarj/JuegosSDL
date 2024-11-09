@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<STATES>
+	<PAUSE>
+		<TEXTURES>
+			<texture filename="ResumeButton.png" ID="resumeButton"/>
+			<texture filename="MenuButton.png" ID="menuButton"/>
+		</TEXTURES>
+		<OBJECTS>
+			<object type="MenuButton" x="200" y="150" width="200" height="80" 
+			textureID="resumeButton" numFrames="0" callbackID="1"/>
+			<object type="MenuButton" x="200" y="300" width="200" height="80" 
+			textureID="menuButton" numFrames="0" callbackID="2"/>
+		</OBJECTS>
+	</PAUSE>
+</STATES>

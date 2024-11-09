@@ -2,11 +2,8 @@
 #define __PLAYSTATE__
 
 #include "GameState.h"
-#include "SDLGameObject.h"
-#include <vector>
+#include "AnimatedGraphic.h"
 #include "Pieza.h"
-
-// Para evitar errores por inclusión circular
 
 
 class PlayState : public GameState
@@ -27,7 +24,7 @@ private:
 	static const std::string s_playID;
 
 	/* Lista de GameObjects */
-	std::vector<SDLGameObject*> m_gameObjects;
+	std::vector<GameObject*> m_gameObjects;
 
 	// Constantes
 	const int ANCHO_PIEZA = 45;
@@ -36,8 +33,8 @@ private:
 	const int BORDE_TABLERO = 32;
 
 	// Variables
-	SDLGameObject* m_fondoTablero;
-	SDLGameObject* m_seleccion;
+	AnimatedGraphic* m_fondoTablero;
+	AnimatedGraphic* m_seleccion;
 	Pieza* m_piezaSeleccionada;
 	Pieza* piezaViva;
 	/* A quién le toca mover */
@@ -46,6 +43,8 @@ private:
 	// Metodos auxiliares
 	void LeeTablero(std::string fileName);
 
+	/* Comprobación de colisiones entre 2 gameobjects */
+	bool CheckCollision(SDLGameObject* p1, SDLGameObject* p2);
 };
 
 

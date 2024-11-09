@@ -7,16 +7,21 @@
 #include "TextureManager.h"
 #include "PlayState.h"
 
-Pieza::Pieza(const LoaderParams* pParams, tipo_pieza tipo, equipo_pieza equipo, Vector2D posTablero, 
-	PlayState* const playState): SDLGameObject(pParams)
+
+void Pieza::Load(const LoaderParams* pParams)
+{
+	SDLGameObject::Load(pParams);
+}
+
+void Pieza::SetContext(PlayState* pState, tipo_pieza tipo, equipo_pieza equipo, Vector2D posTablero)
 {
 	m_tipo = tipo;
 	m_posTablero = posTablero;
-	frameCol = tipo;
-	frameRow = equipo;
-	SetTextureFrame(frameRow, frameCol);
 
-	m_playState = playState;
+	m_textureCol = tipo;
+	m_textureRow = equipo;
+
+	m_playState = pState;
 }
 
 
@@ -30,11 +35,16 @@ void Pieza::HandleInput()
 		float posX = m_position.GetX();
 		float posY = m_position.GetY();
 
+		// Comprobar si se está clicando en la pieza
 		if (mouseX > posX && mouseX < posX + m_width && 
 			mouseY > posY && mouseY < posY + m_height)
 		{
 			//std::cout << "Clicado en pieza de " << m_posTablero.GetX() << ", " << m_posTablero.GetY() << ")\n";
 			m_playState->PiezaSeleccionada(this);
+
+			// Información de depuración
+			std::string equipo = (m_textureRow == 0) ? "blanco" : "negro";
+			std::cout << m_tipo << " " << equipo << std::endl;
 		}
 	}
 }

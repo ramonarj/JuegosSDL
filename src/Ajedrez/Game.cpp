@@ -2,8 +2,10 @@
 
 #include <iostream>
 #include "InputHandler.h"
-#include "MenuState.h"
+#include "MainMenuState.h"
 #include "PlayState.h"
+#include "Pieza.h"
+#include "AnimatedGraphic.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -30,7 +32,8 @@ bool Game::Init(const char* title, int xpos, int ypos,
 			if (m_pRenderer != 0) // renderer init success
 			{
 				std::cout << "renderer creation success\n";
-				SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
+				//SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
+				SDL_SetRenderDrawColor(m_pRenderer, 10, 10, 40, 255);
 			}
 			else
 			{
@@ -50,13 +53,18 @@ bool Game::Init(const char* title, int xpos, int ypos,
 		return false; // sdl no se pudo inicializar
 	}
 
+	// Registrar los tipos de entidades que vamos a usar
+	GameObjectFactory::Instance()->RegisterType("MenuButton", new MenuButtonCreator());
+	GameObjectFactory::Instance()->RegisterType("Pieza", new PiezaCreator());
+	GameObjectFactory::Instance()->RegisterType("AnimatedGraphic", new AnimatedGraphicCreator());
+
 	// Iniciar el InputHandler
 	InputHandler::Instance()->InitialiseJoysticks();
 
 
 	// Iniciar la m quina de estados y cargar el estado del men 
 	m_pGameStateMachine = new GameStateMachine();
-	m_pGameStateMachine->ChangeState(new MenuState());
+	m_pGameStateMachine->ChangeState(new MainMenuState());
 
 
 	std::cout << "init success\n";

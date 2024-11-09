@@ -1,44 +1,44 @@
-#include "PauseState.h"
+#include "MainMenuState.h"
 
 #include "TextureManager.h"
 #include "Game.h"
 #include <iostream>
 #include "PlayState.h"
-#include "MainMenuState.h"
-#include "InputHandler.h"
 #include "StateParser.h"
 
-const std::string PauseState::s_PauseID = "PAUSE";
+const std::string MainMenuState::s_menuID = "MENU";
 
-void PauseState::Update()
+void MainMenuState::Update()
 {
+	// Update de todas las entidades
 	for (GameObject* o : m_gameObjects)
 		o->Update();
 }
-void PauseState::Render()
+void MainMenuState::Render()
 {
 	for (GameObject* o : m_gameObjects)
 		o->Draw();
 }
-bool PauseState::OnEnter()
+bool MainMenuState::OnEnter()
 {
 	// Lectura del estado actual del XML
 	StateParser stateParser;
-	stateParser.ParseState("pause.xml", s_PauseID, &m_gameObjects, &m_textureIDList);
+	stateParser.ParseState("menu.xml", s_menuID, &m_gameObjects, &m_textureIDList);
 
 	// Añade los callbacks a la lista
-	m_callbacks.push_back(0);
-	m_callbacks.push_back(s_resumePlay);
-	m_callbacks.push_back(s_pauseToMenu);
+	m_callbacks.push_back(0); 
+	m_callbacks.push_back(s_menuToPlay);
+	m_callbacks.push_back(s_exitFromMenu);
 
 	// Asigna los callbacks a los botones
 	SetCallbacks(m_callbacks);
 
-	std::cout << "entering PauseState\n";
+	std::cout << "entering MenuState\n";
 	return true;
 }
-bool PauseState::OnExit()
+bool MainMenuState::OnExit()
 {
+	// clear gameobjects
 	for (GameObject* o : m_gameObjects)
 		o->Clean();
 
@@ -48,25 +48,22 @@ bool PauseState::OnExit()
 	{
 		TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
 	}
-	// reset the mouse button states to false
-	InputHandler::Instance()->Reset();
 
-	std::cout << "exiting PauseState\n";
+	std::cout << "exiting MenuState\n";
 	return true;
 }
 
-void PauseState::s_resumePlay()
+void MainMenuState::s_menuToPlay()
 {
-	// Volver al PlayState
-	Game::Instance()->GetStateMachine()->PopState();
+	Game::Instance()->GetStateMachine()->ChangeState(new PlayState());
 }
 
-void PauseState::s_pauseToMenu()
+void MainMenuState::s_exitFromMenu()
 {
-	Game::Instance()->GetStateMachine()->ChangeState(new MainMenuState());
+	Game::Instance()->Quit();
 }
 
-void PauseState::SetCallbacks(const std::vector<Callback>& callbacks)
+void MainMenuState::SetCallbacks(const std::vector<Callback>& callbacks)
 {
 	// go through the game objects
 	if (!m_gameObjects.empty())

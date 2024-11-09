@@ -9,6 +9,8 @@
 #include "PauseState.h"
 #include "GameOverState.h"
 #include "Pieza.h"
+#include "AnimatedGraphic.h"
+#include "StateParser.h"
 
 
 const std::string PlayState::s_playID = "PLAY";
@@ -21,53 +23,32 @@ void PlayState::Update()
 		Game::Instance()->GetStateMachine()->PushState(new PauseState());
 	}
 
-	// 
-	if (InputHandler::Instance()->GetMouseButtonState(LEFT) && m_piezaSeleccionada != nullptr)
-	{
-		std::cout << "ee";
-	}
-
-	for (SDLGameObject* o : m_gameObjects)
+	for (GameObject* o : m_gameObjects)
 		if (o->IsActive())
 			o->Update();
 }
 
 void PlayState::Render()
 {
-	for (SDLGameObject* o : m_gameObjects)
+	for (GameObject* o : m_gameObjects)
 		if (o->IsActive())
 			o->Draw();
 }
 
 bool PlayState::OnEnter()
 {
-	std::cout << "entering PlayState\n";
-
-	// Carga de recursos con TextureManager
-	TextureManager::Instance()->Load("Tablero.png", "tablero", Game::Instance()->GetRenderer());
-	TextureManager::Instance()->Load("Piezas.png", "piezas", Game::Instance()->GetRenderer());
-	TextureManager::Instance()->Load("Seleccion.png", "seleccion", Game::Instance()->GetRenderer());
-
-
-	// Inicializar GameObjects y a adirlos a la lista
-	//LoaderParams* pPiezaParams = new LoaderParams(350, 350, 46, 62, "piezas");
-	m_fondoTablero = new SDLGameObject(new LoaderParams(0, 0, 500, 500, "tablero"));
-	m_seleccion = new SDLGameObject(new LoaderParams(BORDE_TABLERO, BORDE_TABLERO, 55, 55, "seleccion"));
-	piezaViva = new Pieza(new LoaderParams(200, 200, ANCHO_PIEZA, ALTO_PIEZA, "piezas"), Peon, Blancas, Vector2D(0, 0), this);
-
-
-	m_gameObjects.push_back(m_fondoTablero);
-	m_gameObjects.push_back(piezaViva);
-
+	// Lectura del estado actual del XML
+	StateParser stateParser;
+	stateParser.ParseState("chess.xml", s_playID, &m_gameObjects, &m_textureIDList);
 
 	// Leer el tablero de archivo, crea las piezas y las a ade a la lista de GameObjects
 	LeeTablero("tablero.txt");
 	m_piezaSeleccionada = nullptr;
 
-	m_gameObjects.push_back(m_seleccion);
+	m_seleccion = dynamic_cast<AnimatedGraphic*>(m_gameObjects[1]);
 	m_seleccion->SetActive(false);
 
-
+	std::cout << "entering PlayState\n";
 	return true;
 }
 
@@ -104,8 +85,10 @@ void PlayState::LeeTablero(std::string fileName)
 				//int tipoPieza = fila[j * 2] - '0' - 1;
 
 				// Crea la pieza con la informaci n del archivo
-				Pieza* p = new Pieza(new LoaderParams(BORDE_TABLERO + j * TAM_CASILLA, BORDE_TABLERO + i * TAM_CASILLA - 10,
-					ANCHO_PIEZA, ALTO_PIEZA, "piezas"), (tipo_pieza)tipoPieza, equipo, Vector2D(i, j), this);
+				Pieza* p = new Pieza();
+				p->Load(new LoaderParams(BORDE_TABLERO + j * TAM_CASILLA, BORDE_TABLERO + i * TAM_CASILLA - 10,
+					ANCHO_PIEZA, ALTO_PIEZA, "piezas"));
+				p->SetContext(this, (tipo_pieza)tipoPieza, equipo, Vector2D(i, j));
 				/*m_tablero[i][j] = new Pieza(new LoaderParams(BORDE_TABLERO + j * TAM_CASILLA, BORDE_TABLERO + i * TAM_CASILLA,
 					ANCHO_PIEZA, ALTO_PIEZA, "piezas"), (tipo_pieza)tipoPieza, equipo, Vector2D(i, j));*/
 				// La a ade a los GO
@@ -134,8 +117,39 @@ bool PlayState::OnExit()
 		o->Clean();
 
 	m_gameObjects.clear();
-	TextureManager::Instance()->ClearFromTextureMap("piezas");
+	// clear the texture manager
+	for (int i = 0; i < m_textureIDList.size(); i++)
+	{
+		TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
+	}
 
 	std::cout << "exiting PlayState\n";
+	return true;
+}
+
+bool PlayState::CheckCollision(SDLGameObject* p1, SDLGameObject* p2)
+{
+	int leftA, leftB;
+	int rightA, rightB;
+	int topA, topB;
+	int bottomA, bottomB;
+
+	leftA = p1->GetPosition().GetX();
+	rightA = p1->GetPosition().GetX() + p1->GetWidth();
+	topA = p1->GetPosition().GetY();
+	bottomA = p1->GetPosition().GetY() + p1->GetHeight();
+
+	//Calculate the sides of rect B
+	leftB = p2->GetPosition().GetX();
+	rightB = p2->GetPosition().GetX() + p2->GetWidth();
+	topB = p2->GetPosition().GetY();
+	bottomB = p2->GetPosition().GetY() + p2->GetHeight();
+
+	//If any of the sides from A are outside of B
+	if (bottomA <= topB) { return false; }
+	if (topA >= bottomB) { return false; }
+	if (rightA <= leftB) { return false; }
+	if (leftA >= rightB) { return false; }
+
 	return true;
 }

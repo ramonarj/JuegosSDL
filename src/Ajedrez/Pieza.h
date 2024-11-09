@@ -2,6 +2,8 @@
 #define __PIEZA__
 
 #include "SDLGameObject.h"
+#include "GameObjectFactory.h"
+
 class PlayState;
 
 enum tipo_pieza
@@ -14,14 +16,14 @@ enum equipo_pieza
 	Blancas, Negras
 };
 
-
 /* Hereda de GameObject */
 class Pieza : public SDLGameObject
 {
 public:
 
 	/* Constructora */
-	Pieza(const LoaderParams* pParams, tipo_pieza tipo, equipo_pieza equipo, Vector2D posTablero, PlayState* const playState);
+	Pieza() : SDLGameObject() {}
+	virtual void Load(const LoaderParams* pParams);
 
 	/* Heredadas*/
 	virtual void Draw();
@@ -29,6 +31,12 @@ public:
 	virtual void Update();
 	//void Draw(SDL_Renderer* pRenderer) {}
 	virtual void Clean(){}
+
+	//nuevo
+	void SetContext(PlayState* pState, tipo_pieza tipo, equipo_pieza equipo, Vector2D posTablero);
+
+	//getters
+	tipo_pieza GetType(){}
 
 private:
 	// Para el input
@@ -48,5 +56,15 @@ private:
 	// Funciones auxiliares
 	bool DentroTablero(Vector2D pos);
 };
+
+
+class PiezaCreator : public BaseCreator
+{
+	GameObject* CreateGameObject() const
+	{
+		return new Pieza();
+	}
+};
+
 
 #endif /* defined(__Pieza__) */

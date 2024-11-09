@@ -39,16 +39,13 @@
     <ClCompile Include="..\..\src\Ajedrez\InputHandler.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Ajedrez\GameStateMachine.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Ajedrez\MenuButton.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Ajedrez\GameOverState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Ajedrez\MenuState.cpp">
+    <ClCompile Include="..\..\src\Ajedrez\MainMenuState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Ajedrez\PauseState.cpp">
@@ -56,6 +53,18 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Ajedrez\PlayState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Ajedrez\AnimatedGraphic.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Ajedrez\GameStateMachine.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Ajedrez\GameObjectFactory.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Ajedrez\StateParser.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,9 +95,6 @@
     <ClInclude Include="..\..\src\Ajedrez\GameState.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Ajedrez\GameStateMachine.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Ajedrez\MenuButton.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -103,6 +109,21 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Ajedrez\PlayState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Ajedrez\AnimatedGraphic.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Ajedrez\MainMenuState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Ajedrez\GameStateMachine.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Ajedrez\GameObjectFactory.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Ajedrez\StateParser.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
