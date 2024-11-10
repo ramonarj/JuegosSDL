@@ -128,5 +128,8 @@
     <ClInclude Include="..\..\src\Ajedrez\StateParser.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Ajedrez\checkML.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -53,6 +53,19 @@ public:
 		BaseCreator* pCreator = (*it).second;
 		return pCreator->CreateGameObject();
 	}
+
+	void Clean()
+	{
+		std::map<std::string, BaseCreator*>::iterator it = m_creators.begin();
+		while(it != m_creators.end())
+		{
+			delete it->second;
+			it++;
+		}
+
+		delete s_pInstance;
+		s_pInstance = nullptr;
+	}
 private:
 	GameObjectFactory(){}
 

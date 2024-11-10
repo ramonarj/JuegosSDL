@@ -178,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Ajedrez\AnimatedGraphic.h" />
+    <ClInclude Include="..\..\src\Ajedrez\checkML.h" />
     <ClInclude Include="..\..\src\Ajedrez\Game.h" />
     <ClInclude Include="..\..\src\Ajedrez\GameObject.h" />
     <ClInclude Include="..\..\src\Ajedrez\GameObjectFactory.h" />

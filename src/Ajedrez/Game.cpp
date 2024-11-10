@@ -6,6 +6,7 @@
 #include "PlayState.h"
 #include "Pieza.h"
 #include "AnimatedGraphic.h"
+#include "TextureManager.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -63,7 +64,7 @@ bool Game::Init(const char* title, int xpos, int ypos,
 
 	// Iniciar la máquina de estados y cargar el estado del menú
 	m_pGameStateMachine = new GameStateMachine();
-	m_pGameStateMachine->ChangeState(new MainMenuState());
+	m_pGameStateMachine->ChangeState(new MainMenuState()); //LEAK AQUI (constructora de MainMenuState)
 
 	std::cout << "init success\n";
 	m_bRunning = true;
@@ -99,9 +100,22 @@ void Game::Render()
 void Game::Clean()
 {
 	std::cout << "cleaning game\n";
-	InputHandler::Instance()->Clean();
 
+	// limpiar todos los estados
+	m_pGameStateMachine->Clean();
+	delete m_pGameStateMachine;
+
+	// limpiar managers
+	InputHandler::Instance()->Clean();
+	TextureManager::Instance()->Clean();
+	GameObjectFactory::Instance()->Clean();
+
+	// limpiar SDL
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit(); // cerrar todos los subsistemas
+
+	// limpiar la instancia
+	delete s_pInstance;
+	s_pInstance = nullptr;
 }

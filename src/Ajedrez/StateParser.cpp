@@ -31,11 +31,16 @@ void StateParser::ParseObjects(TiXmlElement* pStateRoot,
 		e->Attribute("animSpeed", &animSpeed);
 		textureID = e->Attribute("textureID");
 
+		LoaderParams* pParams = new LoaderParams(x, y, width, height,
+			textureID, numFrames, callbackID, animSpeed);
+
 		// Crear el GameObject y meterlo en la lista (lo que antes se hacía en el .cpp de los estados)
 		GameObject* pGameObject = GameObjectFactory::Instance()->Create(e->Attribute("type"));
-		pGameObject->Load(new LoaderParams
-		(x, y, width, height, textureID, numFrames, callbackID, animSpeed));
+		pGameObject->Load(pParams);
 		pObjects->push_back(pGameObject);
+
+		// borrar el LoaderParams
+		delete pParams;
 	}
 }
 

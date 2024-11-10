@@ -1,6 +1,5 @@
 #include "MainMenuState.h"
 
-#include "TextureManager.h"
 #include "Game.h"
 #include <iostream>
 #include "PlayState.h"
@@ -28,10 +27,10 @@ bool MainMenuState::OnEnter()
 	// Añade los callbacks a la lista
 	m_callbacks.push_back(0); 
 	m_callbacks.push_back(s_menuToPlay);
-	m_callbacks.push_back(s_exitFromMenu);
+	m_callbacks.push_back(s_exitFromMenu); //LEAK AQUI
 
 	// Asigna los callbacks a los botones
-	SetCallbacks(m_callbacks);
+	SetCallbacks(m_callbacks); 
 
 	std::cout << "entering MenuState\n";
 	return true;

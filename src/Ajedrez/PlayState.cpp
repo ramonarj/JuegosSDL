@@ -1,14 +1,10 @@
 #include "PlayState.h"
 
 #include <iostream>
-#include "TextureManager.h"
 #include "InputHandler.h"
 #include "Game.h"
-#include "MenuState.h"
 #include "PauseState.h"
 #include "GameOverState.h"
-#include "Pieza.h"
-#include "AnimatedGraphic.h"
 #include "StateParser.h"
 
 const std::string PlayState::s_playID = "PLAY";

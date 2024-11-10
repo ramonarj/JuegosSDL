@@ -334,4 +334,8 @@ void InputHandler::Clean()
 			SDL_JoystickClose(m_joysticks[i]);
 		}
 	}
+	delete m_mousePosition;
+
+	delete s_pInstance;
+	s_pInstance = nullptr;
 }

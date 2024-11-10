@@ -1,6 +1,5 @@
 #include "GameOverState.h"
 
-#include "TextureManager.h"
 #include "Game.h"
 #include <iostream>
 #include "PlayState.h"

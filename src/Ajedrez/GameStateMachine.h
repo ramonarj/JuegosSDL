@@ -20,6 +20,12 @@ public:
 	/* Funciones básicas */
 	void Update();
 	void Render();
+
+	inline void Clean()
+	{
+		while(!m_gameStates.empty())
+			Pop();
+	}
 private:
 	enum transition_type
 	{

@@ -35,6 +35,8 @@ public:
 	void DrawFrame(std::string id, int x, int y, int width, int height, 
 		int row, int col, SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
+	inline void Clean() { delete s_pInstance; s_pInstance = nullptr; }
+
 private:
 	/* Constructora privada; solo se puede acceder a la clase con Instance() */
 	TextureManager() {}

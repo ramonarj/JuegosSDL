@@ -8,6 +8,8 @@
 class MenuState : public GameState
 {
 protected:
+	MenuState(){}
+
 	typedef void(*Callback)();
 
 	/* Función que asigna a cada botón su callback */

@@ -2,7 +2,6 @@
 #define __GAMEOVERSTATE__
 
 #include "MenuState.h"
-#include "MenuButton.h"
 
 class GameOverState : public MenuState
 {

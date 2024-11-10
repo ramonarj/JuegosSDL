@@ -6,6 +6,9 @@
 class MainMenuState : public MenuState
 {
 public:
+
+	MainMenuState(){}
+
 	// Los hereda de GameState
 	virtual void Update();
 	virtual void Render();
@@ -25,4 +28,4 @@ private:
 	static void s_exitFromMenu();
 };
 
-#endif /* defined(__GameOverState__) */
+#endif /* defined(__MainMenuState__) */

@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <iostream>
+#include "checkML.h"
 
 // Esto es por si quiero usar un main normal y no la macro de SDL
 // #undef main
@@ -9,6 +10,12 @@ const int DELAY_TIME = int(1000.0f / FPS);
 
 int main(int argc, char* args[])
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	/* Esto de abajo sirve para crear un punto de interrupción(al depurar)
+	en la línea que reserva la memoria (new/malloc) que se queda sin borrar
+	con el 'memory allocation number' {158} */
+	//_crtBreakAlloc = 158;
+
 	Uint32 frameStart, frameTime = 0;
 
 	// Inicializar el juego

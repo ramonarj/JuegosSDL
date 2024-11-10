@@ -1,9 +1,7 @@
 #include "PauseState.h"
 
-#include "TextureManager.h"
 #include "Game.h"
 #include <iostream>
-#include "PlayState.h"
 #include "MainMenuState.h"
 #include "InputHandler.h"
 #include "StateParser.h"

@@ -9,6 +9,9 @@
 class GameState
 {
 public:
+	//aleluya
+	virtual ~GameState() {}
+
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 
@@ -18,6 +21,8 @@ public:
 	virtual std::string GetStateID() const = 0;
 
 protected:
+	GameState() {}
+
 	/* Lista de IDs de texturas */
 	std::vector<std::string> m_textureIDList;
 
