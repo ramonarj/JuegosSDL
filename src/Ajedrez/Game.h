@@ -38,7 +38,7 @@ public:
 	bool Running() { return m_bRunning; }
 
 	/* Cierra el juego */
-	inline void Quit() { SDL_Quit(); }
+	inline void Quit() { m_bRunning = false; }
 
 	/* Getters */
 	SDL_Renderer* GetRenderer() const { return m_pRenderer; }

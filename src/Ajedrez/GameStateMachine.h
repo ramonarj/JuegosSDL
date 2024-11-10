@@ -39,9 +39,21 @@ private:
 	a que termine el 'Update()' del actual para hacerlo. No aplicable a pop() */
 	GameState* m_nextState;
 
-
 	// Método privado que cambia de verdad el estado
 	void ChangeStatePrivate();
+
+	/* Métodos privados para mayor comodidad */
+	inline void Pop()
+	{
+		m_gameStates.back()->OnExit();
+		delete m_gameStates.back();
+		m_gameStates.pop_back();
+	}
+	inline void Push()
+	{
+		m_gameStates.push_back(m_nextState);
+		m_gameStates.back()->OnEnter();
+	}
 };
 
 #endif /* defined(__GameStateMachine__) */

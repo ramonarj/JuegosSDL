@@ -1,29 +1,15 @@
 #include "GameStateMachine.h"
 
+#include <iostream>
+
 void GameStateMachine::PushState(GameState* pState)
 {
-	/*
-	m_gameStates.push_back(pState);
-	m_gameStates.back()->OnEnter();
-	*/
-
 	m_transitionType = PUSH;
 	m_nextState = pState;
 }
 
 void GameStateMachine::PopState()
 {
-	/*
-	if (!m_gameStates.empty())
-	{
-		if (m_gameStates.back()->OnExit())
-		{
-			delete m_gameStates.back();
-			m_gameStates.pop_back();
-		}
-	}
-	*/
-
 	m_transitionType = POP;
 }
 
@@ -44,25 +30,28 @@ void GameStateMachine::ChangeState(GameState* pState)
 
 void GameStateMachine::ChangeStatePrivate()
 {
-	// Si es un pop() o change(), eliminamos y sacamos el estado anterior
-	if(m_transitionType == POP || m_transitionType == CHANGE)
+	switch(m_transitionType)
 	{
+	case PUSH:
+		Push();
+		break;
+	case POP:
 		if (!m_gameStates.empty())
 		{
-			// delete old state
-			if (m_gameStates.back()->OnExit())
-			{
-				delete m_gameStates.back();
-				m_gameStates.pop_back();
-			}
+			Pop();
 		}
-	}
-
-	// Si es un push() o change(), metemos el nuevo estado y lo inicializamos
-	if(m_transitionType != POP)
-	{
-		m_gameStates.push_back(m_nextState);
-		m_gameStates.back()->OnEnter();
+		break;
+	case CHANGE:
+		// Es un while por si el estado en que estamos ha sido pusheado,
+		// en cuyo caso hay que borrar más de uno de la pila
+		while (!m_gameStates.empty())
+		{
+			Pop();
+		}
+		Push();
+		break;
+	default:
+		break;
 	}
 
 	// clean requests
@@ -80,6 +69,7 @@ void GameStateMachine::Update()
 	if (m_transitionType != NONE)
 		ChangeStatePrivate();
 }
+
 void GameStateMachine::Render()
 {
 	if (!m_gameStates.empty())

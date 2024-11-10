@@ -20,6 +20,6 @@ bool GameState::OnExit()
 		TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
 	}
 
-	std::cout << "* exiting " << GetStateID() << " state\n";
+	std::cout << "\n* exiting " << GetStateID() << " state\n";
 	return true;
 }
