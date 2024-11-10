@@ -7,16 +7,41 @@
 class GameStateMachine
 {
 public:
-	/* Cambiar entre estados */
+	/* Constructora por defecto */
+	GameStateMachine() : m_transitionType(NONE), m_nextState(nullptr){}
+
+	/* Añade un estado encima del actual, sin eliminarlo */
 	void PushState(GameState* pState);
+	/* Cambia al estado dado después de acabar el Update(), y elimina el actual */
 	void ChangeState(GameState* pState);
+	/* Elimina el estado más reciente */
 	void PopState();
 
 	/* Funciones básicas */
 	void Update();
 	void Render();
 private:
+	enum transition_type
+	{
+		NONE = 0,
+		PUSH = 1,
+		POP = 2,
+		CHANGE = 3
+	};
+
+	/* Estados de juego */
 	std::vector<GameState*> m_gameStates;
+
+	/* Tipo de transición que nos piden */
+	transition_type m_transitionType;
+
+	/* Nuevo estado que nos piden meter, pero hay que esperar 
+	a que termine el 'Update()' del actual para hacerlo. No aplicable a pop() */
+	GameState* m_nextState;
+
+
+	// Método privado que cambia de verdad el estado
+	void ChangeStatePrivate();
 };
 
 #endif /* defined(__GameStateMachine__) */

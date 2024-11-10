@@ -36,22 +36,6 @@ bool MainMenuState::OnEnter()
 	std::cout << "entering MenuState\n";
 	return true;
 }
-bool MainMenuState::OnExit()
-{
-	// clear gameobjects
-	for (GameObject* o : m_gameObjects)
-		o->Clean();
-
-	m_gameObjects.clear();
-	// clear the texture manager
-	for (size_t i = 0; i < m_textureIDList.size(); i++)
-	{
-		TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
-	}
-
-	std::cout << "exiting MenuState\n";
-	return true;
-}
 
 void MainMenuState::s_menuToPlay()
 {

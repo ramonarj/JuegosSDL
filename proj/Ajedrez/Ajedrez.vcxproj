@@ -163,6 +163,7 @@
     <ClCompile Include="..\..\src\Ajedrez\Game.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\GameObjectFactory.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\GameOverState.cpp" />
+    <ClCompile Include="..\..\src\Ajedrez\GameState.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\GameStateMachine.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\InputHandler.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\Main.cpp" />

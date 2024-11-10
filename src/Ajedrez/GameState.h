@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "GameObject.h"
 
 /* Clase abstracta, igual que GameObject, para un estado de juego */
 class GameState
@@ -12,13 +13,16 @@ public:
 	virtual void Render() = 0;
 
 	virtual bool OnEnter() = 0;
-	virtual bool OnExit() = 0;
+	virtual bool OnExit();
 
 	virtual std::string GetStateID() const = 0;
 
 protected:
 	/* Lista de IDs de texturas */
 	std::vector<std::string> m_textureIDList;
+
+	/* Lista de GameObjects */
+	std::vector<GameObject*> m_gameObjects;
 };
 
 

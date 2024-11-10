@@ -11,7 +11,6 @@ public:
 	virtual void Render();
 
 	virtual bool OnEnter();
-	virtual bool OnExit();
 
 	// Lo hereda de MenuState
 	virtual void SetCallbacks(const std::vector<Callback>& callbacks);
@@ -20,9 +19,6 @@ public:
 
 private:
 	static const std::string s_gameoverID;
-
-	/* Lista de GameObjects */
-	std::vector<GameObject*> m_gameObjects;
 
 	/* Callbacks para los botones (deben ser estáticas) */
 	static void s_restartPlay();

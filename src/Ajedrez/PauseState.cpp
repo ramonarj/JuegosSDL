@@ -37,23 +37,6 @@ bool PauseState::OnEnter()
 	std::cout << "entering PauseState\n";
 	return true;
 }
-bool PauseState::OnExit()
-{
-	for (GameObject* o : m_gameObjects)
-		o->Clean();
-
-	m_gameObjects.clear();
-	// clear the texture manager
-	for (size_t i = 0; i < m_textureIDList.size(); i++)
-	{
-		TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
-	}
-	// reset the mouse button states to false
-	InputHandler::Instance()->Reset();
-
-	std::cout << "exiting PauseState\n";
-	return true;
-}
 
 void PauseState::s_resumePlay()
 {

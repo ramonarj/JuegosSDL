@@ -29,7 +29,7 @@ void PlayState::Update()
 	if (CheckCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]), 
 		dynamic_cast<SDLGameObject*>(m_gameObjects[1])))
 	{
-		Game::Instance()->GetStateMachine()->PushState(new GameOverState());
+		Game::Instance()->GetStateMachine()->ChangeState(new GameOverState());
 	}
 }
 
@@ -45,24 +45,7 @@ bool PlayState::OnEnter()
 	StateParser stateParser;
 	stateParser.ParseState("play.xml", s_playID, &m_gameObjects, &m_textureIDList);
 
-
 	std::cout << "entering PlayState\n";
-	return true;
-}
-
-bool PlayState::OnExit()
-{
-	for (GameObject* o : m_gameObjects)
-		o->Clean();
-
-	m_gameObjects.clear();
-	// clear the texture manager
-	for (size_t i = 0; i < m_textureIDList.size(); i++)
-	{
-		TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
-	}
-
-	std::cout << "exiting PlayState\n";
 	return true;
 }
 

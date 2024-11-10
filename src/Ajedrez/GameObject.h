@@ -10,6 +10,8 @@ class GameObject
 /* Los métodos son virtuales para poder usar el polimorfismo */
 public:
 
+	virtual ~GameObject(){}
+
 	/* Inicializa el GameObject */
 	virtual void Load(const LoaderParams* pParams) = 0;
 
@@ -22,7 +24,6 @@ public:
 
 protected:
 	GameObject() {}
-	virtual ~GameObject() {}
 };
 
 #endif /* defined(__GameObject__) */
