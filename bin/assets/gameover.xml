@@ -2,10 +2,13 @@
 <STATES>
 	<GAMEOVER>
 		<TEXTURES>
+			<texture filename="GameOver.png" ID="gameOver"/>
 			<texture filename="RestartButton.png" ID="restartButton"/>
 			<texture filename="MenuButton.png" ID="menuButton"/>
 		</TEXTURES>
 		<OBJECTS>
+			<object type="AnimatedGraphic" x="200" y="75" width="190" height="30" 
+			textureID="gameOver" numFrames="2" animSpeed="2"/>
 			<object type="MenuButton" x="200" y="150" width="200" height="80" 
 			textureID="restartButton" numFrames="0" callbackID="1"/>
 			<object type="MenuButton" x="200" y="300" width="200" height="80" 
