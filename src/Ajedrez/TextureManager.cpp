@@ -4,10 +4,14 @@
 
 TextureManager* TextureManager::s_pInstance = 0;
 
-bool TextureManager::Load(std::string fileName, std::string id, SDL_Renderer* pRenderer)
+bool TextureManager::Load(std::string fileName, std::string id, SDL_Renderer* pRenderer, bool absoluteRoute)
 {
+	// Si solo dan el nombre de la imagen, está en la carpeta de imágenes
+	if (!absoluteRoute)
+		fileName = IMAGES_PATH + fileName;
+
 	// Creamos la textura con SDL_Image a partir de una surface
-	SDL_Surface* pTempSurface = IMG_Load((IMAGES_PATH + fileName).c_str());
+	SDL_Surface* pTempSurface = IMG_Load(fileName.c_str());
 	if (pTempSurface == 0)
 	{
 		return false;

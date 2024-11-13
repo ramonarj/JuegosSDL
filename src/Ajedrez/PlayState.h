@@ -2,6 +2,7 @@
 #define __PLAYSTATE__
 
 #include "GameState.h"
+#include "Level.h"
 #include "SDLGameObject.h"
 
 class PlayState : public GameState
@@ -16,6 +17,9 @@ public:
 
 private:
 	static const std::string s_playID;
+
+	/* Nivel de tiles */
+	Level* m_pLevel;
 
 	/* Comprobación de colisiones entre 2 gameobjects */
 	bool CheckCollision(SDLGameObject* p1, SDLGameObject* p2);

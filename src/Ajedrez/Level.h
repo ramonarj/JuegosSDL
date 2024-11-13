@@ -34,7 +34,6 @@ struct Tileset
 class Level
 {
 public:
-	Level();
 	~Level() {}
 
 	// Métodos básicos
@@ -48,6 +47,11 @@ public:
 	inline std::vector<Layer*>* GetLayers() { return &m_layers; }
 
 private:
+	// Para asegurarnos de que solamente el LevelParser pueda
+	// crear una instancia de 'Level'
+	friend class LevelParser;
+	Level(){}
+
 	/* Tilesets del nivel */
 	std::vector<Tileset> m_tilesets;
 	/* Lista de capas del nivel */

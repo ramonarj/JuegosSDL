@@ -32,7 +32,7 @@ void TileLayer::Render()
 	{
 		for (int j = 0; j < m_numColumns; j++)
 		{
-			int id = m_tileIDs[i + y][j + x];
+			int id = m_tileIDs[i + y][j + x]; //%numRows, %numColumns para hacer scroll
 			// tile vacío; pasamos al siguiente
 			if (id == 0)
 			{

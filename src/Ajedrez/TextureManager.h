@@ -23,7 +23,7 @@ public:
 	}
 
 	/* Carga una textura a partir de una imagen y la almacena con el identificador dado */
-	bool Load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
+	bool Load(std::string fileName, std::string id, SDL_Renderer* pRenderer, bool absoluteRoute = false);
 	/* Elimina una textura del diccionario */
 	inline void ClearFromTextureMap(std::string id) { m_textureMap.erase(id); }
 
