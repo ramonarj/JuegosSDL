@@ -25,6 +25,12 @@
     <Filter Include="Archivos de origen\GameObjects">
       <UniqueIdentifier>{f52eff4c-27ea-4c2e-bda1-753b714980d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Levels">
+      <UniqueIdentifier>{d8f31d86-c5a9-4a69-a0c8-76f1d5b2da3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Levels">
+      <UniqueIdentifier>{c328bd28-ccb7-42f7-a910-c98bdc9a6e56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Ajedrez\Main.cpp">
@@ -75,11 +81,17 @@
     <ClCompile Include="..\..\src\Ajedrez\GameStateMachine.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Ajedrez\base64.cpp">
+      <Filter>Archivos de origen\Levels</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Ajedrez\Level.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Ajedrez\LevelParser.cpp">
+      <Filter>Archivos de origen\Levels</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Ajedrez\TileLayer.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\Levels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,13 +156,19 @@
       <Filter>Archivos de encabezado\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Ajedrez\Level.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Ajedrez\LevelParser.h">
+      <Filter>Archivos de encabezado\Levels</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Ajedrez\Layer.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Levels</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Ajedrez\TileLayer.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Ajedrez\base64.h">
+      <Filter>Archivos de encabezado\Levels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -50,7 +50,8 @@ public:
 
 private:
 	/* Constructora por defecto */
-	Game() : m_bRunning(false), m_pRenderer(nullptr), m_pWindow(nullptr), m_pGameStateMachine (nullptr) {}
+	Game() : m_bRunning(false), m_pRenderer(nullptr), m_pWindow(nullptr), 
+		m_gameWidth(0), m_gameHeight(0), m_pGameStateMachine (nullptr) {}
 	~Game() {}
 
 	// Variables (g = global, m = member, p = pointer, b = bool, s = static)
