@@ -176,6 +176,7 @@
     <ClCompile Include="..\..\src\Ajedrez\SDLGameObject.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\StateParser.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\TextureManager.cpp" />
+    <ClCompile Include="..\..\src\Ajedrez\TileLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Ajedrez\AnimatedGraphic.h" />
@@ -199,6 +200,7 @@
     <ClInclude Include="..\..\src\Ajedrez\SDLGameObject.h" />
     <ClInclude Include="..\..\src\Ajedrez\StateParser.h" />
     <ClInclude Include="..\..\src\Ajedrez\TextureManager.h" />
+    <ClInclude Include="..\..\src\Ajedrez\TileLayer.h" />
     <ClInclude Include="..\..\src\Ajedrez\Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

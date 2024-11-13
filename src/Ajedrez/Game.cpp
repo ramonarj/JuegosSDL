@@ -53,6 +53,9 @@ bool Game::Init(const char* title, int xpos, int ypos,
 		std::cout << "SDL init fail\n";
 		return false; // sdl no se pudo inicializar
 	}
+	// Dimensiones de la ventana
+	m_gameWidth = width;
+	m_gameHeight = height;
 
 	// Registrar los tipos de entidades que vamos a usar
 	GameObjectFactory::Instance()->RegisterType("MenuButton", new MenuButtonCreator());

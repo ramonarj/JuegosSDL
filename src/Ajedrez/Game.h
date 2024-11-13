@@ -41,8 +41,12 @@ public:
 	inline void Quit() { m_bRunning = false; }
 
 	/* Getters */
-	SDL_Renderer* GetRenderer() const { return m_pRenderer; }
-	GameStateMachine* GetStateMachine() { return m_pGameStateMachine; }
+	inline SDL_Renderer* GetRenderer() const { return m_pRenderer; }
+	inline GameStateMachine* GetStateMachine() { return m_pGameStateMachine; }
+	/* Anchura de la ventana, en píxeles */
+	inline int GetGameWidth() { return m_gameWidth; }
+	/* Altura de la ventana, en píxeles */
+	inline int GetGameHeight() { return m_gameHeight; }
 
 private:
 	/* Constructora por defecto */
@@ -56,6 +60,10 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
+
+	// dimensiones de la ventana
+	int m_gameWidth;
+	int m_gameHeight;
 
 	/* Máquina de estados finita */
 	GameStateMachine* m_pGameStateMachine;

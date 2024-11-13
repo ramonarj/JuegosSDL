@@ -40,3 +40,19 @@ void TextureManager::DrawFrame(std::string id, int x, int y, int width, int heig
 	SDL_Rect destRect = { x, y, width, height };
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
+
+void TextureManager::DrawTile(std::string id, int margin, int spacing, 
+	int x, int y, int width, int height, int row, int col, SDL_Renderer* pRenderer)
+{
+	// rectángulo fuente
+	SDL_Rect srcRect;
+	srcRect.x = margin + (spacing + width) * col;
+	srcRect.y = margin + (spacing + height) * row;
+	srcRect.w = width;
+	srcRect.h = height;
+
+	// rectángulo destino
+	SDL_Rect destRect = { x, y, width, height };
+
+	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, SDL_FLIP_NONE);
+}

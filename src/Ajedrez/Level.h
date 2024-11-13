@@ -8,14 +8,25 @@
 /* Representación de un tileset, con la información del .tmx */
 struct Tileset
 {
+	// Primer tileID que cocresponde a este tileset
 	int firstGridID;
+
+	// Dimensiones de cada tile en píxeles
 	int tileWidth;
 	int tileHeight;
+
+	// Espaciado entre tiles y margen con el borde
 	int spacing;
 	int margin;
+
+	// Dimensiones del tileset en píxeles
 	int width;
 	int height;
+
+	// Número de columnas que contiene el tileset
 	int numColumns;
+
+	/* Nombre de la textura que usa el tileset */
 	std::string name;
 };
 
