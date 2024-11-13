@@ -166,6 +166,7 @@
     <ClCompile Include="..\..\src\Ajedrez\GameState.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\GameStateMachine.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\InputHandler.cpp" />
+    <ClCompile Include="..\..\src\Ajedrez\Level.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\Main.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\MenuButton.cpp" />
     <ClCompile Include="..\..\src\Ajedrez\MainMenuState.cpp" />
@@ -186,6 +187,8 @@
     <ClInclude Include="..\..\src\Ajedrez\GameState.h" />
     <ClInclude Include="..\..\src\Ajedrez\GameStateMachine.h" />
     <ClInclude Include="..\..\src\Ajedrez\InputHandler.h" />
+    <ClInclude Include="..\..\src\Ajedrez\Layer.h" />
+    <ClInclude Include="..\..\src\Ajedrez\Level.h" />
     <ClInclude Include="..\..\src\Ajedrez\LoaderParams.h" />
     <ClInclude Include="..\..\src\Ajedrez\MainMenuState.h" />
     <ClInclude Include="..\..\src\Ajedrez\MenuButton.h" />

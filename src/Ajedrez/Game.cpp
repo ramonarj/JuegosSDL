@@ -11,7 +11,7 @@
 Game* Game::s_pInstance = 0;
 
 bool Game::Init(const char* title, int xpos, int ypos, 
-	int height, int width, bool fullscreen)
+	int width, int height, bool fullscreen)
 {
 	// Para la pantalla completa
 	int flags = 0;
@@ -23,7 +23,7 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	{
 		std::cout << "SDL init success\n";
 		// Si todo va bien, creamos la ventana
-		m_pWindow = SDL_CreateWindow(title, xpos, ypos, height, width, flags);
+		m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
 
 		// Si la ventana se crea bien, creamos el renderer
 		if (m_pWindow != 0)
