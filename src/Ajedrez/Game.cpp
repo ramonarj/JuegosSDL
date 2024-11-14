@@ -7,6 +7,7 @@
 #include "Pieza.h"
 #include "AnimatedGraphic.h"
 #include "TextureManager.h"
+#include "SoundManager.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -53,6 +54,7 @@ bool Game::Init(const char* title, int xpos, int ypos,
 		std::cout << "SDL init fail\n";
 		return false; // sdl no se pudo inicializar
 	}
+
 	// Dimensiones de la ventana
 	m_gameWidth = width;
 	m_gameHeight = height;
@@ -64,6 +66,14 @@ bool Game::Init(const char* title, int xpos, int ypos,
 
 	// Iniciar el InputHandler
 	InputHandler::Instance()->InitialiseJoysticks();
+
+	// prueba de SDL_Mixer
+	SoundManager::Instance()->Load("hit.wav", "hit", SOUND_SFX);
+	SoundManager::Instance()->Load("clic.mp3", "clic", SOUND_SFX);
+	SoundManager::Instance()->Load("Menu.mp3", "menu", SOUND_MUSIC);
+	Mix_MasterVolume(50);
+	SoundManager::Instance()->PlayMusic("menu", 0);
+	SoundManager::Instance()->PlaySound("clic", -1);
 
 	// Iniciar la máquina de estados y cargar el estado del menú
 	m_pGameStateMachine = new GameStateMachine();
@@ -109,6 +119,7 @@ void Game::Clean()
 	delete m_pGameStateMachine;
 
 	// limpiar managers
+	SoundManager::Instance()->Clean();
 	InputHandler::Instance()->Clean();
 	TextureManager::Instance()->Clean();
 	GameObjectFactory::Instance()->Clean();

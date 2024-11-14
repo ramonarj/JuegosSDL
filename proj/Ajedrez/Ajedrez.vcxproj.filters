@@ -96,6 +96,9 @@
     <ClCompile Include="..\..\src\Ajedrez\ObjectLayer.cpp">
       <Filter>Archivos de origen\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Ajedrez\SoundManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Ajedrez\Game.h">
@@ -175,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Ajedrez\ObjectLayer.h">
       <Filter>Archivos de encabezado\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Ajedrez\SoundManager.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
