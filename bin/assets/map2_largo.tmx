@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="60" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="14">
+ <properties>
+  <property name="fuego" type="file" value="images/Fuego.png"/>
+  <property name="piezas" type="file" value="images/Piezas.png"/>
+ </properties>
+ <tileset firstgid="1" name="blocks1" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
+  <image source="images/blocks1.png" width="614" height="376"/>
+ </tileset>
+ <tileset firstgid="199" name="blocks2" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
+  <image source="images/blocks2.png" width="614" height="376"/>
+ </tileset>
+ <layer id="1" name="Capa de patrones 1" width="60" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztlLkvRFEUxt/Y9Xb+AmZi1NaGoHkzZuxiCRpbSUXHDKOiVFor0SBI6G2t0l5IFIgtKt+N7yU38p65Y56Zxkl+Oe+ce+5Z7p07mvYvsRSfQ9P8Dvvy9YI+0G9fyqhzX4FrcGN7R+Gl3sazVZVn8AJeY1y3DrPWmszbCbpA9x/WTo3DOQ+iZhtoBx0xrp+rUM/ut92KXENxOGchKvOGk80w69WoMUBqHF/zjijU7QGLYWKMN6Aq0c67CtbAegR7hi3er5ksKcScgwtwqRBrx/1GKoOK9ytk2cIfwP4gczyCJ3CmkC8e/1fjEbxfq/vVsd8j5UjC951Cvt/c7yj2jEVxTuJ+J0A22YJvW2IH3DJ2xSLHJPZNST1kKfZjNm8efPmg4Nvam0WtD5O8b1L8u+TPcXzdbzpp0szZA0EwDzbAAvWDhd0IdOAFHuACflAMmqldzN1Cn5e+BsnWaZ+AQ3AqcWTxffzDmpFD9LvLmWZACExThyRbrM2CgPQdpB3i9zRnKAROUMJZdc6egHN1QxcxzkmfLvmKGN/EuctBCigFVaAMJEm+NPqzuCbsRJBB24hJ5r45zmv0Pcu+D6QzCEqzCn3P9RnGCp/4HexzLnFHPvbfIN2lm7aTupVrLvp89LsZ72fPFey7jLOkUIs5syWdydhKkCphnIPwfwIJzneG
+  </data>
+ </layer>
+ <objectgroup id="2" name="Capa de Objetos 1">
+  <object id="1" name="Peon" type="Pieza" x="425" y="270" width="34" height="42.6667">
+   <properties>
+    <property name="animSpeed" type="int" value="0"/>
+    <property name="numFrames" type="int" value="1"/>
+    <property name="textureHeight" type="int" value="62"/>
+    <property name="textureID" value="piezas"/>
+    <property name="textureWidth" type="int" value="46"/>
+   </properties>
+  </object>
+  <object id="10" name="Fuego" type="AnimatedGraphic" x="310.333" y="140.333" width="55.3333" height="64.6667">
+   <properties>
+    <property name="animSpeed" type="int" value="6"/>
+    <property name="numFrames" type="int" value="4"/>
+    <property name="textureHeight" type="int" value="95"/>
+    <property name="textureID" value="fuego"/>
+    <property name="textureWidth" type="int" value="70"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

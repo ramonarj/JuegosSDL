@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "TextureManager.h"
 #include <iostream>
+#include "InputHandler.h"
 
 TileLayer::TileLayer(int tileSize, const std::vector<Tileset>& tilesets) :
 	m_tileSize(tileSize), m_tilesets(tilesets), m_position(0, 0), m_velocity(0, 0)
@@ -16,23 +17,38 @@ TileLayer::TileLayer(int tileSize, const std::vector<Tileset>& tilesets) :
 
 void TileLayer::Update()
 {
+	m_velocity = Vector2D(0, 0);
+	// prueba para el scroll
+	if(InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_RIGHT))
+		m_velocity += Vector2D(2, 0);
+	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_LEFT))
+		m_velocity += Vector2D(-2, 0);
+	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_UP))
+		m_velocity += Vector2D(0, -2);
+	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_DOWN))
+		m_velocity += Vector2D(0, 2);
 	// actualizar la posición
 	m_position += m_velocity;
 }
 
 void TileLayer::Render()
 {
+	// Las coordenadas (en la matriz de IDs) del primer tile
+	// que se va a pintar en la esquina superior izquierda de la pantalla
 	int x = m_position.GetX() / m_tileSize;
 	int y = m_position.GetY() / m_tileSize;
 
+	// Desplazamiento (px) hacia la izquierda/arriba de ese tile
+	// Cuanto mayor sean, menos tile se verá. 0 <= (x2, y2) <= m_tileSize
 	int x2 = int(m_position.GetX()) % m_tileSize;
 	int y2 = int(m_position.GetY()) % m_tileSize;
 
+	// Recorremos los tiles visibles y los pintamos
 	for (int i = 0; i < m_numRows; i++)
 	{
 		for (int j = 0; j < m_numColumns; j++)
 		{
-			int id = m_tileIDs[i + y][j + x]; //%numRows, %numColumns para hacer scroll
+			int id = m_tileIDs[i + y][j + x]; //%numRows, %numColumns para hacer toroide
 			// tile vacío; pasamos al siguiente
 			if (id == 0)
 			{

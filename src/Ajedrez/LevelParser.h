@@ -17,10 +17,14 @@ private:
 	int m_width;
 	int m_height;
 
-	// Métodos auxiliares privados
+	// Para las capas de tiles
 	void ParseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets);
 	void ParseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>* pLayers, 
 		const std::vector<Tileset>* pTilesets);
+
+	// Para las capas de objetos
+	void ParseTexture(TiXmlElement* pTextureRoot);
+	void ParseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*>* pLayers);
 };
 
 #endif

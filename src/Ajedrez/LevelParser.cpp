@@ -1,8 +1,10 @@
 #include "LevelParser.h"
 
 #include "TileLayer.h"
+#include "ObjectLayer.h"
 #include "Game.h"
 #include "TextureManager.h"
+#include "GameObjectFactory.h"
 
 // Las 2 librerías necesarias para decodificar los tilemaps
 #include "base64.h"
@@ -23,7 +25,7 @@ Level* LevelParser::ParseLevel(const char* levelFile)
 	pRoot->Attribute("width", &m_width);
 	pRoot->Attribute("height", &m_height);
 
-	// parse the tilesets
+	// 1) parse the tilesets
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == std::string("tileset"))
@@ -33,15 +35,36 @@ Level* LevelParser::ParseLevel(const char* levelFile)
 		}
 	}
 
-	// parse any object layers
-	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+
+	// 2) parse any textures (from <properties>)
+	TiXmlElement* pProperties = pRoot->FirstChildElement();
+	for (TiXmlElement* e = pProperties->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
-		if (e->Value() == std::string("layer"))
+		if (e->Value() == std::string("property"))
 		{
-			// rellena las capas del nivel construido
-			ParseTileLayer(e, pLevel->GetLayers(), pLevel->GetTilesets());
+			ParseTexture(e);
 		}
 	}
+
+
+	// 3) parse any layers
+	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+	{
+		if (e->Value() == std::string("objectgroup") || e->Value() == std::string("layer"))
+		{
+			// Capa de objetos
+			if (e->FirstChildElement()->Value() == std::string("object"))
+			{
+				ParseObjectLayer(e, pLevel->GetLayers());
+			}
+			// Capa de tiles
+			else if (e->FirstChildElement()->Value() == std::string("data"))
+			{
+				ParseTileLayer(e, pLevel->GetLayers(), pLevel->GetTilesets());
+			}
+		}
+	}
+	// devolver el nivel ya leído
 	return pLevel;
 }
 
@@ -118,4 +141,87 @@ void LevelParser::ParseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>
 	// Terminar de crear la capa y añadirla a la lista de capas del nivel
 	pTileLayer->SetTileIDs(data);
 	pLayers->push_back(pTileLayer);
+}
+
+void LevelParser::ParseTexture(TiXmlElement* pTextureRoot)
+{
+	// ruta de la imagen desde el archivo .tmx (images/~~~.png)
+	std::string imageRoute = pTextureRoot->Attribute("value");
+	// Carga la textura usando el atributo "name" para el ID
+	TextureManager::Instance()->Load(TILEMAPS_PATH + imageRoute, pTextureRoot->Attribute("name"),
+		Game::Instance()->GetRenderer(), true);
+}
+
+void LevelParser::ParseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*>* pLayers)
+{
+	// create an object layer
+	ObjectLayer* pObjectLayer = new ObjectLayer();
+
+	// Iteramos todos los objetos de la capa
+	for (TiXmlElement* e = pObjectElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+	{
+		std::cout << e->Value();
+		if (e->Value() == std::string("object"))
+		{
+			// Parámetros para LoaderParams con sus valores por defecto
+			int x, y, width, height, numFrames, animSpeed, callbackID;
+			x = y = width = height = callbackID = 0;
+			numFrames = animSpeed = 1;
+			std::string textureID;
+
+			// La X e Y la cogemos directamente del nodo del objeto
+			e->Attribute("x", &x);
+			e->Attribute("y", &y);
+			GameObject* pGameObject = GameObjectFactory::Instance()->Create(e -> Attribute("type"));
+
+			// Buscamos el nodo "propierties"
+			for (TiXmlElement* properties = e->FirstChildElement(); properties != NULL; 
+				properties = properties -> NextSiblingElement())
+			{
+				if (properties->Value() == std::string("properties"))
+				{
+					// Iteramos todas las propiedades del objeto
+					for (TiXmlElement* property = properties -> FirstChildElement(); property != NULL; 
+						property = property -> NextSiblingElement())
+					{
+						if (property->Value() == std::string("property"))
+						{
+							// Por desgracia, C++ no soporta el tipo <string> en la
+							// instrucción 'switch', así que hay que hacer este if-else kilométrico
+							if (property->Attribute("name") == std::string("numFrames"))
+							{
+								property->Attribute("value", &numFrames);
+							}
+							else if (property->Attribute("name") == std::string("textureHeight"))
+							{
+								property->Attribute("value", &height);
+							}
+							else if (property->Attribute("name") == std::string("textureID"))
+							{
+								textureID = property->Attribute("value");
+							}
+							else if (property->Attribute("name") == std::string("textureWidth"))
+							{
+								property->Attribute("value", &width);
+							}
+							else if (property->Attribute("name") == std::string("callbackID"))
+							{
+								property->Attribute("value", &callbackID);
+							}
+							else if (property->Attribute("name") == std::string("animSpeed"))
+							{
+								property->Attribute("value", &animSpeed);
+							}
+						}
+					}
+				}
+			}
+			// Inicializamos el GameObject y lo añadimos a la lista
+			pGameObject->Load(new LoaderParams(x, y, width, height, textureID,
+					numFrames, callbackID, animSpeed));
+			pObjectLayer->GetGameObjects()->push_back(pGameObject);
+		}
+	}
+	// Metemos la capa de objetos creada
+	pLayers->push_back(pObjectLayer);
 }
