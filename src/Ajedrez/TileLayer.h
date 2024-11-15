@@ -12,6 +12,8 @@ public:
 	/* Constructora */
 	TileLayer(int tileSize, const std::vector<Tileset>& tilesets);
 
+	virtual ~TileLayer(){}
+
 	// Funciones básicas
 	virtual void Update();
 	virtual void Render();
@@ -36,7 +38,7 @@ private:
 	Vector2D m_position;
 	Vector2D m_velocity;
 
-	/* Colección de tilesets usados en esta capa */
+	/* Referencia a los tilesets usados en esta capa */
 	const std::vector<Tileset>& m_tilesets;
 	/* Matriz de identificadores de tiles */
 	std::vector<std::vector<int>> m_tileIDs;

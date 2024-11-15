@@ -12,6 +12,7 @@ public:
 	virtual void Render();
 
 	virtual bool OnEnter();
+	virtual bool OnExit();
 
 	virtual std::string GetStateID() const { return s_playID; }
 

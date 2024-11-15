@@ -60,6 +60,13 @@ bool PlayState::OnEnter()
 	return true;
 }
 
+bool PlayState::OnExit()
+{
+	delete m_pLevel;
+	GameState::OnExit();
+	return true;
+}
+
 bool PlayState::CheckCollision(SDLGameObject* p1, SDLGameObject* p2)
 {
 	int leftA, leftB;

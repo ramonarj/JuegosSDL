@@ -35,8 +35,8 @@ void TileLayer::Render()
 {
 	// Las coordenadas (en la matriz de IDs) del primer tile
 	// que se va a pintar en la esquina superior izquierda de la pantalla
-	int x = m_position.GetX() / m_tileSize;
-	int y = m_position.GetY() / m_tileSize;
+	int x = int(m_position.GetX() / m_tileSize);
+	int y = int(m_position.GetY() / m_tileSize);
 
 	// Desplazamiento (px) hacia la izquierda/arriba de ese tile
 	// Cuanto mayor sean, menos tile se verá. 0 <= (x2, y2) <= m_tileSize
@@ -71,7 +71,7 @@ void TileLayer::Render()
 Tileset TileLayer::GetTilesetByID(int tileID)
 {
 	// recorremos los tilesets para buscar el que corresponde al tile dado
-	for (int i = 0; i < m_tilesets.size(); i++)
+	for (size_t i = 0; i < m_tilesets.size(); i++)
 	{
 		// para comprobar que no es el último de la lista
 		if (i + 1 <= m_tilesets.size() - 1)

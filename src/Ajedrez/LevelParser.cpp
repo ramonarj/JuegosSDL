@@ -217,9 +217,13 @@ void LevelParser::ParseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				}
 			}
 			// Inicializamos el GameObject y lo añadimos a la lista
-			pGameObject->Load(new LoaderParams(x, y, width, height, textureID,
-					numFrames, callbackID, animSpeed));
+			LoaderParams* pParams = new LoaderParams(x, y, width, height, textureID,
+				numFrames, callbackID, animSpeed);
+			pGameObject->Load(pParams);
 			pObjectLayer->GetGameObjects()->push_back(pGameObject);
+
+			//importante
+			delete pParams;
 		}
 	}
 	// Metemos la capa de objetos creada

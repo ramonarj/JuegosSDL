@@ -14,7 +14,7 @@ int main(int argc, char* args[])
 	/* Esto de abajo sirve para crear un punto de interrupción(al depurar)
 	en la línea que reserva la memoria (new/malloc) que se queda sin borrar
 	con el 'memory allocation number' {158} */
-	//_crtBreakAlloc = 158;
+	//_crtBreakAlloc = 1169;
 
 	Uint32 frameStart, frameTime = 0;
 

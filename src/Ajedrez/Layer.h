@@ -5,11 +5,12 @@
 class Layer
 {
 public:
+	// Destructora virtual
+	virtual ~Layer(){}
+
 	// Métodos básicos
 	virtual void Render() = 0;
 	virtual void Update() = 0;
-protected:
-	virtual ~Layer() {}
 };
 
 #endif /* defined(__Layer__) */

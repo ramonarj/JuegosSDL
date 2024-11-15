@@ -4,11 +4,14 @@
 #include "Layer.h"
 #include "GameObject.h"
 #include <vector>
+#include "checkML.h"
 
 /* Tipo de capa que solamente contiene GameObjects */
 class ObjectLayer : public Layer
 {
 public:
+	virtual ~ObjectLayer();
+
 	// Funciones básicas
 	virtual void Update();
 	virtual void Render();

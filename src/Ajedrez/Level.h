@@ -34,7 +34,7 @@ struct Tileset
 class Level
 {
 public:
-	~Level() {}
+	~Level();
 
 	// Métodos básicos
 	void Update();
