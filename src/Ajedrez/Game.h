@@ -2,7 +2,10 @@
 #define __GAME__
 
 #include "GameStateMachine.h"
-#include "SDL.h"
+#include "../../dependencies/SDL2-2.30.9/include/SDL.h"
+
+// Esto es por si quiero usar un main normal y no la macro de SDL
+#undef main
 
 /* Clase singleton para la gestión del juego */
 class Game
@@ -47,6 +50,14 @@ public:
 	inline int GetGameWidth() { return m_gameWidth; }
 	/* Altura de la ventana, en píxeles */
 	inline int GetGameHeight() { return m_gameHeight; }
+
+	/* Wrappers de SDL */
+	/* Número de milisegundos desde que se inició el juego */
+	inline Uint32 GetTicks() { return SDL_GetTicks(); }
+
+	inline void DelayFor(Uint32 ms) { SDL_Delay(ms); }
+
+	inline const char* GetError() { return SDL_GetError(); }
 
 private:
 	/* Constructora por defecto */
