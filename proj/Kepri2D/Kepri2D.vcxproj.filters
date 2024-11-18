@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de origen">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado\GameStates">
+      <UniqueIdentifier>{054aa628-e760-47c7-b58f-d9e23b58ee95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\GameStates">
+      <UniqueIdentifier>{0de3e6fe-e017-4ee9-a642-e693f9cd56d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\GameObjects">
+      <UniqueIdentifier>{d7cf33a0-f124-499e-80db-6c29fd2704ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\GameObjects">
+      <UniqueIdentifier>{f52eff4c-27ea-4c2e-bda1-753b714980d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Levels">
+      <UniqueIdentifier>{d8f31d86-c5a9-4a69-a0c8-76f1d5b2da3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Levels">
+      <UniqueIdentifier>{c328bd28-ccb7-42f7-a910-c98bdc9a6e56}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Kepri2D\Game.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\InputHandler.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\Main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\SoundManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\StateParser.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\TextureManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\base64.cpp">
+      <Filter>Archivos de origen\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\Level.cpp">
+      <Filter>Archivos de origen\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\LevelParser.cpp">
+      <Filter>Archivos de origen\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\ObjectLayer.cpp">
+      <Filter>Archivos de origen\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\TileLayer.cpp">
+      <Filter>Archivos de origen\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\GameOverState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\GameState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\GameStateMachine.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\MainMenuState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\PauseState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\PlayState.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\AnimatedGraphic.cpp">
+      <Filter>Archivos de origen\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\GameObjectFactory.cpp">
+      <Filter>Archivos de origen\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\MenuButton.cpp">
+      <Filter>Archivos de origen\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\Pieza.cpp">
+      <Filter>Archivos de origen\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\SDLGameObject.cpp">
+      <Filter>Archivos de origen\GameObjects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Kepri2D\checkML.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\Game.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\InputHandler.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\LoaderParams.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\SoundManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\StateParser.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\TextureManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\Vector2D.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\base64.h">
+      <Filter>Archivos de encabezado\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\Layer.h">
+      <Filter>Archivos de encabezado\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\Level.h">
+      <Filter>Archivos de encabezado\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\LevelParser.h">
+      <Filter>Archivos de encabezado\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\ObjectLayer.h">
+      <Filter>Archivos de encabezado\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\TileLayer.h">
+      <Filter>Archivos de encabezado\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\GameOverState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\GameState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\GameStateMachine.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\MainMenuState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\MenuState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\PauseState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\PlayState.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\AnimatedGraphic.h">
+      <Filter>Archivos de encabezado\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\GameObject.h">
+      <Filter>Archivos de encabezado\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\GameObjectFactory.h">
+      <Filter>Archivos de encabezado\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\MenuButton.h">
+      <Filter>Archivos de encabezado\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\Pieza.h">
+      <Filter>Archivos de encabezado\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\SDLGameObject.h">
+      <Filter>Archivos de encabezado\GameObjects</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

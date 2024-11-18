@@ -1,6 +1,6 @@
-#include "../Ajedrez/Game.h"
+#include "../Kepri2D/Game.h"
 #include <iostream>
-#include "../Ajedrez/checkML.h"
+#include "../Kepri2D/checkML.h"
 
 
 const int FPS = 60;
