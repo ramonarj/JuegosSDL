@@ -5,7 +5,7 @@
 
 void Pieza::Load(const LoaderParams* pParams)
 {
-	SDLGameObject::Load(pParams);
+	GameObject::Load(pParams);
 	initialVel = Vector2D(1, 1);
 	m_velocity = initialVel;
 }
@@ -156,11 +156,5 @@ void Pieza::Update()
 	
 
 	// Llamada a la clase padre
-	SDLGameObject::Update();
-}
-
-
-void Pieza::Draw() 
-{
-	SDLGameObject::Draw();
+	GameObject::Update();
 }

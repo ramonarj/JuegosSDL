@@ -1,10 +1,10 @@
 #ifndef __MENUBUTTON__
 #define __MENUBUTTON__
 
-#include "SDLGameObject.h"
+#include "GameObject.h"
 #include "GameObjectFactory.h"
 
-class MenuButton : public SDLGameObject
+class MenuButton : public GameObject
 {
 public:
 	/* Constructora por defecto */
@@ -12,9 +12,7 @@ public:
 	void Load(const LoaderParams* pParams);
 
 	// Heredadas
-	virtual void Draw();
 	virtual void Update();
-	virtual void Clean();
 
 	/* Getter */
 	int GetCallbackID() { return m_callbackID; }

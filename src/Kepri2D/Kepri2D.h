@@ -7,7 +7,7 @@
 #include "SoundManager.h"
 #include "InputHandler.h"
 
-#include "SDLGameObject.h"
+#include "GameObject.h"
 #include "AnimatedGraphic.h"
 #include "MenuState.h"
 

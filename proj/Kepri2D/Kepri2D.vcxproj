@@ -166,6 +166,7 @@
     <ClCompile Include="..\..\src\Kepri2D\AnimatedGraphic.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\base64.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\Game.cpp" />
+    <ClCompile Include="..\..\src\Kepri2D\GameObject.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\GameObjectFactory.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\GameState.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\GameStateMachine.cpp" />
@@ -175,7 +176,6 @@
     <ClCompile Include="..\..\src\Kepri2D\Main.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\MenuButton.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\ObjectLayer.cpp" />
-    <ClCompile Include="..\..\src\Kepri2D\SDLGameObject.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\SoundManager.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\StateParser.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\TextureManager.cpp" />
@@ -199,7 +199,6 @@
     <ClInclude Include="..\..\src\Kepri2D\MenuButton.h" />
     <ClInclude Include="..\..\src\Kepri2D\MenuState.h" />
     <ClInclude Include="..\..\src\Kepri2D\ObjectLayer.h" />
-    <ClInclude Include="..\..\src\Kepri2D\SDLGameObject.h" />
     <ClInclude Include="..\..\src\Kepri2D\SoundManager.h" />
     <ClInclude Include="..\..\src\Kepri2D\StateParser.h" />
     <ClInclude Include="..\..\src\Kepri2D\TextureManager.h" />

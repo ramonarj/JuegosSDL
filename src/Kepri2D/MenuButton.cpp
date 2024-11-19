@@ -3,7 +3,7 @@
 
 void MenuButton::Load(const LoaderParams* pParams)
 {
-	SDLGameObject::Load(pParams);
+	GameObject::Load(pParams);
 	m_callbackID = pParams->getCallbackID();
 	m_textureCol = MOUSE_OUT;
 }
@@ -37,14 +37,4 @@ void MenuButton::Update()
 	{
 		m_textureCol = MOUSE_OUT;
 	}
-}
-
-void MenuButton::Draw()
-{
-	SDLGameObject::Draw();
-}
-
-void MenuButton::Clean()
-{
-	SDLGameObject::Clean();
 }

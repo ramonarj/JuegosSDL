@@ -1,14 +1,15 @@
 #ifndef __ANIMATEDGRAPHIC__
 #define __ANIMATEDGRAPHIC__
 
-#include "SDLGameObject.h"
+#include "GameObject.h"
 #include "GameObjectFactory.h"
+#include "../../dependencies/SDL2-2.30.9/include/SDL.h"
 
-class AnimatedGraphic : public SDLGameObject
+class AnimatedGraphic : public GameObject
 {
 public:
 	/* Constructora por defecto */
-	AnimatedGraphic() : SDLGameObject(), m_numFrames(1), m_animSpeed(0) {}
+	AnimatedGraphic() : GameObject(), m_numFrames(1), m_animSpeed(0) {}
 
 	/* Heredados */
 	virtual void Load(const LoaderParams* pParams);

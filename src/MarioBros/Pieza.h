@@ -4,20 +4,17 @@
 #include "Kepri2D.h"
 
 /* Hereda de GameObject */
-class Pieza : public SDLGameObject
+class Pieza : public GameObject
 {
 public:
 
 	/* Constructora */
-	Pieza() : SDLGameObject() {}
+	Pieza() : GameObject() {}
 	virtual void Load(const LoaderParams* pParams);
 
 	/* Heredadas*/
-	virtual void Draw();
 	/* Por ahora, es una prueba de movimiento */
 	virtual void Update();
-	//void Draw(SDL_Renderer* pRenderer) {}
-	virtual void Clean(){}
 
 private:
 	// Para el input

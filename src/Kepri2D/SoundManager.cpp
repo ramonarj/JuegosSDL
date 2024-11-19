@@ -73,7 +73,7 @@ void SoundManager::StopMusic()
 void SoundManager::ChangeVolume(int vol)
 {
 	// Convertimos el rango 0-100 al rango 0-128 que usa SDL_Mixer
-	vol = (vol * MIX_MAX_VOLUME) / 100.0;
+	vol = int(vol * MIX_MAX_VOLUME / 100.0);
 
 	Mix_MasterVolume(vol);
 	Mix_VolumeMusic(vol);

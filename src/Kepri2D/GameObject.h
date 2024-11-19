@@ -2,6 +2,7 @@
 #define __GAMEOBJECT__
 
 #include "LoaderParams.h"
+#include "Vector2D.h"
 
 /* Clase abstracta y completamente genérica para un GameObject. Sirve tanto si usamos SDL
 como si usamos cualquier otro motor/librería */
@@ -13,17 +14,40 @@ public:
 	virtual ~GameObject(){}
 
 	/* Inicializa el GameObject */
-	virtual void Load(const LoaderParams* pParams) = 0;
+	virtual void Load(const LoaderParams* pParams);
 
 	/* Dibuja el GameObject */
-	virtual void Draw() = 0;
+	virtual void Draw();
 	/* Actualiza el GameObject */
-	virtual void Update() = 0;
+	virtual void Update();
 	/* Destruye y limpia el GameObject */
-	virtual void Clean() = 0;
+	virtual void Clean(){}
+
+	/* Getters (anteriormente en SDLGameObject) */
+	inline Vector2D& GetPosition() { return m_position; }
+	inline int GetWidth() { return m_width; }
+	inline int GetHeight() { return m_height; }
 
 protected:
-	GameObject() {}
+	GameObject() : m_position(0,0), m_velocity(0,0), m_acceleration(0,0),
+	m_width(0), m_height(0), m_textureRow(0), m_textureCol(0) {}
+
+	/* Posición */
+	Vector2D m_position;
+	/* Velocidad */
+	Vector2D m_velocity;
+	/* Aceleración */
+	Vector2D m_acceleration;
+
+	/* Tamaño en píxeles que ocupará en pantalla */
+	int m_width;
+	int m_height;
+
+	/* Fila y columna de la textura que se usarán para pintar la entidad */
+	int m_textureRow;
+	int m_textureCol;
+	/* Identificador de la textura usada */
+	std::string m_textureID;
 };
 
 #endif /* defined(__GameObject__) */

@@ -1,10 +1,11 @@
-#include "SDLGameObject.h"
+#include "GameObject.h"
 
 #include "TextureManager.h"
 #include "Game.h"
 
+
 /* Llama explícitamente a la constructora de GameObject */
-void SDLGameObject::Load(const LoaderParams* pParams)
+void GameObject::Load(const LoaderParams* pParams)
 {
 	m_position = Vector2D((float)pParams->getX(), (float)pParams->getY());
 	m_velocity = Vector2D(0, 0);
@@ -19,7 +20,7 @@ void SDLGameObject::Load(const LoaderParams* pParams)
 	m_textureCol = 0;
 }
 
-void SDLGameObject::Update()
+void GameObject::Update()
 {
 	// a = dv/dt
 	m_velocity += m_acceleration;
@@ -27,7 +28,7 @@ void SDLGameObject::Update()
 	m_position += m_velocity;
 }
 
-void SDLGameObject::Draw()
+void GameObject::Draw()
 {
 	/* Esto de invertir la imagen en función de la velocidad será deseable según 
 	el juego que hagamos creo yo */

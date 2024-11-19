@@ -10,6 +10,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Kepri2D", "proj\Kepri2D\Kepri2D.vcxproj", "{E9833869-A094-4604-A607-5CC1B024669F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MarioBros", "proj\MarioBros\MarioBros.vcxproj", "{BB5CEB1D-93CF-4DB6-8C6D-A13A821BD9E5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9833869-A094-4604-A607-5CC1B024669F} = {E9833869-A094-4604-A607-5CC1B024669F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

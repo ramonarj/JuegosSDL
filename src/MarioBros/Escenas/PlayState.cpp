@@ -26,8 +26,8 @@ void PlayState::Update()
 
 	/*
 	// Comprobar colisiones entre la pieza y el fuego
-	if (CheckCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]), 
-		dynamic_cast<SDLGameObject*>(m_gameObjects[1])))
+	if (CheckCollision(dynamic_cast<GameObject*>(m_gameObjects[0]), 
+		dynamic_cast<GameObject*>(m_gameObjects[1])))
 	{
 		Game::Instance()->GetStateMachine()->ChangeState(new GameOverState());
 	}
@@ -71,7 +71,7 @@ bool PlayState::OnExit()
 	return true;
 }
 
-bool PlayState::CheckCollision(SDLGameObject* p1, SDLGameObject* p2)
+bool PlayState::CheckCollision(GameObject* p1, GameObject* p2)
 {
 	int leftA, leftB;
 	int rightA, rightB;

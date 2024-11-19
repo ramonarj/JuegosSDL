@@ -78,11 +78,11 @@
     <ClCompile Include="..\..\src\Kepri2D\MenuButton.cpp">
       <Filter>Archivos de origen\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Kepri2D\SDLGameObject.cpp">
-      <Filter>Archivos de origen\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Kepri2D\StateParser.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\GameObject.cpp">
+      <Filter>Archivos de origen\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,9 +144,6 @@
       <Filter>Archivos de encabezado\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Kepri2D\MenuButton.h">
-      <Filter>Archivos de encabezado\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Kepri2D\SDLGameObject.h">
       <Filter>Archivos de encabezado\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Kepri2D\StateParser.h">
