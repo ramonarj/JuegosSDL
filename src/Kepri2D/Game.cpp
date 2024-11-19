@@ -60,14 +60,6 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	// Iniciar el InputHandler
 	InputHandler::Instance()->InitialiseJoysticks();
 
-	// prueba de SDL_Mixer
-	SoundManager::Instance()->Load("hit.wav", "hit", SOUND_SFX);
-	SoundManager::Instance()->Load("clic.mp3", "clic", SOUND_SFX);
-	SoundManager::Instance()->Load("Menu.mp3", "menu", SOUND_MUSIC);
-	Mix_MasterVolume(50);
-	SoundManager::Instance()->PlayMusic("menu", 0);
-	SoundManager::Instance()->PlaySound("clic", -1);
-
 	// Forzamos a que la máquina de estados se inicie
 	m_pGameStateMachine = GameStateMachine::Instance();
 

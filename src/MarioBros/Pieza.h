@@ -1,8 +1,7 @@
 #ifndef __PIEZA__
 #define __PIEZA__
 
-#include "../Kepri2D/SDLGameObject.h"
-#include "../Kepri2D/GameObjectFactory.h"
+#include "Kepri2D.h"
 
 /* Hereda de GameObject */
 class Pieza : public SDLGameObject

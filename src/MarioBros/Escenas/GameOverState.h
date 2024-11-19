@@ -1,7 +1,7 @@
 #ifndef __GAMEOVERSTATE__
 #define __GAMEOVERSTATE__
 
-#include "../../Kepri2D/MenuState.h"
+#include "Kepri2D.h"
 
 class GameOverState : public MenuState
 {

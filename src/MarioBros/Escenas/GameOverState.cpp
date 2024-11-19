@@ -1,9 +1,5 @@
 #include "GameOverState.h"
 
-#include "../../Kepri2D/Game.h"
-#include "../../Kepri2D/InputHandler.h"
-#include "../../Kepri2D/StateParser.h"
-
 #include "PlayState.h"
 #include "MainMenuState.h"
 

@@ -1,13 +1,11 @@
-#include "../Kepri2D/Game.h"
-#include "../Kepri2D/GameObjectFactory.h"
-#include "../Kepri2D/MenuButton.h"
-#include "../Kepri2D/AnimatedGraphic.h"
-
-#include "../Kepri2D/checkML.h"
-#include <iostream>
+#include "Kepri2D.h"
 
 #include "Escenas/MainMenuState.h"
 #include "Pieza.h"
+
+#include "../Kepri2D/checkML.h"
+
+#include <iostream>
 
 const int FPS = 60;
 const int DELAY_TIME = int(1000.0f / FPS);

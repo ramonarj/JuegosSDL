@@ -1,10 +1,7 @@
 #include "Pieza.h"
 
-#include "../Kepri2D/InputHandler.h"
-#include <iostream>
-#include "../Kepri2D/Game.h"
-
 #include "Escenas/GameOverState.h"
+#include <iostream>
 
 void Pieza::Load(const LoaderParams* pParams)
 {
@@ -139,23 +136,16 @@ void Pieza::Update()
 
 	// Prueba para GameOverState; si la pieza toca una pared, perdemos
 	// Dejamos comentado lo del salvapantallas
-	if (m_position.GetX() > 640)
+	if (m_position.GetX() < 0 || m_position.GetX() > 640)
 	{
 		m_velocity.SetX(-m_velocity.GetX());
-	}
-	else if (m_position.GetX() < 0)
-	{
-		m_velocity.SetX(-m_velocity.GetX());
+		SoundManager::Instance()->PlaySound("hit", 0);
 	}
 
-	if (m_position.GetY() > 480)
+	if (m_position.GetY() < 0 || m_position.GetY() > 480)
 	{
 		m_velocity.SetY(-m_velocity.GetY());
-	}
-
-	else if (m_position.GetY() < 0)
-	{
-		m_velocity.SetY(-m_velocity.GetY());
+		SoundManager::Instance()->PlaySound("hit", 0);
 	}
 
 

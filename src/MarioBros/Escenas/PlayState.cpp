@@ -1,15 +1,9 @@
 #include "PlayState.h"
 
-#include "../../Kepri2D/InputHandler.h"
-#include "../../Kepri2D/Game.h"
-#include "../../Kepri2D/StateParser.h"
-#include "../../Kepri2D/LevelParser.h"
-
 #include "PauseState.h"
 #include "GameOverState.h"
 
 #include <iostream>
-
 
 const std::string PlayState::s_playID = "PLAY";
 
@@ -18,6 +12,7 @@ void PlayState::Update()
 	// Con el escape, se abre el menú de pausa
 	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_ESCAPE))
 	{
+		SoundManager::Instance()->PauseMusic();
 		Game::Instance()->GetStateMachine()->PushState(new PauseState());
 	}
 	/*
@@ -58,6 +53,12 @@ bool PlayState::OnEnter()
 	// Leer el nivel del TMX y guardarlo en m_pLevel
 	LevelParser levelParser;
 	m_pLevel = levelParser.ParseLevel("map2_largo.tmx");
+
+	// Música
+	SoundManager::Instance()->Load("hit.wav", "hit", SOUND_SFX);
+	SoundManager::Instance()->Load("Nivel 2.mp3", "nivel2", SOUND_MUSIC);
+
+	SoundManager::Instance()->PlayMusic("nivel2", -1);
 
 	std::cout << "entering PlayState\n";
 	return true;

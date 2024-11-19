@@ -3,8 +3,10 @@
 
 #include <string>
 #include <map>
-#include "SDL_mixer.h"
 #include "checkML.h"
+
+struct Mix_Chunk;
+struct _Mix_Music;
 
 // Ruta a los sonidos desde la carpeta src/
 const std::string SOUNDS_PATH = "../../bin/assets/sounds/";
@@ -36,6 +38,16 @@ public:
 	/* Reproduce una canción un número de veces dado (-1 para loop continuo) */
 	void PlayMusic(std::string id, int loop);
 
+	/* Pausa la música que está sonando actualmente */
+	void PauseMusic();
+	/* Reanuda la música que estaba sonando antes de pausarla */
+	void ResumeMusic();
+	/* Detiene completamente la música que está sonando actualmente */
+	void StopMusic();
+
+	/* Cambia el volumen general de la música y sonidos (0 = silencio, 100 = máximo) */
+	void ChangeVolume(int vol);
+
 	// Para destruir la instancia
 	void Clean() { delete s_pInstance; s_pInstance = nullptr; }
 
@@ -53,7 +65,7 @@ private:
 	/* Diccionario de sonidos */
 	std::map<std::string, Mix_Chunk*> m_sfxs;
 	/* Diccionario de canciones */
-	std::map<std::string, Mix_Music*> m_music;
+	std::map<std::string, _Mix_Music*> m_music;
 };
 
 #endif/* defined(__SoundManager__) */

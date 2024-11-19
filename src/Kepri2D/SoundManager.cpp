@@ -1,7 +1,7 @@
 #include "SoundManager.h"
 
+#include "SDL_mixer.h"
 #include <iostream>
-#include "checkML.h"
 
 SoundManager* SoundManager::s_pInstance = 0;
 
@@ -52,6 +52,31 @@ void SoundManager::PlaySound(std::string id, int loop)
 void SoundManager::PlayMusic(std::string id, int loop)
 {
 	Mix_PlayMusic(m_music[id], loop);
+}
+
+
+void SoundManager::PauseMusic()
+{
+	Mix_PauseMusic();
+}
+
+void SoundManager::ResumeMusic()
+{
+	Mix_ResumeMusic();
+}
+
+void SoundManager::StopMusic()
+{
+	Mix_HaltMusic();
+}
+
+void SoundManager::ChangeVolume(int vol)
+{
+	// Convertimos el rango 0-100 al rango 0-128 que usa SDL_Mixer
+	vol = (vol * MIX_MAX_VOLUME) / 100.0;
+
+	Mix_MasterVolume(vol);
+	Mix_VolumeMusic(vol);
 }
 
 SoundManager::~SoundManager()

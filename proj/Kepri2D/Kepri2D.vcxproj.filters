@@ -152,5 +152,8 @@
     <ClInclude Include="..\..\src\Kepri2D\StateParser.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\Kepri2D.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

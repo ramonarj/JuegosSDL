@@ -1,11 +1,6 @@
 #include "PauseState.h"
 
-#include "../../Kepri2D/Game.h"
-#include "../../Kepri2D/InputHandler.h"
-#include "../../Kepri2D/StateParser.h"
-
 #include "MainMenuState.h"
-
 #include <iostream>
 
 
@@ -42,11 +37,14 @@ bool PauseState::OnEnter()
 void PauseState::s_resumePlay()
 {
 	// Volver al PlayState
+	SoundManager::Instance()->PlaySound("clic", 0);
+	SoundManager::Instance()->ResumeMusic();
 	Game::Instance()->GetStateMachine()->PopState();
 }
 
 void PauseState::s_pauseToMenu()
 {
+	SoundManager::Instance()->PlaySound("clic", 0);
 	Game::Instance()->GetStateMachine()->ChangeState(new MainMenuState());
 }
 

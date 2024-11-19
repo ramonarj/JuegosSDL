@@ -191,6 +191,7 @@
     <ClInclude Include="..\..\src\Kepri2D\GameState.h" />
     <ClInclude Include="..\..\src\Kepri2D\GameStateMachine.h" />
     <ClInclude Include="..\..\src\Kepri2D\InputHandler.h" />
+    <ClInclude Include="..\..\src\Kepri2D\Kepri2D.h" />
     <ClInclude Include="..\..\src\Kepri2D\Layer.h" />
     <ClInclude Include="..\..\src\Kepri2D\Level.h" />
     <ClInclude Include="..\..\src\Kepri2D\LevelParser.h" />

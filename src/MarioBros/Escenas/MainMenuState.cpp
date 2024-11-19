@@ -1,10 +1,6 @@
 #include "MainMenuState.h"
 
-#include "../../Kepri2D/Game.h"
-#include "../../Kepri2D/StateParser.h"
-
 #include "PlayState.h"
-
 #include <iostream>
 
 
@@ -35,17 +31,29 @@ bool MainMenuState::OnEnter()
 	// Asigna los callbacks a los botones
 	SetCallbacks(m_callbacks); 
 
+	// Musica del menú
+	SoundManager::Instance()->Load("clic.mp3", "clic", SOUND_SFX);
+	SoundManager::Instance()->Load("Menu.mp3", "menu", SOUND_MUSIC);
+	
+	SoundManager::Instance()->PlayMusic("menu", -1);
+	SoundManager::Instance()->ChangeVolume(50);
+	//SoundManager::Instance()->PlaySound("clic", 0);
+
 	std::cout << "entering MenuState\n";
 	return true;
 }
 
 void MainMenuState::s_menuToPlay()
 {
+	SoundManager::Instance()->PlaySound("clic", 0);
+	SoundManager::Instance()->StopMusic();
 	Game::Instance()->GetStateMachine()->ChangeState(new PlayState());
 }
 
 void MainMenuState::s_exitFromMenu()
 {
+	SoundManager::Instance()->PlaySound("clic", 0);
+	Game::Instance()->DelayFor(500);
 	Game::Instance()->Quit();
 }
 
