@@ -2,12 +2,10 @@
 
 #include <iostream>
 #include "InputHandler.h"
-#include "MainMenuState.h"
-#include "PlayState.h"
-#include "Pieza.h"
-#include "AnimatedGraphic.h"
+//#include "MainMenuState.h"
 #include "TextureManager.h"
 #include "SoundManager.h"
+#include "GameObjectFactory.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -59,11 +57,6 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	m_gameWidth = width;
 	m_gameHeight = height;
 
-	// Registrar los tipos de entidades que vamos a usar
-	GameObjectFactory::Instance()->RegisterType("MenuButton", new MenuButtonCreator());
-	GameObjectFactory::Instance()->RegisterType("Pieza", new PiezaCreator());
-	GameObjectFactory::Instance()->RegisterType("AnimatedGraphic", new AnimatedGraphicCreator());
-
 	// Iniciar el InputHandler
 	InputHandler::Instance()->InitialiseJoysticks();
 
@@ -75,9 +68,8 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	SoundManager::Instance()->PlayMusic("menu", 0);
 	SoundManager::Instance()->PlaySound("clic", -1);
 
-	// Iniciar la máquina de estados y cargar el estado del menú
-	m_pGameStateMachine = new GameStateMachine();
-	m_pGameStateMachine->ChangeState(new MainMenuState()); //LEAK AQUI (constructora de MainMenuState)
+	// Forzamos a que la máquina de estados se inicie
+	m_pGameStateMachine = GameStateMachine::Instance();
 
 	std::cout << "init success\n";
 	m_bRunning = true;
@@ -115,10 +107,9 @@ void Game::Clean()
 	std::cout << "cleaning game\n";
 
 	// limpiar todos los estados
-	m_pGameStateMachine->Clean();
-	delete m_pGameStateMachine;
+	GameStateMachine::Instance()->Clean();
 
-	// limpiar managers
+	// limpiar demás managers
 	SoundManager::Instance()->Clean();
 	InputHandler::Instance()->Clean();
 	TextureManager::Instance()->Clean();

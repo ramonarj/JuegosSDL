@@ -2,7 +2,7 @@
 #define __INPUTHANDLER__
 
 #include <vector>
-#include "SDL.h"
+#include "../../dependencies/SDL2-2.30.9/include/SDL.h"
 #include "Vector2D.h"
 
 enum mouse_buttons

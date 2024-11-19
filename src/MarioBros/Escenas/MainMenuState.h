@@ -1,7 +1,7 @@
 #ifndef __MAINMENUSTATE__
 #define __MAINMENUSTATE__
 
-#include "MenuState.h"
+#include "../../Kepri2D/MenuState.h"
 
 class MainMenuState : public MenuState
 {

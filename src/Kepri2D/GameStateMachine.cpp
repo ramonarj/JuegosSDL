@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+GameStateMachine* GameStateMachine::s_pInstance = 0;
+
 void GameStateMachine::PushState(GameState* pState)
 {
 	m_transitionType = PUSH;

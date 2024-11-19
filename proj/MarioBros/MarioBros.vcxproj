@@ -152,7 +152,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\MarioBros\Escenas\GameOverState.cpp" />
+    <ClCompile Include="..\..\src\MarioBros\Escenas\MainMenuState.cpp" />
+    <ClCompile Include="..\..\src\MarioBros\Escenas\PauseState.cpp" />
+    <ClCompile Include="..\..\src\MarioBros\Escenas\PlayState.cpp" />
     <ClCompile Include="..\..\src\MarioBros\Main.cpp" />
+    <ClCompile Include="..\..\src\MarioBros\Pieza.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\MarioBros\Escenas\GameOverState.h" />
+    <ClInclude Include="..\..\src\MarioBros\Escenas\MainMenuState.h" />
+    <ClInclude Include="..\..\src\MarioBros\Escenas\PauseState.h" />
+    <ClInclude Include="..\..\src\MarioBros\Escenas\PlayState.h" />
+    <ClInclude Include="..\..\src\MarioBros\Pieza.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

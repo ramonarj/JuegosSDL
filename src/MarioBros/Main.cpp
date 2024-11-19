@@ -1,7 +1,13 @@
 #include "../Kepri2D/Game.h"
-#include <iostream>
-#include "../Kepri2D/checkML.h"
+#include "../Kepri2D/GameObjectFactory.h"
+#include "../Kepri2D/MenuButton.h"
+#include "../Kepri2D/AnimatedGraphic.h"
 
+#include "../Kepri2D/checkML.h"
+#include <iostream>
+
+#include "Escenas/MainMenuState.h"
+#include "Pieza.h"
 
 const int FPS = 60;
 const int DELAY_TIME = int(1000.0f / FPS);
@@ -17,11 +23,19 @@ int main(int argc, char* args[])
 	//Uint32
 	int frameStart, frameTime = 0;
 
-	// Inicializar el juego
+	// 1) Inicializar el motor de juego
 	std::cout << "game init attempt...\n";
-	if (Game::Instance()->Init("Ajedrez", 100, 100, 640, 480, false))
+	if (Game::Instance()->Init("Mario Bros", 100, 100, 640, 480, false))
 	{
-		// Bucle principal
+		// 2) Registrar los tipos de entidades que vamos a usar
+		GameObjectFactory::Instance()->RegisterType("MenuButton", new MenuButtonCreator());
+		GameObjectFactory::Instance()->RegisterType("Pieza", new PiezaCreator());
+		GameObjectFactory::Instance()->RegisterType("AnimatedGraphic", new AnimatedGraphicCreator());
+
+		// 3) Cargar la escena inicial (el menú)
+		GameStateMachine::Instance()->ChangeState(new MainMenuState());
+
+		// 4) Bucle principal
 		std::cout << "game init success!\n";
 		while (Game::Instance()->Running())
 		{
@@ -46,7 +60,7 @@ int main(int argc, char* args[])
 		return -1;
 	}
 
-	// Limpiar y salimos
+	// 5) Limpiar y salimos
 	std::cout << "game closing...\n";
 	Game::Instance()->Clean();
 

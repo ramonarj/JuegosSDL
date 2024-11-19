@@ -3,12 +3,19 @@
 
 #include "GameState.h"
 #include <vector>
+#include "checkML.h"
 
+/* Clase singleton que gestiona los estados de juego (como un SceneManager) */
 class GameStateMachine
 {
 public:
-	/* Constructora por defecto */
-	GameStateMachine() : m_transitionType(NONE), m_nextState(nullptr){}
+	/* Devuelve la instancia */
+	static GameStateMachine* Instance()
+	{
+		if (s_pInstance == nullptr)
+			s_pInstance = new GameStateMachine();
+		return s_pInstance;
+	}
 
 	/* Añade un estado encima del actual, sin eliminarlo */
 	void PushState(GameState* pState);
@@ -25,6 +32,8 @@ public:
 	{
 		while(!m_gameStates.empty())
 			Pop();
+		delete s_pInstance;
+		s_pInstance = nullptr;
 	}
 private:
 	enum transition_type
@@ -34,6 +43,12 @@ private:
 		POP = 2,
 		CHANGE = 3
 	};
+
+	/* Instancia */
+	static GameStateMachine* s_pInstance;
+
+	/* Constructora por defecto */
+	GameStateMachine() : m_transitionType(NONE), m_nextState(nullptr) {}
 
 	/* Estados de juego */
 	std::vector<GameState*> m_gameStates;

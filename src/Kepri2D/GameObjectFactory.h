@@ -5,7 +5,6 @@
 #include <map>
 #include <iostream>
 #include "GameObject.h"
-#include "tinyxml.h"
 
 class BaseCreator
 {

@@ -1,9 +1,10 @@
 #include "Pieza.h"
 
-#include "InputHandler.h"
+#include "../Kepri2D/InputHandler.h"
 #include <iostream>
-#include "Game.h"
-#include "GameOverState.h"
+#include "../Kepri2D/Game.h"
+
+#include "Escenas/GameOverState.h"
 
 void Pieza::Load(const LoaderParams* pParams)
 {

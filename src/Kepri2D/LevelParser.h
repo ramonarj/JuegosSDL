@@ -2,7 +2,7 @@
 #define __LEVELPARSER__
 
 #include "Level.h"
-#include "tinyxml.h"
+#include "../../dependencies/tinyxml/tinyxml.h"
 
 static std::string TILEMAPS_PATH = "../../bin/assets/";
 

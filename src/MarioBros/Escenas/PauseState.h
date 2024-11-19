@@ -1,8 +1,7 @@
 #ifndef __PAUSESTATE__
 #define __PAUSESTATE__
 
-#include "MenuState.h"
-#include "MenuButton.h"
+#include "../../Kepri2D/MenuState.h"
 
 class PauseState : public MenuState
 {

@@ -45,9 +45,6 @@
     <ClCompile Include="..\..\src\Kepri2D\SoundManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Kepri2D\StateParser.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Kepri2D\TextureManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -66,22 +63,10 @@
     <ClCompile Include="..\..\src\Kepri2D\TileLayer.cpp">
       <Filter>Archivos de origen\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Kepri2D\GameOverState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Kepri2D\GameState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Kepri2D\GameStateMachine.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Kepri2D\MainMenuState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Kepri2D\PauseState.cpp">
-      <Filter>Archivos de origen\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Kepri2D\PlayState.cpp">
       <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Kepri2D\AnimatedGraphic.cpp">
@@ -93,11 +78,11 @@
     <ClCompile Include="..\..\src\Kepri2D\MenuButton.cpp">
       <Filter>Archivos de origen\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Kepri2D\Pieza.cpp">
-      <Filter>Archivos de origen\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Kepri2D\SDLGameObject.cpp">
       <Filter>Archivos de origen\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\StateParser.cpp">
+      <Filter>Archivos de origen\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +99,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Kepri2D\SoundManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Kepri2D\StateParser.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Kepri2D\TextureManager.h">
@@ -143,25 +125,13 @@
     <ClInclude Include="..\..\src\Kepri2D\TileLayer.h">
       <Filter>Archivos de encabezado\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Kepri2D\GameOverState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Kepri2D\GameState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Kepri2D\GameStateMachine.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Kepri2D\MainMenuState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Kepri2D\MenuState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Kepri2D\PauseState.h">
-      <Filter>Archivos de encabezado\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Kepri2D\PlayState.h">
       <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Kepri2D\AnimatedGraphic.h">
@@ -176,11 +146,11 @@
     <ClInclude Include="..\..\src\Kepri2D\MenuButton.h">
       <Filter>Archivos de encabezado\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Kepri2D\Pieza.h">
-      <Filter>Archivos de encabezado\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Kepri2D\SDLGameObject.h">
       <Filter>Archivos de encabezado\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\StateParser.h">
+      <Filter>Archivos de encabezado\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

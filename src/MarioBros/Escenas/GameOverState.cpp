@@ -1,11 +1,13 @@
 #include "GameOverState.h"
 
-#include "Game.h"
-#include <iostream>
+#include "../../Kepri2D/Game.h"
+#include "../../Kepri2D/InputHandler.h"
+#include "../../Kepri2D/StateParser.h"
+
 #include "PlayState.h"
 #include "MainMenuState.h"
-#include "InputHandler.h"
-#include "StateParser.h"
+
+#include <iostream>
 
 const std::string GameOverState::s_gameoverID = "GAMEOVER";
 

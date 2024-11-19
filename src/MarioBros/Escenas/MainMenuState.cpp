@@ -1,9 +1,12 @@
 #include "MainMenuState.h"
 
-#include "Game.h"
-#include <iostream>
+#include "../../Kepri2D/Game.h"
+#include "../../Kepri2D/StateParser.h"
+
 #include "PlayState.h"
-#include "StateParser.h"
+
+#include <iostream>
+
 
 const std::string MainMenuState::s_menuID = "MENU";
 

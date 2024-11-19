@@ -1,9 +1,9 @@
 #ifndef __PLAYSTATE__
 #define __PLAYSTATE__
 
-#include "GameState.h"
-#include "Level.h"
-#include "SDLGameObject.h"
+#include "../../Kepri2D/GameState.h"
+#include "../../Kepri2D/Level.h"
+#include "../../Kepri2D/SDLGameObject.h"
 
 class PlayState : public GameState
 {

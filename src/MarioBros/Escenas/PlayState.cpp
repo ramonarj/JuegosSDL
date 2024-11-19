@@ -1,12 +1,15 @@
 #include "PlayState.h"
 
-#include <iostream>
-#include "InputHandler.h"
-#include "Game.h"
+#include "../../Kepri2D/InputHandler.h"
+#include "../../Kepri2D/Game.h"
+#include "../../Kepri2D/StateParser.h"
+#include "../../Kepri2D/LevelParser.h"
+
 #include "PauseState.h"
 #include "GameOverState.h"
-#include "StateParser.h"
-#include "LevelParser.h"
+
+#include <iostream>
+
 
 const std::string PlayState::s_playID = "PLAY";
 

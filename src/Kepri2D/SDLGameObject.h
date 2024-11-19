@@ -2,7 +2,7 @@
 #define __SDLGAMEOBJECT__
 
 #include "GameObject.h"
-#include "SDL.h"
+#include "../../dependencies/SDL2-2.30.9/include/SDL.h"
 #include <string>
 #include "Vector2D.h"
 

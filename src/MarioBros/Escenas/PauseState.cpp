@@ -1,10 +1,13 @@
 #include "PauseState.h"
 
-#include "Game.h"
-#include <iostream>
+#include "../../Kepri2D/Game.h"
+#include "../../Kepri2D/InputHandler.h"
+#include "../../Kepri2D/StateParser.h"
+
 #include "MainMenuState.h"
-#include "InputHandler.h"
-#include "StateParser.h"
+
+#include <iostream>
+
 
 const std::string PauseState::s_PauseID = "PAUSE";
 
