@@ -10,7 +10,8 @@ class TileLayer : public Layer
 {
 public:
 	/* Constructora */
-	TileLayer(int tileSize, const std::vector<Tileset>& tilesets);
+	TileLayer(int tileSize, int mapWidth, int mapHeight, 
+		const std::vector<Tileset>& tilesets, Vector2D parallax = {1,1});
 
 	virtual ~TileLayer(){}
 
@@ -28,13 +29,19 @@ public:
 	inline Tileset GetTilesetByID(int tileID);
 
 private:
-	// Dimensiones de la capa
+	/* Dimensiones de la capa */
 	int m_numColumns;
 	int m_numRows;
-	// Tamaño de cada tile (son cuadrados)
+	/* Tamaño de cada tile (son cuadrados) */
 	int m_tileSize;
+	/* Tamaño completo (en número de tiles) del mapa */
+	int m_mapWidth;
+	int m_mapHeight;
+	/* Índice de paralaje en ambos ejes. Cuanto más grande, más cerca del espectador.
+	El predeterminado es (1, 1) */
+	Vector2D m_parallax;
 
-	// Posición y velocidad actuales de la capa
+	/* Posición y velocidad actuales de la capa */
 	Vector2D m_position;
 	Vector2D m_velocity;
 

@@ -95,8 +95,19 @@ void LevelParser::ParseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>
 void LevelParser::ParseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>* pLayers, 
 	const std::vector<Tileset>* pTilesets)
 {
-	// Creamos una nueva capa con los tilesets ya obtenidos
-	TileLayer* pTileLayer = new TileLayer(m_tileSize, *pTilesets);
+	// Creamos una nueva capa con los tilesets ya obtenidos y con las características
+	// que se indiquen (dimensiones totales e índice de paralaje)
+	int mapWidth, mapHeight;
+	pTileElement->Attribute("width", &mapWidth);
+	pTileElement->Attribute("height", &mapHeight);
+	// más complicado porque es float, y no int
+	Vector2D parallax = { 1,1 };
+	const char* parallaxxStr = pTileElement->Attribute("parallaxx");
+	if (parallaxxStr != NULL)
+		parallax.SetX(std::stof(parallaxxStr)); //string to float
+	TileLayer* pTileLayer = new TileLayer(m_tileSize, mapWidth, mapHeight, *pTilesets, parallax);
+
+
 	// tile data
 	std::vector<std::vector<int>> data;
 	std::string decodedIDs;

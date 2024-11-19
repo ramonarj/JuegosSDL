@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="60" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="14">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="60" height="15" tilewidth="32" tileheight="32" infinite="0" parallaxoriginx="-570" parallaxoriginy="0" nextlayerid="5" nextobjectid="14">
  <properties>
   <property name="fuego" type="file" value="images/Fuego.png"/>
   <property name="piezas" type="file" value="images/Piezas.png"/>
@@ -10,9 +10,19 @@
  <tileset firstgid="199" name="blocks2" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
   <image source="images/blocks2.png" width="614" height="376"/>
  </tileset>
- <layer id="1" name="Capa de patrones 1" width="60" height="15">
+ <layer id="3" name="Fondo" width="60" height="15" parallaxx="0.4">
   <data encoding="base64" compression="zlib">
-   eJztlLkvRFEUxt/Y9Xb+AmZi1NaGoHkzZuxiCRpbSUXHDKOiVFor0SBI6G2t0l5IFIgtKt+N7yU38p65Y56Zxkl+Oe+ce+5Z7p07mvYvsRSfQ9P8Dvvy9YI+0G9fyqhzX4FrcGN7R+Gl3sazVZVn8AJeY1y3DrPWmszbCbpA9x/WTo3DOQ+iZhtoBx0xrp+rUM/ut92KXENxOGchKvOGk80w69WoMUBqHF/zjijU7QGLYWKMN6Aq0c67CtbAegR7hi3er5ksKcScgwtwqRBrx/1GKoOK9ytk2cIfwP4gczyCJ3CmkC8e/1fjEbxfq/vVsd8j5UjC951Cvt/c7yj2jEVxTuJ+J0A22YJvW2IH3DJ2xSLHJPZNST1kKfZjNm8efPmg4Nvam0WtD5O8b1L8u+TPcXzdbzpp0szZA0EwDzbAAvWDhd0IdOAFHuACflAMmqldzN1Cn5e+BsnWaZ+AQ3AqcWTxffzDmpFD9LvLmWZACExThyRbrM2CgPQdpB3i9zRnKAROUMJZdc6egHN1QxcxzkmfLvmKGN/EuctBCigFVaAMJEm+NPqzuCbsRJBB24hJ5r45zmv0Pcu+D6QzCEqzCn3P9RnGCp/4HexzLnFHPvbfIN2lm7aTupVrLvp89LsZ72fPFey7jLOkUIs5syWdydhKkCphnIPwfwIJzneG
+   eJxjYBgF9ATBjAwMIYzUMy8ZiFOAOJV6RtLF7FFAOxAHxPFAnDDA7hhpgNp5exRgB4lAnERADSwPjIJRMApGwSgYBaOAMAAA4SAGSA==
+  </data>
+ </layer>
+ <layer id="1" name="Nivel" width="60" height="15" parallaxx="0.8">
+  <data encoding="base64" compression="zlib">
+   eJztlDszA1EUxzceCT3i9QkkGVGLR8Og2byE4BMISio6bB4VpdKjVjND7/UhPDqFAjEq/zv578wZskZiZ2+TO/Obs+fcc/ec/z3ZGEZjNZa76x48gEcNtWd83td8BW/g3eO609A6pUGvWgENdXOouQAWwZLH9Xs06M2i5oqm+XqhdwI1lsmkr6J37Y91D13uRcd8V2v4fo9crq1Db66G+R47xHdx3qqjdx3/V5s1fL9O8zVxPl5H7/XMdx1nNv5xT2q+WyBIqq0n2hOHd2zj3I5LensR6wP93/bKDrU+jZ95ZeF/iHi3rzLfdpIxqnMOLLAPTsEB7YuDPwtMkABxEAFpMAjmaCN89zxjCcaSwjfp34IrcCe4dni++WXPfofq94yaCqAI8rRF4au9EtgVzxb9Ip/z1DAAwmCIWk1qb8K9RmFDzAszZopYiPkZ6h4BfjAMxkEMtIhYG+Nd3FN+M+igb+e08twe9dp9l9j3pbgDS2hV9pn7BeaqmPodXFCXmlGK/SfFLKP0w7RZ7kUYSzEeZX6aPY+y7xi1+GmVzqCwncwdAwGBfQ8q/gWCW2Xz
+  </data>
+ </layer>
+ <layer id="4" name="Cercano" width="60" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztkjsvBFEUx+8wFj3rO9iZGLX1+AZjHxafyOzOVpRKBZVoECT0Xq0SpUThUVD6n/jf5CTMkhhGcf/JL+eex5w5584Y4+Tk5OTk9PvaLXqAP9Qm2ALbBbz7GtyA2wLeXYQewRO4yrHnf79D3zPmLsd+9g6fc+i1B/YVB994ZuOLfNn76VQf5Wf0fCGi1x7PD3vvtMznHIEErIEdsE77kOEvgBjUwDwIQRNMgEXakL2XGKsxVld+TP8CnIJLxVnG+bxHzvaQeQ+5UwekoE2bKl9yXbCizgn9lOc2dxgHAZjkrjF378O9RrAV1gWMxSpWYX2Le0+DEpgCc6AKfBUbYrzMnPj9YIS+rRngc6vc187d5dwn6g4StavYe+Y7rJWY/AfH3Eu+UYPz19W3jOgHtMvMhYw1GI9Y3+TMM5y7yl1KtLLnmLKjrJ0Fgwp7DxJ/Aw4cXPA=
   </data>
  </layer>
  <objectgroup id="2" name="Capa de Objetos 1">

@@ -5,8 +5,9 @@
 #include <iostream>
 #include "InputHandler.h"
 
-TileLayer::TileLayer(int tileSize, const std::vector<Tileset>& tilesets) :
-	m_tileSize(tileSize), m_tilesets(tilesets), m_position(0, 0), m_velocity(0, 0)
+TileLayer::TileLayer(int tileSize, int mapWidth, int mapHeight, const std::vector<Tileset>& tilesets, Vector2D parallax) :
+	m_tileSize(tileSize), m_mapWidth(mapWidth), m_mapHeight(mapHeight), m_tilesets(tilesets), 
+	m_parallax(parallax), m_position(0, 0), m_velocity(0, 0)
 {
 	// Obviamente, el tamaño de la ventana (tanto anchura como altura) 
 	// debe ser múltiplo del tamaño de tile que decidamos, para que 
@@ -20,15 +21,16 @@ void TileLayer::Update()
 	m_velocity = Vector2D(0, 0);
 	// prueba para el scroll
 	if(InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_RIGHT))
-		m_velocity += Vector2D(2, 0);
+		m_velocity += Vector2D(3, 0);
 	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_LEFT))
-		m_velocity += Vector2D(-2, 0);
+		m_velocity += Vector2D(-3, 0);
 	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_UP))
-		m_velocity += Vector2D(0, -2);
+		m_velocity += Vector2D(0, -3);
 	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_DOWN))
-		m_velocity += Vector2D(0, 2);
-	// actualizar la posición
-	m_position += m_velocity;
+		m_velocity += Vector2D(0, 3);
+	// actualizar la posición según la velocidad y la profundidad
+	// a la que se encuentre la capa (paralaje)
+	m_position += m_velocity * m_parallax;
 }
 
 void TileLayer::Render()
@@ -44,11 +46,12 @@ void TileLayer::Render()
 	int y2 = int(m_position.GetY()) % m_tileSize;
 
 	// Recorremos los tiles visibles y los pintamos
-	for (int i = 0; i < m_numRows; i++)
+	// Los '+1' son para que no se vean cortados los tiles que van saliendo al hacer scroll
+	for (int i = 0; i < m_numRows + 1; i++)
 	{
-		for (int j = 0; j < m_numColumns; j++)
+		for (int j = 0; j < m_numColumns + 1; j++)
 		{
-			int id = m_tileIDs[i + y][j + x]; //%numRows, %numColumns para hacer toroide
+			int id = m_tileIDs[(i + y) % m_mapHeight][(j + x) % m_mapWidth]; // % para hacer toroide
 			// tile vacío; pasamos al siguiente
 			if (id == 0)
 			{
