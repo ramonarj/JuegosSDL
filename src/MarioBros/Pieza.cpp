@@ -2,12 +2,13 @@
 
 #include "Escenas/GameOverState.h"
 #include <iostream>
+#include <cmath>
 
 void Pieza::Load(const LoaderParams* pParams)
 {
 	GameObject::Load(pParams);
 	initialVel = Vector2D(1, 1);
-	m_velocity = initialVel;
+	//m_velocity = initialVel;
 }
 
 void Pieza::InputConMando()
@@ -117,6 +118,16 @@ void Pieza::InputConTeclado()
 	{
 		m_textureRow = (m_textureRow + 1) % 2;
 	}
+
+	// Con A y S, rotamos la pieza
+	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_A))
+	{
+		m_angle -= 2.0f;
+	}
+	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_D))
+	{
+		m_angle += 2.0f;
+	}
 }
 
 void Pieza::HandleInput()
@@ -153,6 +164,9 @@ void Pieza::Update()
 	m_acceleration = m_velocity;
 	m_acceleration.Normalize(); // vector unitario de la velocidad
 	m_acceleration /= 50;
+
+	// Para probar el ángulo y el alfa de TextureManager
+	m_alpha = (std::sin(Game::Instance()->GetTicks() / 200.0f) + 1) / 2 * 255;
 	
 
 	// Llamada a la clase padre

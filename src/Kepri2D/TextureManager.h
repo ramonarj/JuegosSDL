@@ -33,7 +33,8 @@ public:
 
 	/* Dibuja un fotograma de la textura con los parámetros dados */
 	void DrawFrame(std::string id, int x, int y, int width, int height, 
-		int row, int col, SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
+		int row, int col, SDL_Renderer* pRenderer, double angle = 0, int alpha = 255, 
+		SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	/* Dibuja un tile de la textura con los parámetros dados */
 	void DrawTile(std::string id, int margin, int spacing, int x, int y,

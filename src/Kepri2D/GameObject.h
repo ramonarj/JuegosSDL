@@ -30,7 +30,7 @@ public:
 
 protected:
 	GameObject() : m_position(0,0), m_velocity(0,0), m_acceleration(0,0),
-	m_width(0), m_height(0), m_textureRow(0), m_textureCol(0) {}
+	m_width(0), m_height(0), m_textureRow(0), m_textureCol(0), m_angle(0), m_alpha(255) {}
 
 	/* Posición */
 	Vector2D m_position;
@@ -48,6 +48,11 @@ protected:
 	int m_textureCol;
 	/* Identificador de la textura usada */
 	std::string m_textureID;
+
+	/* Rotación horaria, en grados, del GameObject {0-360} */
+	double m_angle;
+	/* Nivel de transparencia {0 - 255} */
+	int m_alpha;
 };
 
 #endif /* defined(__GameObject__) */

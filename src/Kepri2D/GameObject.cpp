@@ -36,12 +36,13 @@ void GameObject::Draw()
 	if (m_velocity.GetX() >= 0)
 	{
 		TextureManager::Instance()->DrawFrame(m_textureID, (int)m_position.GetX(), (int)m_position.GetY(),
-			m_width, m_height, m_textureRow, m_textureCol, Game::Instance()->GetRenderer());
+			m_width, m_height, m_textureRow, m_textureCol,  Game::Instance()->GetRenderer(), m_angle, m_alpha);
 	}
 	// " " hacia la izquierda
 	else
 	{
 		TextureManager::Instance()->DrawFrame(m_textureID, (int)m_position.GetX(), (int)m_position.GetY(),
-			m_width, m_height, m_textureRow, m_textureCol, Game::Instance()->GetRenderer(), SDL_FLIP_HORIZONTAL);
+			m_width, m_height, m_textureRow, m_textureCol, Game::Instance()->GetRenderer(), m_angle, m_alpha, 
+			SDL_FLIP_HORIZONTAL);
 	}
 }
