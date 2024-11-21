@@ -32,7 +32,7 @@ public:
 		SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	/* Dibuja un fotograma de la textura con los parámetros dados */
-	void DrawFrame(std::string id, int x, int y, int width, int height, 
+	void DrawFrame(std::string id, int x, int y, int width, int height, int frameWidth, int frameHeight,
 		int row, int col, SDL_Renderer* pRenderer, double angle = 0, int alpha = 255, 
 		SDL_RendererFlip flip = SDL_FLIP_NONE);
 

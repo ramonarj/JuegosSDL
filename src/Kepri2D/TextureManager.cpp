@@ -36,11 +36,11 @@ void TextureManager::Draw(std::string id, int x, int y, int width, int height,
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
-void TextureManager::DrawFrame(std::string id, int x, int y, int width, int height,
+void TextureManager::DrawFrame(std::string id, int x, int y, int width, int height, int frameWidth, int frameHeight,
 	int row, int col, SDL_Renderer* pRenderer, double angle, int alpha, SDL_RendererFlip flip)
 {
 	// Rectángulos fuente y destino
-	SDL_Rect srcRect = {col * width, row * height, width, height };
+	SDL_Rect srcRect = {col * frameWidth, row * frameHeight, frameWidth, frameHeight };
 	SDL_Rect destRect = { x, y, width, height };
 
 	// Poner el alfa y dibujar el frame

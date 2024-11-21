@@ -7,9 +7,9 @@
 		</TEXTURES>
 		<OBJECTS>
 			<object type="MenuButton" x="200" y="150" width="200" height="80" 
-			textureID="resumeButton" numFrames="0" callbackID="1"/>
+			frameWidth="200" frameHeight="80" textureID="resumeButton" numFrames="0" callbackID="1"/>
 			<object type="MenuButton" x="200" y="300" width="200" height="80" 
-			textureID="menuButton" numFrames="0" callbackID="2"/>
+			frameWidth="200" frameHeight="80" textureID="menuButton" numFrames="0" callbackID="2"/>
 		</OBJECTS>
 	</PAUSE>
 </STATES>

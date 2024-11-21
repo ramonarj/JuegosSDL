@@ -175,14 +175,16 @@ void LevelParser::ParseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 		if (e->Value() == std::string("object"))
 		{
 			// Parámetros para LoaderParams con sus valores por defecto
-			int x, y, width, height, numFrames, animSpeed, callbackID;
-			x = y = width = height = callbackID = 0;
+			int x, y, width, height, frameWidth, frameHeight, numFrames, animSpeed, callbackID;
+			x = y = width = height = frameWidth = frameHeight = callbackID = 0;
 			numFrames = animSpeed = 1;
 			std::string textureID;
 
 			// La X e Y la cogemos directamente del nodo del objeto
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
+			e->Attribute("width", &width);
+			e->Attribute("height", &height);
 			GameObject* pGameObject = GameObjectFactory::Instance()->Create(e -> Attribute("type"));
 
 			// Buscamos el nodo "propierties"
@@ -203,17 +205,17 @@ void LevelParser::ParseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							{
 								property->Attribute("value", &numFrames);
 							}
-							else if (property->Attribute("name") == std::string("textureHeight"))
+							else if (property->Attribute("name") == std::string("frameHeight"))
 							{
-								property->Attribute("value", &height);
+								property->Attribute("value", &frameHeight);
 							}
 							else if (property->Attribute("name") == std::string("textureID"))
 							{
 								textureID = property->Attribute("value");
 							}
-							else if (property->Attribute("name") == std::string("textureWidth"))
+							else if (property->Attribute("name") == std::string("frameWidth"))
 							{
-								property->Attribute("value", &width);
+								property->Attribute("value", &frameWidth);
 							}
 							else if (property->Attribute("name") == std::string("callbackID"))
 							{
@@ -228,8 +230,8 @@ void LevelParser::ParseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				}
 			}
 			// Inicializamos el GameObject y lo añadimos a la lista
-			LoaderParams* pParams = new LoaderParams(x, y, width, height, textureID,
-				numFrames, callbackID, animSpeed);
+			LoaderParams* pParams = new LoaderParams(x, y, width, height, frameWidth, frameHeight,
+				textureID, numFrames, callbackID, animSpeed);
 			pGameObject->Load(pParams);
 			pObjectLayer->GetGameObjects()->push_back(pGameObject);
 

@@ -39,13 +39,18 @@ protected:
 	/* Aceleración */
 	Vector2D m_acceleration;
 
-	/* Tamaño en píxeles que ocupará en pantalla */
+	/* Tamaño en píxeles del frame que se va a usar para el GameObject */
+	int m_frameWidth;
+	int m_frameHeight;
+
+	/* Tamaño en píxeles que ocupará ell GameObject en pantalla */
 	int m_width;
 	int m_height;
 
 	/* Fila y columna de la textura que se usarán para pintar la entidad */
 	int m_textureRow;
 	int m_textureCol;
+
 	/* Identificador de la textura usada */
 	std::string m_textureID;
 

@@ -17,31 +17,31 @@
  </layer>
  <layer id="1" name="Nivel" width="60" height="15" parallaxx="0.7">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo4C64BEQPwbiJwNgtxcj/e38AsRfgfgbne31BPrVYwD8CwLsA2BvNtDOKCCOBuIYOtsvOQD+jQTamTNA8UsP/7oC7ciCYjdGiH/ziLR3MZXdMhDxm0tC/l1CZbsHwr/ZJMTvUhzi7UD9HWS4fSDKq1oS8i+u+PUH6g8gw+3kxG8ZUE85BeEEit86IBaHYmzgKZRehsOMVqC+Nir5VwooJg3EMmhy33HY9YsBU913JP4PJHEJRkj8joJRMJwAAIQ6Hq0=
+   eJxjYBgFo2AUUAIeAfFjIH4yAHZ7MdLfzi9A/BWIv9HZXk+gXz0GwL8gwD4A9mYD7YwC4mggjqGz/ZID4N9IoJ05AxS/9PCvK9COLCh2Y4T4N49IexdT2S0DEb+5JOTfJVS2eyD8m01C/C7FId4O1N9BhtsHoryqJSH/4opff6D+ADLcTk78lgH1lFMQTqD4rQNicSjGBp5C6WU4zGgF6mujkn+lgGLSQCyDJvcdh12/GDDVfUfi/0ASl2CExO8oGN4AAMFHHq0=
   </data>
  </layer>
  <layer id="4" name="Cercano" width="60" height="15">
   <data encoding="base64" compression="zlib">
-   eJztkjsvBFEUx+8wFj3rO9iZGLX1+AZjHxafyOzOVpRKBZVoECT0Xq0SpUThUVD6n/jf5CTMkhhGcf/JL+eex5w5584Y4+Tk5OTk9PvaLXqAP9Qm2ALbBbz7GtyA2wLeXYQewRO4yrHnf79D3zPmLsd+9g6fc+i1B/YVB994ZuOLfNn76VQf5Wf0fCGi1x7PD3vvtMznHIEErIEdsE77kOEvgBjUwDwIQRNMgEXakL2XGKsxVld+TP8CnIJLxVnG+bxHzvaQeQ+5UwekoE2bKl9yXbCizgn9lOc2dxgHAZjkrjF378O9RrAV1gWMxSpWYX2Le0+DEpgCc6AKfBUbYrzMnPj9YIS+rRngc6vc187d5dwn6g4StavYe+Y7rJWY/AfH3Eu+UYPz19W3jOgHtMvMhYw1GI9Y3+TMM5y7yl1KtLLnmLKjrJ0Fgwp7DxJ/Aw4cXPA=
+   eJztkLFOAkEURWd1MdobPkIgaK0m/sGyBtA/Elg7S0sLrYyNGuUPUGkt1ZIOsNDSs+FuMonsYuLGtZibnLy57828mTfGODk5OTk5OeWt66If8Ic6hwu4LODuF3iFtwLuLkITmMJzjj3/+x/6njGjHPslf/ieQ68buLW4+8GZswX1svfbV32Xn9LzQ8T6zDi/5s1om/n0oQMncAWniuMU34IAQmhADZpQhwPFmnofKhcqt2/5QP4JBjC0eEhZP2bUkh7xe+81Uw8i6CpGlo9rx3BkrTvykdZdzbABVdjSrIFmX+JfN4kV7asqF1i5iva3NfcurMA27MEO+FZuVfmyarFfhnX5ZE9J574AmRFIEg==
   </data>
  </layer>
  <objectgroup id="2" name="Capa de Objetos 1">
-  <object id="1" name="Peon" type="Pieza" x="425" y="270" width="34" height="42.6667">
+  <object id="1" name="Peon" type="Pieza" x="127" y="323" width="46" height="62">
    <properties>
     <property name="animSpeed" type="int" value="0"/>
+    <property name="frameHeight" type="int" value="62"/>
+    <property name="frameWidth" type="int" value="46"/>
     <property name="numFrames" type="int" value="1"/>
-    <property name="textureHeight" type="int" value="62"/>
     <property name="textureID" value="piezas"/>
-    <property name="textureWidth" type="int" value="46"/>
    </properties>
   </object>
-  <object id="10" name="Fuego" type="AnimatedGraphic" x="310.333" y="140.333" width="55.3333" height="64.6667">
+  <object id="10" name="Fuego" type="AnimatedGraphic" x="305.333" y="220.333" width="38" height="39">
    <properties>
     <property name="animSpeed" type="int" value="6"/>
+    <property name="frameHeight" type="int" value="95"/>
+    <property name="frameWidth" type="int" value="70"/>
     <property name="numFrames" type="int" value="4"/>
-    <property name="textureHeight" type="int" value="95"/>
     <property name="textureID" value="fuego"/>
-    <property name="textureWidth" type="int" value="70"/>
    </properties>
   </object>
  </objectgroup>

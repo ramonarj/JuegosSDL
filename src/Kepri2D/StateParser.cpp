@@ -20,18 +20,20 @@ void StateParser::ParseObjects(TiXmlElement* pStateRoot,
 {
 	for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
-		int x, y, width, height, numFrames, callbackID, animSpeed;
+		int x, y, width, height, frameWidth, frameHeight, numFrames, callbackID, animSpeed;
 		std::string textureID;
 		e->Attribute("x", &x);
 		e->Attribute("y", &y);
 		e->Attribute("width", &width);
 		e->Attribute("height", &height);
+		e->Attribute("frameWidth", &frameWidth);
+		e->Attribute("frameHeight", &frameHeight);
 		e->Attribute("numFrames", &numFrames);
 		e->Attribute("callbackID", &callbackID);
 		e->Attribute("animSpeed", &animSpeed);
 		textureID = e->Attribute("textureID");
 
-		LoaderParams* pParams = new LoaderParams(x, y, width, height,
+		LoaderParams* pParams = new LoaderParams(x, y, width, height, frameWidth, frameHeight,
 			textureID, numFrames, callbackID, animSpeed);
 
 		// Crear el GameObject y meterlo en la lista (lo que antes se hacía en el .cpp de los estados)

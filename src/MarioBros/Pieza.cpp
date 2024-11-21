@@ -94,15 +94,17 @@ void Pieza::InputConRaton()
 		m_acceleration = Vector2D(0, 0);
 	}
 
-	// Con el botón del medio cambiamos el color
+	// Con el botón del medio movemos la pieza al ratón
 	if(InputHandler::Instance()->GetMouseButtonState(MIDDLE))
 	{
 		m_position = *InputHandler::Instance()->GetMousePosition();
 	}
+	
 }
 
 void Pieza::InputConTeclado()
 {
+	/* Esto es una prueba de las funciones de input y dibujado del motor */
 	// Con las teclas 1-6 cambiamos de pieza
 	int uno = SDL_SCANCODE_1;
 	for (int i = 0; i < 6; i++)
@@ -119,20 +121,38 @@ void Pieza::InputConTeclado()
 		m_textureRow = (m_textureRow + 1) % 2;
 	}
 
-	// Con A y S, rotamos la pieza
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_A))
+	// Con punto(.) y coma(,), rotamos la pieza
+	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_COMMA))
 	{
 		m_angle -= 2.0f;
 	}
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_D))
+	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_PERIOD))
 	{
 		m_angle += 2.0f;
+	}
+
+	// Con WASD, cambiamos su tamaño (lo estiramos/achatamos)
+	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_A))
+	{
+		m_width -= 1.0f;
+	}
+	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_D))
+	{
+		m_width += 1.0f;
+	}
+	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_W))
+	{
+		m_height += 1.0f;
+	}
+	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_S))
+	{
+		m_height -= 1.0f;
 	}
 }
 
 void Pieza::HandleInput()
 {
-	//InputConMando();
+	InputConMando();
 	InputConTeclado();
 	InputConRaton();
 }
