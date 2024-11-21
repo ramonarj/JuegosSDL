@@ -2,10 +2,10 @@
 
 #include <iostream>
 #include "InputHandler.h"
-//#include "MainMenuState.h"
 #include "TextureManager.h"
 #include "SoundManager.h"
 #include "GameObjectFactory.h"
+#include "Camera.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -60,8 +60,12 @@ bool Game::Init(const char* title, int xpos, int ypos,
 	// Iniciar el InputHandler
 	InputHandler::Instance()->InitialiseJoysticks();
 
-	// Forzamos a que la máquina de estados se inicie
+	// Forzamos a que la cámara se inicie
+	Camera* cam = Camera::Instance();
+
+	// Lo mismo con la máquina de estados
 	m_pGameStateMachine = GameStateMachine::Instance();
+
 
 	std::cout << "init success\n";
 	m_bRunning = true;
@@ -102,6 +106,7 @@ void Game::Clean()
 	GameStateMachine::Instance()->Clean();
 
 	// limpiar demás managers
+	Camera::Instance()->Clean();
 	SoundManager::Instance()->Clean();
 	InputHandler::Instance()->Clean();
 	TextureManager::Instance()->Clean();

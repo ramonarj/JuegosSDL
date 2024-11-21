@@ -10,14 +10,14 @@
  <tileset firstgid="199" name="blocks2" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
   <image source="images/blocks2.png" width="614" height="376"/>
  </tileset>
- <layer id="3" name="Fondo" width="60" height="15" parallaxx="0.4">
+ <layer id="3" name="Fondo" width="60" height="15" parallaxx="0.5">
   <data encoding="base64" compression="zlib">
    eJxjYBgF9ATBjAwMIYzUMy8ZiFOAOJV6RtLF7FFAOxAHxPFAnDDA7hhpgNp5exRgB4lAnERADSwPjIJRMApGwSgYBaOAMAAA4SAGSA==
   </data>
  </layer>
- <layer id="1" name="Nivel" width="60" height="15" parallaxx="0.8">
+ <layer id="1" name="Nivel" width="60" height="15" parallaxx="0.7">
   <data encoding="base64" compression="zlib">
-   eJztlDszA1EUxzceCT3i9QkkGVGLR8Og2byE4BMISio6bB4VpdKjVjND7/UhPDqFAjEq/zv578wZskZiZ2+TO/Obs+fcc/ec/z3ZGEZjNZa76x48gEcNtWd83td8BW/g3eO609A6pUGvWgENdXOouQAWwZLH9Xs06M2i5oqm+XqhdwI1lsmkr6J37Y91D13uRcd8V2v4fo9crq1Db66G+R47xHdx3qqjdx3/V5s1fL9O8zVxPl5H7/XMdx1nNv5xT2q+WyBIqq0n2hOHd2zj3I5LensR6wP93/bKDrU+jZ95ZeF/iHi3rzLfdpIxqnMOLLAPTsEB7YuDPwtMkABxEAFpMAjmaCN89zxjCcaSwjfp34IrcCe4dni++WXPfofq94yaCqAI8rRF4au9EtgVzxb9Ip/z1DAAwmCIWk1qb8K9RmFDzAszZopYiPkZ6h4BfjAMxkEMtIhYG+Nd3FN+M+igb+e08twe9dp9l9j3pbgDS2hV9pn7BeaqmPodXFCXmlGK/SfFLKP0w7RZ7kUYSzEeZX6aPY+y7xi1+GmVzqCwncwdAwGBfQ8q/gWCW2Xz
+   eJxjYBgFo4C64BEQPwbiJwNgtxcj/e38AsRfgfgbne31BPrVYwD8CwLsA2BvNtDOKCCOBuIYOtsvOQD+jQTamTNA8UsP/7oC7ciCYjdGiH/ziLR3MZXdMhDxm0tC/l1CZbsHwr/ZJMTvUhzi7UD9HWS4fSDKq1oS8i+u+PUH6g8gw+3kxG8ZUE85BeEEit86IBaHYmzgKZRehsOMVqC+Nir5VwooJg3EMmhy33HY9YsBU913JP4PJHEJRkj8joJRMJwAAIQ6Hq0=
   </data>
  </layer>
  <layer id="4" name="Cercano" width="60" height="15">

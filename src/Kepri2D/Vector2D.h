@@ -2,6 +2,8 @@
 #define __VECTOR2D__
 
 #include <cmath>
+#include <string>
+#include <iostream>
 
 class Vector2D
 {
@@ -97,9 +99,17 @@ public:
 		return v1;
 	}
 
+	// Sobrecarga del operador de extracción (para debug)
+	friend std::ostream& operator<<(std::ostream& os, Vector2D const& v)
+	{
+		return os << "{" << v.m_x << ", " << v.m_y << "}";
+	}
+
 private:
 	float m_x;
 	float m_y;
 };
+
+
 
 #endif  /* defined(__Vector2D__) */

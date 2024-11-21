@@ -6,6 +6,7 @@
 #include "GameStateMachine.h"
 #include "SoundManager.h"
 #include "InputHandler.h"
+#include "Camera.h"
 
 #include "GameObject.h"
 #include "AnimatedGraphic.h"

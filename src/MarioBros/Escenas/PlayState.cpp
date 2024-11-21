@@ -54,6 +54,9 @@ bool PlayState::OnEnter()
 	LevelParser levelParser;
 	m_pLevel = levelParser.ParseLevel("map2_largo.tmx");
 
+	// Colocar la cámara donde se quiera
+	Camera::Instance()->SetPosition({ 320, 240 });
+
 	// Música
 	SoundManager::Instance()->Load("hit.wav", "hit", SOUND_SFX);
 	SoundManager::Instance()->Load("Nivel 2.mp3", "nivel2", SOUND_MUSIC);

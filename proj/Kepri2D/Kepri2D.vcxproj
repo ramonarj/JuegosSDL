@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Kepri2D\AnimatedGraphic.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\base64.cpp" />
+    <ClCompile Include="..\..\src\Kepri2D\Camera.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\Game.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\GameObject.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\GameObjectFactory.cpp" />
@@ -184,6 +185,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\Kepri2D\AnimatedGraphic.h" />
     <ClInclude Include="..\..\src\Kepri2D\base64.h" />
+    <ClInclude Include="..\..\src\Kepri2D\Camera.h" />
     <ClInclude Include="..\..\src\Kepri2D\checkML.h" />
     <ClInclude Include="..\..\src\Kepri2D\Game.h" />
     <ClInclude Include="..\..\src\Kepri2D\GameObject.h" />
