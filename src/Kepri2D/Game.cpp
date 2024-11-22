@@ -54,6 +54,15 @@ bool Game::Init(const char* title, int xpos, int ypos,
 		return false; // sdl no se pudo inicializar
 	}
 
+	// Inicializar la librería de texto
+	if (TTF_Init() >= 0)
+		std::cout << "SDL_ttf initialized\n";
+	else
+	{
+		std::cout << "SDL_ttf init fail\n";
+		return false;
+	}
+
 	// Dimensiones de la ventana
 	m_gameWidth = width;
 	m_gameHeight = height;
@@ -66,9 +75,6 @@ bool Game::Init(const char* title, int xpos, int ypos,
 
 	// Lo mismo con la máquina de estados
 	m_pGameStateMachine = GameStateMachine::Instance();
-
-	// Inicializar la librería
-	TTF_Init();
 
 
 	std::cout << "init success\n";
@@ -116,7 +122,8 @@ void Game::Clean()
 	TextureManager::Instance()->Clean();
 	GameObjectFactory::Instance()->Clean();
 
-	// limpiar SDL
+	// limpiar SDL y SDL_ttf
+	TTF_Quit();
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit(); // cerrar todos los subsistemas

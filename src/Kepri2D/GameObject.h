@@ -30,7 +30,8 @@ public:
 
 protected:
 	GameObject() : m_position(0,0), m_velocity(0,0), m_acceleration(0,0),
-	m_width(0), m_height(0), m_textureRow(0), m_textureCol(0), m_angle(0), m_alpha(255) {}
+	m_width(0), m_height(0), m_frameWidth(0), m_frameHeight(0), m_textureRow(0), m_textureCol(0), 
+		m_angle(0), m_alpha(255) {}
 
 	/* Posición */
 	Vector2D m_position;

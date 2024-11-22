@@ -42,8 +42,8 @@ void TileLayer::Update()
 	if(m_parallax.GetX() == 1)
 	{
 		Camera::Instance()->Update(m_velocity);
-		std::cout << m_position << "\n";
-		std::cout << Camera::Instance()->GetPosition() << "\n\n";
+		//std::cout << m_position << "\n";
+		//std::cout << Camera::Instance()->GetPosition() << "\n\n";
 	}
 }
 

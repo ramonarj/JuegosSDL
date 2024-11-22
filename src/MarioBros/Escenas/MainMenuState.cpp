@@ -40,7 +40,14 @@ bool MainMenuState::OnEnter()
 	//SoundManager::Instance()->PlaySound("clic", 0);
 
 	// Prueba de texto
-	Text* t = new Text();
+	Text* t = new Text("Kepri2D", "ARCADECLASSIC.ttf", 50, 0xffff00ff);
+	m_gameObjects.push_back(t);
+	t->GetPosition() = Vector2D(200, 75);
+
+	Text* versionText = new Text("v0.6", "PressStart2P-Regular.ttf", 14, 0xffffffff);
+	m_gameObjects.push_back(versionText);
+	versionText->GetPosition() = Vector2D(Game::Instance()->GetGameWidth() - 70, 
+		Game::Instance()->GetGameHeight() - 35);
 
 	std::cout << "entering MenuState\n";
 	return true;

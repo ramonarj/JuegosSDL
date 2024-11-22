@@ -6,6 +6,8 @@
 class PlayState : public GameState
 {
 public:
+	PlayState() : m_pLevel(nullptr) {}
+
 	virtual void Update();
 	virtual void Render();
 
