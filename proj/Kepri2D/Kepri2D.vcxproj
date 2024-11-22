@@ -75,21 +75,21 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)inter\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_debug</TargetName>
-    <LibraryPath>$(SolutionDir)dependencies\SDL2-2.30.9\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_image-2.8.2\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\zlib-1.3.1\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\tinyxml\$(Configuration)tinyxml\;$(SolutionDir)dependencies\tinyxml\$(Configuration)tinyxmlSTL\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)dependencies\SDL2-2.30.9\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_image-2.8.2\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_ttf-2.22.0\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\zlib-1.3.1\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\tinyxml\$(Configuration)tinyxml\;$(SolutionDir)dependencies\tinyxml\$(Configuration)tinyxmlSTL\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)inter\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
-    <LibraryPath>$(SolutionDir)dependencies\SDL2-2.30.9\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_image-2.8.2\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\zlib-1.3.1\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\tinyxml\$(Configuration)tinyxml\;$(SolutionDir)dependencies\tinyxml\$(Configuration)tinyxmlSTL\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)dependencies\SDL2-2.30.9\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_image-2.8.2\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\zlib-1.3.1\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_ttf-2.22.0\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\tinyxml\$(Configuration)tinyxml\;$(SolutionDir)dependencies\tinyxml\$(Configuration)tinyxmlSTL\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>$(SolutionDir)dependencies\SDL2-2.30.9\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_image-2.8.2\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\zlib-1.3.1\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\VisualC\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)dependencies\SDL2-2.30.9\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_image-2.8.2\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\zlib-1.3.1\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_ttf-2.22.0\VisualC\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)inter\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <TargetName>$(ProjectName)_x64_debug</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LibraryPath>$(SolutionDir)dependencies\SDL2-2.30.9\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_image-2.8.2\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\zlib-1.3.1\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\VisualC\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)dependencies\SDL2-2.30.9\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_image-2.8.2\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\zlib-1.3.1\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\VisualC\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\SDL2_ttf-2.22.0\VisualC\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)inter\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <TargetName>$(ProjectName)_x64</TargetName>
@@ -100,7 +100,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL2-2.30.9\include\;$(SolutionDir)dependencies\SDL2_image-2.8.2\include\;$(SolutionDir)dependencies\tinyxml\;$(SolutionDir)dependencies\zlib-1.3.1\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL2-2.30.9\include\;$(SolutionDir)dependencies\SDL2_image-2.8.2\include\;$(SolutionDir)dependencies\tinyxml\;$(SolutionDir)dependencies\zlib-1.3.1\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\include\;$(SolutionDir)dependencies\SDL2_ttf-2.22.0\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -109,7 +109,7 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;shell32.lib;SDL2_Image.lib;SDL2_Mixer.lib;Zlib.lib;tinyxml.lib;tinyxmlSTL.lib</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;tinyxml.lib;Zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;tinyxml.lib;Zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -120,7 +120,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL2-2.30.9\include\;$(SolutionDir)dependencies\SDL2_image-2.8.2\include\;$(SolutionDir)dependencies\tinyxml\;$(SolutionDir)dependencies\zlib-1.3.1\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL2-2.30.9\include\;$(SolutionDir)dependencies\SDL2_image-2.8.2\include\;$(SolutionDir)dependencies\tinyxml\;$(SolutionDir)dependencies\zlib-1.3.1\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\include\;$(SolutionDir)dependencies\SDL2_ttf-2.22.0\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -136,7 +136,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL2-2.30.9\include\;$(SolutionDir)dependencies\SDL2_image-2.8.2\include\;$(SolutionDir)dependencies\tinyxml\;$(SolutionDir)dependencies\zlib-1.3.1\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL2-2.30.9\include\;$(SolutionDir)dependencies\SDL2_image-2.8.2\include\;$(SolutionDir)dependencies\tinyxml\;$(SolutionDir)dependencies\zlib-1.3.1\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\include\;$(SolutionDir)dependencies\SDL2_ttf-2.22.0\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,7 +152,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL2-2.30.9\include\;$(SolutionDir)dependencies\SDL2_image-2.8.2\include\;$(SolutionDir)dependencies\tinyxml\;$(SolutionDir)dependencies\zlib-1.3.1\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL2-2.30.9\include\;$(SolutionDir)dependencies\SDL2_image-2.8.2\include\;$(SolutionDir)dependencies\tinyxml\;$(SolutionDir)dependencies\zlib-1.3.1\;$(SolutionDir)dependencies\SDL2_mixer-2.8.0\include\;$(SolutionDir)dependencies\SDL2_ttf-2.22.0\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -179,6 +179,7 @@
     <ClCompile Include="..\..\src\Kepri2D\ObjectLayer.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\SoundManager.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\StateParser.cpp" />
+    <ClCompile Include="..\..\src\Kepri2D\Text.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\TextureManager.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\TileLayer.cpp" />
   </ItemGroup>
@@ -203,6 +204,7 @@
     <ClInclude Include="..\..\src\Kepri2D\ObjectLayer.h" />
     <ClInclude Include="..\..\src\Kepri2D\SoundManager.h" />
     <ClInclude Include="..\..\src\Kepri2D\StateParser.h" />
+    <ClInclude Include="..\..\src\Kepri2D\Text.h" />
     <ClInclude Include="..\..\src\Kepri2D\TextureManager.h" />
     <ClInclude Include="..\..\src\Kepri2D\TileLayer.h" />
     <ClInclude Include="..\..\src\Kepri2D\Vector2D.h" />

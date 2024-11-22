@@ -10,11 +10,11 @@
 
 #include "GameObject.h"
 #include "AnimatedGraphic.h"
+#include "Text.h"
 #include "MenuState.h"
 
 #include "StateParser.h"
 #include "LevelParser.h"
-
 
 
 #endif /* defined(__Kepri2D__) */

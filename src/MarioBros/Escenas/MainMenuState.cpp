@@ -39,6 +39,9 @@ bool MainMenuState::OnEnter()
 	SoundManager::Instance()->ChangeVolume(50);
 	//SoundManager::Instance()->PlaySound("clic", 0);
 
+	// Prueba de texto
+	Text* t = new Text();
+
 	std::cout << "entering MenuState\n";
 	return true;
 }

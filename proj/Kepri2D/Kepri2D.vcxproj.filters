@@ -87,6 +87,9 @@
     <ClCompile Include="..\..\src\Kepri2D\Camera.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\Text.cpp">
+      <Filter>Archivos de origen\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Kepri2D\checkML.h">
@@ -157,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Kepri2D\Camera.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\Text.h">
+      <Filter>Archivos de encabezado\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

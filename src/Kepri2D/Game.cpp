@@ -6,6 +6,7 @@
 #include "SoundManager.h"
 #include "GameObjectFactory.h"
 #include "Camera.h"
+#include "SDL_ttf.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -65,6 +66,9 @@ bool Game::Init(const char* title, int xpos, int ypos,
 
 	// Lo mismo con la máquina de estados
 	m_pGameStateMachine = GameStateMachine::Instance();
+
+	// Inicializar la librería
+	TTF_Init();
 
 
 	std::cout << "init success\n";
