@@ -171,7 +171,6 @@ void LevelParser::ParseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 	// Iteramos todos los objetos de la capa
 	for (TiXmlElement* e = pObjectElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
-		std::cout << e->Value();
 		if (e->Value() == std::string("object"))
 		{
 			// Parámetros para LoaderParams con sus valores por defecto

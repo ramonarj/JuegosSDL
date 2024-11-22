@@ -19,14 +19,14 @@ void MenuButton::Update()
 		&& pMousePos->GetY() > m_position.GetY())
 	{
 		// Ratón clicado sobre el botón
-		if (InputHandler::Instance()->GetMouseButtonState(LEFT) && m_bReleased)
+		if (InputHandler::Instance()->GetMouseButton(LEFT) && m_bReleased)
 		{
 			m_textureCol = CLICKED;
 			if(m_callback != nullptr) // añadido por seguridad
 				m_callback(); // call our callback function
 			m_bReleased = false;
 		}
-		else if (!InputHandler::Instance()->GetMouseButtonState(LEFT))
+		else if (!InputHandler::Instance()->GetMouseButton(LEFT))
 		{
 			m_bReleased = true;
 			m_textureCol = MOUSE_OVER;

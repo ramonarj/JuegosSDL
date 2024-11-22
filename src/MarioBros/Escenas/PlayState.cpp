@@ -10,7 +10,7 @@ const std::string PlayState::s_playID = "PLAY";
 void PlayState::Update()
 {
 	// Con el escape, se abre el menú de pausa
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_ESCAPE))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_ESCAPE))
 	{
 		SoundManager::Instance()->PauseMusic();
 		Game::Instance()->GetStateMachine()->PushState(new PauseState());

@@ -11,8 +11,20 @@ InputHandler::InputHandler() : m_keystates(nullptr), m_bJoysticksInitialised(fal
 	for (int i = 0; i < 3; i++)
 	{
 		m_mouseButtonStates.push_back(false);
+		m_mouseButtonsDown.push_back(false);
+		m_mouseButtonsUp.push_back(false);
 	}
 	m_mousePosition = new Vector2D(0, 0);
+}
+
+bool InputHandler::GetMouseButtonDown(int buttonNumber)
+{
+	return m_mouseButtonsDown[buttonNumber];
+}
+
+bool InputHandler::GetMouseButtonUp(int buttonNumber)
+{
+	return m_mouseButtonsUp[buttonNumber];
 }
 
 void InputHandler::Reset()
@@ -102,7 +114,7 @@ int InputHandler::Yvalue(int joy, int stick)
 	return 0;
 }
 
-bool InputHandler::IsKeyDown(SDL_Scancode key)
+bool InputHandler::GetKey(SDL_Scancode key)
 {
 	// Comprobar que tiene la referencia al teclado
 	if (m_keystates != 0)
@@ -119,8 +131,26 @@ bool InputHandler::IsKeyDown(SDL_Scancode key)
 	return false;
 }
 
+bool InputHandler::GetKeyDown(SDL_Scancode key)
+{
+	return (m_framePressedKeys.find(key) != m_framePressedKeys.end());
+}
+
+bool InputHandler::GetKeyUp(SDL_Scancode key)
+{
+	return (m_frameReleasedKeys.find(key) != m_frameReleasedKeys.end());
+}
+
 void InputHandler::Update()
 {
+	// Limpiar los conjuntos de botones/teclas pulsados/levantados en el frame anterior
+	std::fill(m_mouseButtonsDown.begin(), m_mouseButtonsDown.end(), false);
+	std::fill(m_mouseButtonsUp.begin(), m_mouseButtonsUp.end(), false);
+
+	m_framePressedKeys.clear();
+	m_frameReleasedKeys.clear();
+
+	// Procesar todos los eventos que haya
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
@@ -133,10 +163,10 @@ void InputHandler::Update()
 			/* EVENTOS DEL TECLADO */
 			// Simplemente actualizamos el array de teclas
 		case SDL_KEYDOWN:
-			m_keystates = (Uint8*)SDL_GetKeyboardState(0);
+			OnKeyDown(event);
 			break;
 		case SDL_KEYUP:
-			m_keystates = (Uint8*)SDL_GetKeyboardState(0);
+			OnKeyUp(event);
 			break;
 			/* EVENTOS DEL RATÓN */
 			// Movimiento 
@@ -174,6 +204,23 @@ void InputHandler::Update()
 	}
 }
 
+void InputHandler::OnKeyDown(SDL_Event& event)
+{
+	// Este es el primer frame que se pulsa la tecla
+	if (event.key.repeat == 0)
+	{
+		m_framePressedKeys.insert((Uint8)event.key.keysym.scancode);
+	}
+	m_keystates = (Uint8*)SDL_GetKeyboardState(0);
+}
+
+
+void InputHandler::OnKeyUp(SDL_Event& event)
+{
+	m_frameReleasedKeys.insert((Uint8)event.key.keysym.scancode);
+	m_keystates = (Uint8*)SDL_GetKeyboardState(0);
+}
+
 void InputHandler::OnMouseMove(SDL_Event& event)
 {
 	m_mousePosition->SetX((float)event.motion.x);
@@ -182,6 +229,10 @@ void InputHandler::OnMouseMove(SDL_Event& event)
 
 void InputHandler::OnMouseButtonDown(SDL_Event& event)
 {
+	// Es el primer frame que se pulsa el ratón
+	if (!m_mouseButtonsDown[event.button.button - 1])
+		m_mouseButtonsDown[event.button.button - 1] = true;
+
 	if (event.button.button == SDL_BUTTON_LEFT)
 	{
 		m_mouseButtonStates[LEFT] = true;
@@ -198,6 +249,8 @@ void InputHandler::OnMouseButtonDown(SDL_Event& event)
 
 void InputHandler::OnMouseButtonUp(SDL_Event& event)
 {
+	m_mouseButtonsUp[event.button.button - 1] = true;
+
 	if (event.button.button == SDL_BUTTON_LEFT)
 	{
 		m_mouseButtonStates[LEFT] = false;

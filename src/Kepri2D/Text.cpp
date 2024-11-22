@@ -26,16 +26,15 @@ void Text::Draw()
 void Text::Update()
 {
 	// Con el clic derecho, asignamos un color aleatorio al texto (con alfa=max)
-	if(InputHandler::Instance()->GetMouseButtonState(RIGHT))
+	if(InputHandler::Instance()->GetMouseButtonDown(RIGHT))
 	{
 		m_color = ((float)std::rand() / RAND_MAX) * 0xffffffff;
 		m_color ^= 0x000000ff; //para cargarnos el alfa
-		std::cout << m_color << std::endl;
 		SetColor(m_color);
 	}
 	
 	// Con la barra espaciadora pulsada, variamos la intensidad del canal alfa
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_SPACE))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_SPACE))
 	{
 		m_alpha = (std::sin(Game::Instance()->GetTicks() / 300.0f) + 1) / 2 * 255;
 		m_color = m_color - (m_color << 24 >> 24) + m_alpha; //un poco cutre
@@ -45,7 +44,7 @@ void Text::Update()
 
 	// Con la tecla '0', el texto cambia aleatoriamente a uno de estas palabras
 	std::vector<const char*> frutas {"Kepri2D", "plátano", "manzana", "ananas", "pera", "guayaba", "melocoton", "ñoqui"};
-	if(InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_0))
+	if(InputHandler::Instance()->GetKeyDown(SDL_SCANCODE_0))
 	{
 		int fruta = ((float)std::rand() / RAND_MAX) * frutas.size();
 		SetText(frutas[fruta]);
@@ -53,13 +52,17 @@ void Text::Update()
 
 	// Con las flechas de dirección, aumenta/disminuye el tamaño de la fuente
 	// (también hay que volver a cambiar la textura)
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_UP))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_UP))
 	{
 		SetFontsize(m_fontSize + 1);
 	}
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_DOWN))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_DOWN))
 	{
 		SetFontsize(m_fontSize - 1);
+	}
+	if (InputHandler::Instance()->GetKeyUp(SDL_SCANCODE_UP))
+	{
+		SetFontsize(50);
 	}
 }
 

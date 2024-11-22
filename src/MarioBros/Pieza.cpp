@@ -72,7 +72,7 @@ void Pieza::InputConMando()
 void Pieza::InputConRaton()
 {
 	// Con el clic izquierdo mantenemos la pieza parada hasta soltarlo
-	if(InputHandler::Instance()->GetMouseButtonState(LEFT))
+	if(InputHandler::Instance()->GetMouseButton(LEFT))
 	{
 		if(m_velocity.Length() > 0)
 		{
@@ -88,14 +88,14 @@ void Pieza::InputConRaton()
 	}
 
 	// Con el clic derecho reseteamos la velocidad y aceleración
-	if(InputHandler::Instance()->GetMouseButtonState(RIGHT))
+	if(InputHandler::Instance()->GetMouseButton(RIGHT))
 	{
 		m_velocity.Normalize();
 		m_acceleration = Vector2D(0, 0);
 	}
 
 	// Con el botón del medio movemos la pieza al ratón
-	if(InputHandler::Instance()->GetMouseButtonState(MIDDLE))
+	if(InputHandler::Instance()->GetMouseButton(MIDDLE))
 	{
 		m_position = *InputHandler::Instance()->GetMousePosition();
 	}
@@ -109,42 +109,42 @@ void Pieza::InputConTeclado()
 	int uno = SDL_SCANCODE_1;
 	for (int i = 0; i < 6; i++)
 	{
-		if (InputHandler::Instance()->IsKeyDown(SDL_Scancode(uno + i)))
+		if (InputHandler::Instance()->GetKey(SDL_Scancode(uno + i)))
 		{
 			m_textureCol = i;
 		}
 	}
 
 	// Con la barra espaciadora cambiamos el color
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_SPACE))
+	if (InputHandler::Instance()->GetKeyDown(SDL_SCANCODE_SPACE))
 	{
 		m_textureRow = (m_textureRow + 1) % 2;
 	}
 
 	// Con punto(.) y coma(,), rotamos la pieza
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_COMMA))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_COMMA))
 	{
 		m_angle -= 2.0f;
 	}
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_PERIOD))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_PERIOD))
 	{
 		m_angle += 2.0f;
 	}
 
 	// Con WASD, cambiamos su tamaño (lo estiramos/achatamos)
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_A))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_A))
 	{
 		m_width -= 1.0f;
 	}
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_D))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_D))
 	{
 		m_width += 1.0f;
 	}
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_W))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_W))
 	{
 		m_height += 1.0f;
 	}
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_S))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_S))
 	{
 		m_height -= 1.0f;
 	}

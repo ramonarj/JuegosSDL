@@ -4,6 +4,7 @@
 #include <vector>
 #include "../../dependencies/SDL2-2.30.9/include/SDL.h"
 #include "Vector2D.h"
+#include <set>
 
 enum mouse_buttons
 {
@@ -31,19 +32,37 @@ public:
 	/* Cierra los dispositivos */
 	void Clean();
 
-	/* RATÓN */
-	/* Getters */
-	inline Vector2D* GetMousePosition(){return m_mousePosition;}
-	inline bool GetMouseButtonState(int buttonNumber) { return m_mouseButtonStates[buttonNumber]; }
+	/* - - - - - Ratón - - - - - - */
+	/* Devuelve un puntero a la posición del ratón */
+	inline Vector2D* GetMousePosition() { return m_mousePosition; }
+
+	/* Devuelve true si el botón del ratón dado está pulsado */
+	bool GetMouseButton(int buttonNumber) { return m_mouseButtonStates[buttonNumber]; }
+
+	/* Devuelve true si ese botón del ratón ha sido pulsado en este mismo frame */
+	bool GetMouseButtonDown(int buttonNumber);
+
+	/* Devuelve true si ese botón del ratón ha sido levantado en este mismo frame */
+	bool GetMouseButtonUp(int buttonNumber);
+
 	/* Reinicia el estado del ratón */
 	void Reset();
 
-	/* TECLADO */
-	bool IsKeyDown(SDL_Scancode key);
+	/* - - - - - Teclado - - - - - - */
+	/* Devuelve true si la tecla dada ha sido pulsada en este mismo frame */
+	bool GetKeyDown(SDL_Scancode key);
 
-	/* MANDOS */
+
+	/* Devuelve true si la tecla dada está pulsada */
+	bool GetKey(SDL_Scancode key);
+
+	/* Devuelve true si la tecla dada ha sido soltada en este mismo frame */
+	bool GetKeyUp(SDL_Scancode key);
+
+	/* - - - - - Mandos - - - - - - */
 	/* Comprueba si hay mandos conectados y los registra */
 	void InitialiseJoysticks();
+	/* Devuelve 'true' si los mandos se han iniciado correctamente */
 	inline bool JoysticksInitialised() { return m_bJoysticksInitialised; }
 
 	/* Getters de cada mando */
@@ -95,33 +114,53 @@ private:
 	/* Instancia */
 	static InputHandler* s_pInstance;
 
-	/* RATÓN */
+	/* - - - - - Ratón - - - - - - */
 	/* Posición del ratón */
 	Vector2D* m_mousePosition;
+
 	/* Botones del ratón */
 	std::vector<bool> m_mouseButtonStates;
 
-	/* TECLADO */
+	/* Botones del ratón que han sido pulsados en este frame */
+	std::vector<bool> m_mouseButtonsDown;
+
+	/* Botones del ratón que han sido levantados en este frame */
+	std::vector<bool> m_mouseButtonsUp;
+
+
+	/* - - - - - Teclado - - - - - - */
 	/* Puntero al array de estado de las teclas */
 	Uint8* m_keystates;
 
-	/* MANDOS */
+	/* Conjunto de teclas que han sido pulsadas en este frame */
+	std::set<Uint8> m_framePressedKeys;
+
+	/* Conjunto de teclas que han sido levantadas en este frame */
+	std::set<Uint8> m_frameReleasedKeys;
+
+
+
+	/* - - - - - Mandos - - - - - - */
 	/* Lista de mandos conectados */
 	std::vector<SDL_Joystick*> m_joysticks;
+
 	/* Posiciones de los joysticks de cada mando*/
 	std::vector<std::pair<Vector2D*, Vector2D*>> m_joystickValues;
+
 	/* Estado de los botones de cada mando (pulsados/no) */
 	std::vector<std::vector<bool>> m_buttonStates;
+
 	/* Estado de las crucetas de cada mando */
 	std::vector<int> m_hatStates;
+
 	/* Zonas muertas */
 	const int m_joystickDeadZone = 10000;
 
 
 	/* Funciones privadas de gestión de eventos */
-	// teclado (por ahora no se usan)
-	void OnKeyDown();
-	void OnKeyUp();
+	// teclado
+	void OnKeyDown(SDL_Event& event);
+	void OnKeyUp(SDL_Event& event);
 	// ratón
 	void OnMouseMove(SDL_Event& event);
 	void OnMouseButtonDown(SDL_Event& event);

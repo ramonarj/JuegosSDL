@@ -21,13 +21,13 @@ void TileLayer::Update()
 {
 	m_velocity = Vector2D(0, 0);
 	// prueba para el scroll
-	if(InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_RIGHT))
+	if(InputHandler::Instance()->GetKey(SDL_SCANCODE_RIGHT))
 		m_velocity += Vector2D(3, 0);
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_LEFT))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_LEFT))
 		m_velocity += Vector2D(-3, 0);
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_UP))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_UP))
 		m_velocity += Vector2D(0, -3);
-	if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_DOWN))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_DOWN))
 		m_velocity += Vector2D(0, 3);
 
 	// esto es solamente una prueba para mover distintas capas por separado
