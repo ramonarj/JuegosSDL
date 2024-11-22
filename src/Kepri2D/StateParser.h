@@ -7,7 +7,7 @@
 
 class GameObject;
 
-static std::string STATES_PATH = "../../bin/assets/";
+const std::string STATES_PATH = "../../bin/assets/states/";
 
 /* Se encarga de leer un archivo XML y rellenar las texturas y GameObjects de la escena */
 class StateParser

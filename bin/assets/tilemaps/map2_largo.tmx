@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="60" height="15" tilewidth="32" tileheight="32" infinite="0" parallaxoriginx="-570" parallaxoriginy="0" nextlayerid="5" nextobjectid="14">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="60" height="15" tilewidth="32" tileheight="32" infinite="0" parallaxoriginx="-570" parallaxoriginy="0" nextlayerid="6" nextobjectid="14">
  <properties>
-  <property name="fuego" type="file" value="images/Fuego.png"/>
-  <property name="piezas" type="file" value="images/Piezas.png"/>
+  <property name="fuego" type="file" value="../images/Fuego.png"/>
+  <property name="piezas" type="file" value="../images/Piezas.png"/>
  </properties>
  <tileset firstgid="1" name="blocks1" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
-  <image source="images/blocks1.png" width="614" height="376"/>
+  <image source="../images/blocks1.png" width="614" height="376"/>
  </tileset>
  <tileset firstgid="199" name="blocks2" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
-  <image source="images/blocks2.png" width="614" height="376"/>
+  <image source="../images/blocks2.png" width="614" height="376"/>
  </tileset>
  <layer id="3" name="Fondo" width="60" height="15" parallaxx="0.5">
   <data encoding="base64" compression="zlib">
@@ -21,6 +21,9 @@
   </data>
  </layer>
  <layer id="4" name="Cercano" width="60" height="15">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJztkLFOAkEURWd1MdobPkIgaK0m/sGyBtA/Elg7S0sLrYyNGuUPUGkt1ZIOsNDSs+FuMonsYuLGtZibnLy57828mTfGODk5OTk5OeWt66If8Ic6hwu4LODuF3iFtwLuLkITmMJzjj3/+x/6njGjHPslf/ieQ68buLW4+8GZswX1svfbV32Xn9LzQ8T6zDi/5s1om/n0oQMncAWniuMU34IAQmhADZpQhwPFmnofKhcqt2/5QP4JBjC0eEhZP2bUkh7xe+81Uw8i6CpGlo9rx3BkrTvykdZdzbABVdjSrIFmX+JfN4kV7asqF1i5iva3NfcurMA27MEO+FZuVfmyarFfhnX5ZE9J574AmRFIEg==
   </data>

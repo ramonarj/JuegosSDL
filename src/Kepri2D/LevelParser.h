@@ -4,7 +4,7 @@
 #include "Level.h"
 #include "../../dependencies/tinyxml/tinyxml.h"
 
-static std::string TILEMAPS_PATH = "../../bin/assets/";
+const std::string TILEMAPS_PATH = "../../bin/assets/tilemaps/";
 
 /* Clase encargada de crear los niveles a partir de un archivo XML de Tiled (.tmx) */
 class LevelParser
@@ -20,7 +20,7 @@ private:
 	// Para las capas de tiles
 	void ParseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets);
 	void ParseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>* pLayers, 
-		const std::vector<Tileset>* pTilesets);
+		const std::vector<Tileset>* pTilesets, std::vector<Layer*>* pCollisionLayers);
 
 	// Para las capas de objetos
 	void ParseTexture(TiXmlElement* pTextureRoot);

@@ -20,15 +20,6 @@ TileLayer::TileLayer(int tileSize, int mapWidth, int mapHeight, const std::vecto
 void TileLayer::Update()
 {
 	m_velocity = Vector2D(0, 0);
-	// prueba para el scroll
-	if(InputHandler::Instance()->GetKey(SDL_SCANCODE_RIGHT))
-		m_velocity += Vector2D(3, 0);
-	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_LEFT))
-		m_velocity += Vector2D(-3, 0);
-	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_UP))
-		m_velocity += Vector2D(0, -3);
-	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_DOWN))
-		m_velocity += Vector2D(0, 3);
 
 	// esto es solamente una prueba para mover distintas capas por separado
 	// (efecto de viento / tormenta / nubes moviéndose)
@@ -42,8 +33,6 @@ void TileLayer::Update()
 	if(m_parallax.GetX() == 1)
 	{
 		Camera::Instance()->Update(m_velocity);
-		//std::cout << m_position << "\n";
-		//std::cout << Camera::Instance()->GetPosition() << "\n\n";
 	}
 }
 

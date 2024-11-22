@@ -148,11 +148,22 @@ void Pieza::InputConTeclado()
 	{
 		m_height -= 1.0f;
 	}
+
+	// Con las flechas de dirección, movemos la pieza
+	m_velocity = Vector2D(0, 0);
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_RIGHT))
+		m_velocity += Vector2D(3, 0);
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_LEFT))
+		m_velocity += Vector2D(-3, 0);
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_UP))
+		m_velocity += Vector2D(0, -3);
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_DOWN))
+		m_velocity += Vector2D(0, 3);
 }
 
 void Pieza::HandleInput()
 {
-	InputConMando();
+	//InputConMando();
 	InputConTeclado();
 	InputConRaton();
 }
@@ -181,9 +192,9 @@ void Pieza::Update()
 
 
 	// Para probar la aceleración
-	m_acceleration = m_velocity;
-	m_acceleration.Normalize(); // vector unitario de la velocidad
-	m_acceleration /= 50;
+	//m_acceleration = m_velocity;
+	//m_acceleration.Normalize(); // vector unitario de la velocidad
+	//m_acceleration /= 50;
 
 	// Para probar el ángulo y el alfa de TextureManager
 	m_alpha = (std::sin(Game::Instance()->GetTicks() / 200.0f) + 1) / 2 * 255;

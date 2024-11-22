@@ -47,6 +47,7 @@ private:
 
 	/* Referencia a los tilesets usados en esta capa */
 	const std::vector<Tileset>& m_tilesets;
+
 	/* Matriz de identificadores de tiles */
 	std::vector<std::vector<int>> m_tileIDs;
 };

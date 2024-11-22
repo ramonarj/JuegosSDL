@@ -52,15 +52,17 @@ Level* LevelParser::ParseLevel(const char* levelFile)
 	{
 		if (e->Value() == std::string("objectgroup") || e->Value() == std::string("layer"))
 		{
+			TiXmlElement* layerElem = e->FirstChildElement();
 			// Capa de objetos
-			if (e->FirstChildElement()->Value() == std::string("object"))
+			if (layerElem->Value() == std::string("object"))
 			{
 				ParseObjectLayer(e, pLevel->GetLayers());
 			}
 			// Capa de tiles
-			else if (e->FirstChildElement()->Value() == std::string("data"))
+			else if (layerElem->Value() == std::string("data") || (layerElem->NextSiblingElement() != 0 
+				&& layerElem->NextSiblingElement()->Value() == std::string("data")))
 			{
-				ParseTileLayer(e, pLevel->GetLayers(), pLevel->GetTilesets());
+				ParseTileLayer(e, pLevel->GetLayers(), pLevel->GetTilesets(), pLevel->GetCollisionLayers());
 			}
 		}
 	}
@@ -93,7 +95,7 @@ void LevelParser::ParseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>
 }
 
 void LevelParser::ParseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>* pLayers, 
-	const std::vector<Tileset>* pTilesets)
+	const std::vector<Tileset>* pTilesets, std::vector<Layer*>* pCollisionLayers)
 {
 	// Creamos una nueva capa con los tilesets ya obtenidos y con las características
 	// que se indiquen (dimensiones totales e índice de paralaje)
@@ -108,20 +110,35 @@ void LevelParser::ParseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>
 	TileLayer* pTileLayer = new TileLayer(m_tileSize, mapWidth, mapHeight, *pTilesets, parallax);
 
 
-	// tile data
-	std::vector<std::vector<int>> data;
-	std::string decodedIDs;
+	// Información a rellenar sobre la capa
 	TiXmlElement* pDataNode = nullptr;
-
-	// llegamos a los datos
+	bool collidable = false;
 	for (TiXmlElement* e = pTileElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
+		// llegamos a las propiedades (saber si la capa es de colisión o no)
+		if (e->Value() == std::string("properties"))
+		{
+			for (TiXmlElement* property = e->FirstChildElement(); property != NULL; property = property->NextSiblingElement())
+			{
+				if (property->Value() == std::string("property"))
+				{
+					// Capa de colisión
+					if (property->Attribute("name") == std::string("collidable"))
+					{
+						collidable = true;
+					}
+				}
+			}
+		}
+		// llegamos a los datos
 		if (e->Value() == std::string("data"))
 		{
 			pDataNode = e;
 		}
 	}
+
 	// decodificar la información en base 64
+	std::string decodedIDs;
 	for (TiXmlNode* e = pDataNode->FirstChild(); e != NULL; e = e->NextSibling())
 	{
 		TiXmlText* text = e->ToText();
@@ -134,7 +151,8 @@ void LevelParser::ParseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>
 	std::vector<int> ids(m_width * m_height);
 	uncompress((Bytef*)&ids[0], &sizeofids, (const Bytef*)decodedIDs.c_str(), decodedIDs.size());
 
-	// añadir filas a la matriz...
+	// Creamos la matriz de datos y le añadimos las filas...
+	std::vector<std::vector<int>> data;
 	std::vector<int> layerRow(m_width);
 	for (int j = 0; j < m_height; j++)
 	{
@@ -152,6 +170,8 @@ void LevelParser::ParseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>
 	// Terminar de crear la capa y añadirla a la lista de capas del nivel
 	pTileLayer->SetTileIDs(data);
 	pLayers->push_back(pTileLayer);
+	if (collidable)
+		pCollisionLayers->push_back(pTileLayer);
 }
 
 void LevelParser::ParseTexture(TiXmlElement* pTextureRoot)

@@ -8,7 +8,7 @@
 /* Representación de un tileset, con la información del .tmx */
 struct Tileset
 {
-	// Primer tileID que cocresponde a este tileset
+	// Primer tileID que corresponde a este tileset
 	int firstGridID;
 
 	// Dimensiones de cada tile en píxeles
@@ -43,8 +43,12 @@ public:
 	// Getters
 	/* Devuelve un puntero a la colección de Tilesets usados en el nivel */
 	inline std::vector<Tileset>* GetTilesets() { return &m_tilesets; }
+
 	/* Devuelve un puntero a la colección de capas del nivel */
 	inline std::vector<Layer*>* GetLayers() { return &m_layers; }
+
+	/* Devuelve un puntero a la colección de capas de colisiones del nivel */
+	inline std::vector<Layer*>* GetCollisionLayers() { return &m_collisionLayers; }
 
 private:
 	// Para asegurarnos de que solamente el LevelParser pueda
@@ -54,8 +58,12 @@ private:
 
 	/* Tilesets del nivel */
 	std::vector<Tileset> m_tilesets;
+
 	/* Lista de capas del nivel */
 	std::vector<Layer*> m_layers;
+
+	/* Lista de capas del nivel */
+	std::vector<Layer*> m_collisionLayers;
 };
 
 #endif /* defined(__Level__) */

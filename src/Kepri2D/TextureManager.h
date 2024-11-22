@@ -5,7 +5,7 @@
 #include "SDL.h"
 #include <map>
 
-static std::string IMAGES_PATH = "../../bin/assets/images/";
+const std::string IMAGES_PATH = "../../bin/assets/images/";
 
 /* Clase Singleton para la gestión de texturas del juego */
 class TextureManager
