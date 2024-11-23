@@ -95,7 +95,7 @@ void LevelParser::ParseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>
 }
 
 void LevelParser::ParseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>* pLayers, 
-	const std::vector<Tileset>* pTilesets, std::vector<Layer*>* pCollisionLayers)
+	const std::vector<Tileset>* pTilesets, std::vector<TileLayer*>* pCollisionLayers)
 {
 	// Creamos una nueva capa con los tilesets ya obtenidos y con las características
 	// que se indiquen (dimensiones totales e índice de paralaje)

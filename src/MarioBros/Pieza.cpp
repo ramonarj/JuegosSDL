@@ -163,7 +163,7 @@ void Pieza::InputConTeclado()
 
 	// Ejemplo de juego plataformas
 	// Gravedad
-	m_velocity += Vector2D(0, 1);
+	//m_velocity += Vector2D(0, 0.3);
 	// Parada por rozamiento
 	m_velocity = { m_velocity.GetX() * 0.95f, m_velocity.GetY() };
 

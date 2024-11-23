@@ -95,4 +95,8 @@ void GameState::LoadTilemapLevel(std::string mapName)
 			}
 		}
 	}
+
+	// Informar al CollisionManager de qué capas de tiles tendrán colisiones
+	for (TileLayer* l : *m_pLevel->GetCollisionLayers())
+		m_pCollisionManager->SetCollidableLayer(l, true);
 }

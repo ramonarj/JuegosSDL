@@ -29,7 +29,7 @@
   </data>
  </layer>
  <objectgroup id="2" name="Capa de Objetos 1">
-  <object id="1" name="Peon" type="Pieza" x="127" y="323" width="46" height="62">
+  <object id="1" name="Peon" type="Pieza" x="123" y="209" width="46" height="62">
    <properties>
     <property name="animSpeed" type="int" value="0"/>
     <property name="frameHeight" type="int" value="62"/>

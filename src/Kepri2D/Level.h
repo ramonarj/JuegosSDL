@@ -5,6 +5,8 @@
 #include <vector>
 #include "Layer.h"
 
+class TileLayer;
+
 /* Representación de un tileset, con la información del .tmx */
 struct Tileset
 {
@@ -47,8 +49,8 @@ public:
 	/* Devuelve un puntero a la colección de capas del nivel */
 	inline std::vector<Layer*>* GetLayers() { return &m_layers; }
 
-	/* Devuelve un puntero a la colección de capas de colisiones del nivel */
-	inline std::vector<Layer*>* GetCollisionLayers() { return &m_collisionLayers; }
+	/* Devuelve un puntero a la colección de capas de tiles con colisiones del nivel */
+	inline std::vector<TileLayer*>* GetCollisionLayers() { return &m_collisionLayers; }
 
 private:
 	// Para asegurarnos de que solamente el LevelParser pueda
@@ -63,7 +65,7 @@ private:
 	std::vector<Layer*> m_layers;
 
 	/* Lista de capas del nivel */
-	std::vector<Layer*> m_collisionLayers;
+	std::vector<TileLayer*> m_collisionLayers;
 };
 
 #endif /* defined(__Level__) */

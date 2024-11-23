@@ -5,7 +5,7 @@
 
 // Modificador para que los colliders sean más pequeños
 // Cuanto más alto este número, más realista la colisión (menos "justa")
-const static int s_buffer = 4;
+const static int s_buffer = 50;
 
 /* Colisión tipo AABB, de cajas */
 static bool RectRect(SDL_Rect* A, SDL_Rect* B)

@@ -28,6 +28,12 @@ public:
 	/* Devuelve el tileset concreto que contiene el tile con el ID dado */
 	inline Tileset GetTilesetByID(int tileID);
 
+	/* Devuelve la matriz de información (tileIDs) de la capa de tiles */
+	inline std::vector<std::vector<int>> GetTileIDs() const { return m_tileIDs; }
+
+	/* Devuelve el tamaño de tile */
+	inline int GetTileSize() const { return m_tileSize; }
+
 private:
 	/* Dimensiones de la capa */
 	int m_numColumns;
