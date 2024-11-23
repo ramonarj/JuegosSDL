@@ -23,6 +23,14 @@ public:
 	/* Destruye y limpia el GameObject */
 	virtual void Clean(){}
 
+	/* Devuelve el tipo (la clase final) del GameObject */
+	virtual std::string Type() const = 0;
+
+	/* Callback que será llamado cada vez que el GameObject colisione con otro, 
+	tanto si acaba de empezar como si sigue colisionando */
+	virtual void OnCollision(const GameObject* other)
+	{ std::cout << "Me choque con " << other->Type() << std::endl; }
+
 	/* Getters (anteriormente en SDLGameObject) */
 	inline Vector2D& GetPosition() { return m_position; }
 	inline int GetWidth() { return m_width; }

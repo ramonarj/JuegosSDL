@@ -211,3 +211,13 @@ void Pieza::Update()
 	// Llamada a la clase padre
 	GameObject::Update();
 }
+
+void Pieza::OnCollision(const GameObject* other)
+{
+	// Nos chocamos con el fuego; GameOver
+	if(other->Type() == "AnimatedGraphic")
+	{
+		SoundManager::Instance()->PauseMusic();
+		Game::Instance()->GetStateMachine()->PushState(new GameOverState());
+	}
+}

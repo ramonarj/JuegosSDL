@@ -25,33 +25,10 @@ bool PlayState::OnEnter()
 
 	SoundManager::Instance()->PlayMusic("nivel2", -1);
 
+	// Iniciar colisiones entre la pieza y el fuego
+	m_pCollisionManager->SetCollidableObject(m_gameObjects[0], true);
+	m_pCollisionManager->SetCollidableObject(m_gameObjects[1], true);
+
 	std::cout << "entering PlayState\n";
-	return true;
-}
-
-bool PlayState::CheckCollision(GameObject* p1, GameObject* p2)
-{
-	int leftA, leftB;
-	int rightA, rightB;
-	int topA, topB;
-	int bottomA, bottomB;
-
-	leftA = (int)p1->GetPosition().GetX();
-	rightA = (int)p1->GetPosition().GetX() + p1->GetWidth();
-	topA = (int)p1->GetPosition().GetY();
-	bottomA = (int)p1->GetPosition().GetY() + p1->GetHeight();
-
-	//Calculate the sides of rect B
-	leftB = (int)p2->GetPosition().GetX();
-	rightB = (int)p2->GetPosition().GetX() + p2->GetWidth();
-	topB = (int)p2->GetPosition().GetY();
-	bottomB = (int)p2->GetPosition().GetY() + p2->GetHeight();
-
-	//If any of the sides from A are outside of B
-	if (bottomA <= topB) { return false; }
-	if (topA >= bottomB) { return false; }
-	if (rightA <= leftB) { return false; }
-	if (leftA >= rightB) { return false; }
-
 	return true;
 }

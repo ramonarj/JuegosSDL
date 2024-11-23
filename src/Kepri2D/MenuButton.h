@@ -14,6 +14,9 @@ public:
 	// Heredadas
 	virtual void Update();
 
+	// Obligado
+	virtual std::string Type() const { return "MenuButton"; }
+
 	/* Getter */
 	int GetCallbackID() { return m_callbackID; }
 

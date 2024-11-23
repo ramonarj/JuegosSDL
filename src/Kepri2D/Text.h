@@ -24,6 +24,9 @@ public:
 	void Update();
 	void Clean();
 
+	// Obligado
+	virtual std::string Type() const { return "Text"; }
+
 	// Setters
 	/* Cambia el color del texto al color dado, 1 byte por canal (0xrrggbbaa) */
 	void SetColor(uint32_t color);

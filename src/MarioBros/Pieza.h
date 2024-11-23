@@ -16,6 +16,11 @@ public:
 	/* Por ahora, es una prueba de movimiento */
 	virtual void Update();
 
+	void OnCollision(const GameObject* other);
+
+	// Obligado
+	virtual std::string Type() const { return "Pieza"; }
+
 private:
 	// Para el input
 	void HandleInput();

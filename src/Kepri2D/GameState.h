@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include "GameObject.h"
+#include "CollisionManager.h"
 
 class Level;
 
@@ -31,13 +32,17 @@ public:
 	virtual std::string GetStateID() const = 0;
 
 protected:
-	GameState() : m_pLevel(nullptr) {}
+	/* Constructora por defecto*/
+	GameState();
 
-	/* Lista de IDs de texturas */
+	/* Lista de IDs de texturas. Esto ahora mismo parece que no se usa para nada */
 	std::vector<std::string> m_textureIDList;
 
 	/* Lista de GameObjects */
 	std::vector<GameObject*> m_gameObjects;
+
+	/* Gestor de colisiones del estado actual */
+	CollisionManager* m_pCollisionManager;
 
 	/* Carga un tilemap y todos los GameObjects que incluya */
 	void LoadTilemapLevel(std::string tilemapName);

@@ -22,12 +22,12 @@ void CollisionManager::SetCollidableObject(GameObject* g, bool collidable)
 void CollisionManager::Update()
 {
 	auto it1 = m_collidableObjects.begin();
-	auto it2 = it1;
-	it2++;
 	// Iteramos todas las posibles combinaciones de GameObjects, 
 	// sin repetir casos
 	while(it1 != m_collidableObjects.end())
 	{
+		auto it2 = it1;
+		it2++;
 		/// Empezamos desde el anterior
 		while(it2 != m_collidableObjects.end())
 		{
@@ -37,13 +37,12 @@ void CollisionManager::Update()
 				SDL_Rect r2 = { (*it2)->GetPosition().GetX(), (*it2)->GetPosition().GetY(), (*it2)->GetWidth(), (*it2)->GetHeight() };
 				if (RectRect(&r1, &r2))
 				{
-					std::cout << "Colisión entre GameObjects\n";
+					(*it1)->OnCollision((*it2));
+					(*it2)->OnCollision((*it1));
 				}
 			}
 			it2++;
 		}
 		it1++;
-		it2 = it1;
-		it2++;
 	}
 }

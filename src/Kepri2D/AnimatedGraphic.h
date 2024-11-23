@@ -14,6 +14,9 @@ public:
 	/* Heredados */
 	virtual void Load(const LoaderParams* pParams);
 
+	// Obligado
+	virtual std::string Type() const { return "AnimatedGraphic"; }
+
 	virtual void Update();
 
 protected:
