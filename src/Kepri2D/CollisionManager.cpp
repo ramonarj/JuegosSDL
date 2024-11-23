@@ -1,6 +1,7 @@
 #include "CollisionManager.h"
 
 #include "Collision.h"
+#include "Game.h"
 
 void CollisionManager::SetCollidableObject(GameObject* g, bool collidable)
 {
@@ -45,4 +46,41 @@ void CollisionManager::Update()
 		}
 		it1++;
 	}
+}
+
+void CollisionManager::Render()
+{
+	if (!m_visibleColliders)
+		return;
+
+	// Guardar el antiguo color y ponerlo a verde
+	SDL_Color defColor;
+	SDL_GetRenderDrawColor(Game::Instance()->GetRenderer(), &defColor.r, &defColor.g, &defColor.b, &defColor.a);
+
+	SDL_SetRenderDrawColor(Game::Instance()->GetRenderer(), 0, 255, 0, 255);
+
+	// Pintar los colliders
+	for(GameObject* go : m_collidableObjects)
+	{
+		int posX = go->GetPosition().GetX();
+		int posY = go->GetPosition().GetY();
+
+		// Son 4 líneas
+		//SDL_RenderDrawLine(Game::Instance()->GetRenderer(), 
+		//	posX, posY, posX, posY + go->GetHeight());
+		//SDL_RenderDrawLine(Game::Instance()->GetRenderer(), 
+		//	posX, posY, posX + go->GetWidth(), posY);
+		//SDL_RenderDrawLine(Game::Instance()->GetRenderer(), 
+		//	posX, posY + go->GetHeight(), posX + go->GetWidth(), posY + go->GetHeight());
+		//SDL_RenderDrawLine(Game::Instance()->GetRenderer(), 
+		//	posX + go->GetWidth(), posY, posX + go->GetWidth(), posY + go->GetHeight());
+		
+		// Se podría hacer llamando 4 veces a SDL_RenderDrawLine; esta otra opción usa 5 puntos y los une
+		const SDL_Point points[5] = { {posX, posY}, {posX + go->GetWidth(), posY}, 
+			{posX + go->GetWidth(), posY + go->GetHeight()}, {posX, posY + go->GetHeight()}, {posX, posY} };
+		SDL_RenderDrawLines(Game::Instance()->GetRenderer(), points, 5);
+	}
+
+	// Volver a su color original
+	SDL_SetRenderDrawColor(Game::Instance()->GetRenderer(), defColor.r, defColor.g, defColor.a, 255);
 }

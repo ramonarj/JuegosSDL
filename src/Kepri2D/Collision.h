@@ -4,8 +4,10 @@
 #include "SDL.h"
 
 // Modificador para que los colliders sean más pequeños
+// Cuanto más alto este número, más realista la colisión (menos "justa")
 const static int s_buffer = 4;
 
+/* Colisión tipo AABB, de cajas */
 static bool RectRect(SDL_Rect* A, SDL_Rect* B)
 {
 	// Hacemos los rectángulos un poco más pequeños, de acuerdo al buffer

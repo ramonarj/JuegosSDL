@@ -33,11 +33,16 @@ void GameState::Render()
 	if (m_pLevel != nullptr)
 	{
 		m_pLevel->Render();
-		return;
 	}
-	// Pintar todos los GameObjects
-	for (GameObject* o : m_gameObjects)
-		o->Draw();
+	else
+	{
+		// Pintar todos los GameObjects
+		for (GameObject* o : m_gameObjects)
+			o->Draw();
+	}
+
+	// Pintar colliders si es necesario
+	m_pCollisionManager->Render();
 }
 
 bool GameState::OnExit()

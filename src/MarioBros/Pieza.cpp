@@ -9,7 +9,8 @@ void Pieza::Load(const LoaderParams* pParams)
 {
 	GameObject::Load(pParams);
 	initialVel = Vector2D(1, 1);
-	//m_velocity = initialVel;
+	//m_acceleration = Vector2D(0, 9.8f);
+	m_velocity = Vector2D(0, 0);
 }
 
 void Pieza::InputConMando()
@@ -158,15 +159,26 @@ void Pieza::InputConTeclado()
 	}
 
 	// Con las flechas de dirección, movemos la pieza
-	m_velocity = Vector2D(0, 0);
+	//m_velocity = Vector2D(0, 0);
+
+	// Ejemplo de juego plataformas
+	// Gravedad
+	m_velocity += Vector2D(0, 1);
+	// Parada por rozamiento
+	m_velocity = { m_velocity.GetX() * 0.95f, m_velocity.GetY() };
+
+	// Movimiento a los lados
 	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_RIGHT))
-		m_velocity += Vector2D(3, 0);
+		m_velocity = Vector2D(3, m_velocity.GetY());
 	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_LEFT))
-		m_velocity += Vector2D(-3, 0);
-	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_UP))
-		m_velocity += Vector2D(0, -3);
-	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_DOWN))
-		m_velocity += Vector2D(0, 3);
+		m_velocity = Vector2D(-3, m_velocity.GetY());
+	// Salto
+	if (InputHandler::Instance()->GetKeyDown(SDL_SCANCODE_UP))
+	{
+		m_velocity = Vector2D(m_velocity.GetX(), -15);
+	}
+	/*if (InputHandler::Instance()->GetKey(SDL_SCANCODE_DOWN))
+		m_velocity += Vector2D(0, 3);*/
 }
 
 void Pieza::HandleInput()
@@ -205,7 +217,7 @@ void Pieza::Update()
 	//m_acceleration /= 50;
 
 	// Para probar el ángulo y el alfa de TextureManager
-	m_alpha = (std::sin(Game::Instance()->GetTicks() / 200.0f) + 1) / 2 * 255;
+	//m_alpha = (std::sin(Game::Instance()->GetTicks() / 200.0f) + 1) / 2 * 255;
 	
 
 	// Llamada a la clase padre
