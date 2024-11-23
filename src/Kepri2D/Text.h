@@ -2,6 +2,7 @@
 #define __KEPRI_TEXT__
 
 #include "GameObject.h"
+#include "GameObjectFactory.h"
 
 static std::string FONTS_PATH = "../../bin/assets/fonts/";
 
@@ -12,12 +13,13 @@ struct _TTF_Font;
 class Text : public GameObject
 {
 public: 
-	/* Crea un texto con la fuente y el tamaño de fuente dados.
-	La fuente deberá estar dentro de la carpeta 'fonts\'
-	El color debe darse en hexadecimal, con 1 byte para cada canal (r,g,b,a) */
-	Text(std::string message, std::string fontName, int size, uint32_t color = 0);
+	/* Constructora por defecto */
+	Text() : GameObject(), m_pFont(nullptr), m_fontSize(0), m_color(0), m_texture(nullptr) {}
+
 
 	// Heredados de GameObject
+	void Load(const LoaderParams* pParams);
+
 	void Draw();
 	void Update();
 	void Clean();
@@ -52,4 +54,12 @@ private:
 	void ChangeText(const char* newText);
 };
 
-#endif 
+class TextCreator : public BaseCreator
+{
+	GameObject* CreateGameObject() const
+	{
+		return new Text();
+	}
+};
+
+#endif /* defined(__Text__) */

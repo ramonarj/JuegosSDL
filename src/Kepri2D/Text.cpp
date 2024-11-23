@@ -5,14 +5,26 @@
 #include "Game.h"
 #include "InputHandler.h"
 
-Text::Text(std::string message, std::string fontName, int size, uint32_t color) :
-	m_text(message), m_fontSize(size), m_color(color), m_texture(nullptr)
+
+void Text::Load(const LoaderParams* pParams)
 {
+	/* Crea un texto con la fuente y el tamaño de fuente dados.
+	La fuente deberá estar dentro de la carpeta 'fonts\'
+	El color debe darse en hexadecimal, con 1 byte para cada canal (r,g,b,a) */
+	GameObject::Load(pParams);
+
+	// Cogemos de LoaderParams
+	m_text = pParams->getText();
+	m_fontSize = pParams->getFontSize();
+	std::string fontName = pParams->getFont();
+	m_color = pParams->getTextColor();
+
+
 	// Creamos la fuente que vamos a usar para el texto
-	m_pFont = TTF_OpenFont((FONTS_PATH + fontName).c_str(), size);
+	m_pFont = TTF_OpenFont((FONTS_PATH + fontName).c_str(), m_fontSize);
 
 	// Función privada para crear la textura que contendrá nuestro texto
-	ChangeText(message.c_str());
+	ChangeText(m_text.c_str());
 }
 
 void Text::Draw()

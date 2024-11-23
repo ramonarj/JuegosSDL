@@ -20,8 +20,9 @@ void StateParser::ParseObjects(TiXmlElement* pStateRoot,
 {
 	for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
-		int x, y, width, height, frameWidth, frameHeight, numFrames, callbackID, animSpeed;
-		std::string textureID;
+		int x, y, width, height, frameWidth, frameHeight, numFrames, callbackID, animSpeed, fontSize;
+		uint32_t textColor = 0;
+		std::string textureID, text, font, colorStr;
 		e->Attribute("x", &x);
 		e->Attribute("y", &y);
 		e->Attribute("width", &width);
@@ -31,10 +32,22 @@ void StateParser::ParseObjects(TiXmlElement* pStateRoot,
 		e->Attribute("numFrames", &numFrames);
 		e->Attribute("callbackID", &callbackID);
 		e->Attribute("animSpeed", &animSpeed);
-		textureID = e->Attribute("textureID");
+		e->QueryStringAttribute("textureID", &textureID);
+		// Este método tiene una mejor detección de errores,
+		// y no lanza excepción si no se encuentra el atributo
+		e->QueryStringAttribute("text", &text);
+		e->QueryStringAttribute("font", &font);
+		e->Attribute("fontSize", &fontSize);
+		e->QueryStringAttribute("textColor", &colorStr);
+		if (colorStr != "") // leer el número que está en hexadecimal
+		{ 
+			std::stringstream ss;
+			ss << std::hex << colorStr;
+			ss >> textColor;
+		}
 
 		LoaderParams* pParams = new LoaderParams(x, y, width, height, frameWidth, frameHeight,
-			textureID, numFrames, callbackID, animSpeed);
+			textureID, numFrames, callbackID, animSpeed, text, font, fontSize, textColor);
 
 		// Crear el GameObject y meterlo en la lista (lo que antes se hacía en el .cpp de los estados)
 		GameObject* pGameObject = GameObjectFactory::Instance()->Create(e->Attribute("type"));

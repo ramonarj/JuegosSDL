@@ -6,10 +6,14 @@
 			<texture filename="ExitButton.png" ID="exitButton"/>
 		</TEXTURES>
 		<OBJECTS>
+			<!--Botones-->
 			<object type="MenuButton" x="175" y="150" width="250" height="104" 
 			frameWidth="250" frameHeight="104" textureID="playButton" numFrames="0" callbackID="1"/>
 			<object type="MenuButton" x="200" y="300" width="200" height="83" 
 			frameWidth="250" frameHeight="104" textureID="exitButton" numFrames="0" callbackID="2"/>
+			<!--Texto-->
+			<object type="Text" x="200" y="100" text="Kepri2D" font="ARCADECLASSIC.ttf" fontSize="50" textColor="0xffff00ff"/>
+			<object type="Text" x="570" y="450" text="v0.7" font="PressStart2P-Regular.ttf" fontSize="14" textColor="0xffffffff"/>
 		</OBJECTS>
 	</MENU>
 	<PLAY>

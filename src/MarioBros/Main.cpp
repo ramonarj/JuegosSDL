@@ -29,6 +29,7 @@ int main(int argc, char* args[])
 		GameObjectFactory::Instance()->RegisterType("MenuButton", new MenuButtonCreator());
 		GameObjectFactory::Instance()->RegisterType("Pieza", new PiezaCreator());
 		GameObjectFactory::Instance()->RegisterType("AnimatedGraphic", new AnimatedGraphicCreator());
+		GameObjectFactory::Instance()->RegisterType("Text", new TextCreator());
 
 		// 3) Cargar la escena inicial (el menú)
 		GameStateMachine::Instance()->ChangeState(new MainMenuState());
