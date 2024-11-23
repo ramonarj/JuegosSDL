@@ -6,13 +6,9 @@
 class PlayState : public GameState
 {
 public:
-	PlayState() : m_pLevel(nullptr) {}
-
-	virtual void Update();
-	virtual void Render();
+	PlayState() {}
 
 	virtual bool OnEnter();
-	virtual bool OnExit();
 
 	virtual std::string GetStateID() const { return s_playID; }
 
@@ -20,7 +16,7 @@ private:
 	static const std::string s_playID;
 
 	/* Nivel de tiles */
-	Level* m_pLevel;
+	//Level* m_pLevel;
 
 	/* Comprobación de colisiones entre 2 gameobjects */
 	bool CheckCollision(GameObject* p1, GameObject* p2);

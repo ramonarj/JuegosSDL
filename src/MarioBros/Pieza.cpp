@@ -3,6 +3,7 @@
 #include "Escenas/GameOverState.h"
 #include <iostream>
 #include <cmath>
+#include "Escenas/PauseState.h"
 
 void Pieza::Load(const LoaderParams* pParams)
 {
@@ -104,6 +105,13 @@ void Pieza::InputConRaton()
 
 void Pieza::InputConTeclado()
 {
+	// Con el escape, se abre el menú de pausa
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_ESCAPE))
+	{
+		SoundManager::Instance()->PauseMusic();
+		Game::Instance()->GetStateMachine()->PushState(new PauseState());
+	}
+
 	/* Esto es una prueba de las funciones de input y dibujado del motor */
 	// Con las teclas 1-6 cambiamos de pieza
 	int uno = SDL_SCANCODE_1;

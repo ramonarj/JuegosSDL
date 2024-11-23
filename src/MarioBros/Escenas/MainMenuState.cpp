@@ -6,17 +6,7 @@
 
 const std::string MainMenuState::s_menuID = "MENU";
 
-void MainMenuState::Update()
-{
-	// Update de todas las entidades
-	for (GameObject* o : m_gameObjects)
-		o->Update();
-}
-void MainMenuState::Render()
-{
-	for (GameObject* o : m_gameObjects)
-		o->Draw();
-}
+
 bool MainMenuState::OnEnter()
 {
 	// Lectura del estado actual del XML

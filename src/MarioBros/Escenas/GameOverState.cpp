@@ -7,16 +7,7 @@
 
 const std::string GameOverState::s_gameoverID = "GAMEOVER";
 
-void GameOverState::Update()
-{
-	for (GameObject* o : m_gameObjects)
-		o->Update();
-}
-void GameOverState::Render()
-{
-	for (GameObject* o : m_gameObjects)
-		o->Draw();
-}
+
 bool GameOverState::OnEnter()
 {
 	// Lectura del estado actual del XML

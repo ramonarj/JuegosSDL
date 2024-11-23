@@ -6,13 +6,9 @@
 class MainMenuState : public MenuState
 {
 public:
-
 	MainMenuState(){}
 
-	// Los hereda de GameState
-	virtual void Update();
-	virtual void Render();
-
+	// Hereda de GameState
 	virtual bool OnEnter();
 
 	// Lo hereda de MenuState

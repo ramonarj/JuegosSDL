@@ -6,16 +6,6 @@
 
 const std::string PauseState::s_PauseID = "PAUSE";
 
-void PauseState::Update()
-{
-	for (GameObject* o : m_gameObjects)
-		o->Update();
-}
-void PauseState::Render()
-{
-	for (GameObject* o : m_gameObjects)
-		o->Draw();
-}
 bool PauseState::OnEnter()
 {
 	// Lectura del estado actual del XML

@@ -6,8 +6,7 @@
 class GameOverState : public MenuState
 {
 public:
-	virtual void Update();
-	virtual void Render();
+	GameOverState() {}
 
 	virtual bool OnEnter();
 
