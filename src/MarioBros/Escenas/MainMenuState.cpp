@@ -21,6 +21,10 @@ bool MainMenuState::OnEnter()
 	// Asigna los callbacks a los botones
 	SetCallbacks(m_callbacks); 
 
+	// Color de fondo
+	Camera::Instance()->SetBackgroundColor(0x907750ff);
+	Camera::Instance()->SetPosition({ 320, 240 });
+
 	// Musica del menú
 	SoundManager::Instance()->Load("clic.mp3", "clic", SOUND_SFX);
 	SoundManager::Instance()->Load("Menu.mp3", "menu", SOUND_MUSIC);

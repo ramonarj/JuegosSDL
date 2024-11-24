@@ -14,6 +14,8 @@ bool GameOverState::OnEnter()
 	StateParser stateParser;
 	stateParser.ParseState("gameover.xml", s_gameoverID, &m_gameObjects, &m_textureIDList);
 
+	Camera::Instance()->SetPosition({ 320, 240 });
+
 	// Añade los callbacks a la lista
 	m_callbacks.push_back(0);
 	m_callbacks.push_back(s_restartPlay);

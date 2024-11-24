@@ -110,6 +110,7 @@ void Pieza::InputConTeclado()
 	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_ESCAPE))
 	{
 		SoundManager::Instance()->PauseMusic();
+		Camera::Instance()->SetTarget(nullptr);
 		Game::Instance()->GetStateMachine()->PushState(new PauseState());
 	}
 
@@ -165,20 +166,23 @@ void Pieza::InputConTeclado()
 	// Gravedad
 	//m_velocity += Vector2D(0, 0.3);
 	// Parada por rozamiento
-	m_velocity = { m_velocity.GetX() * 0.95f, m_velocity.GetY() };
+	//m_velocity = { m_velocity.GetX() * 0.95f, m_velocity.GetY() };
 
 	// Movimiento a los lados
+	m_velocity = { 0,0 };
 	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_RIGHT))
 		m_velocity = Vector2D(3, m_velocity.GetY());
 	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_LEFT))
 		m_velocity = Vector2D(-3, m_velocity.GetY());
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_UP))
+		m_velocity = Vector2D(m_velocity.GetX(), -3);
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_DOWN))
+		m_velocity = Vector2D(m_velocity.GetX(), 3);
 	// Salto
-	if (InputHandler::Instance()->GetKeyDown(SDL_SCANCODE_UP))
+	/*if (InputHandler::Instance()->GetKeyDown(SDL_SCANCODE_UP))
 	{
 		m_velocity = Vector2D(m_velocity.GetX(), -15);
-	}
-	/*if (InputHandler::Instance()->GetKey(SDL_SCANCODE_DOWN))
-		m_velocity += Vector2D(0, 3);*/
+	}*/
 }
 
 void Pieza::HandleInput()
@@ -198,17 +202,17 @@ void Pieza::Update()
 
 	// Prueba para GameOverState; si la pieza toca una pared, perdemos
 	// Dejamos comentado lo del salvapantallas
-	if (m_position.GetX() < 0 || m_position.GetX() > 640)
-	{
-		m_velocity.SetX(-m_velocity.GetX());
-		SoundManager::Instance()->PlaySound("hit", 0);
-	}
+	//if (m_position.GetX() < 0 || m_position.GetX() > 640)
+	//{
+	//	m_velocity.SetX(-m_velocity.GetX());
+	//	SoundManager::Instance()->PlaySound("hit", 0);
+	//}
 
-	if (m_position.GetY() < 0 || m_position.GetY() > 480)
-	{
-		m_velocity.SetY(-m_velocity.GetY());
-		SoundManager::Instance()->PlaySound("hit", 0);
-	}
+	//if (m_position.GetY() < 0 || m_position.GetY() > 480)
+	//{
+	//	m_velocity.SetY(-m_velocity.GetY());
+	//	SoundManager::Instance()->PlaySound("hit", 0);
+	//}
 
 
 	// Para probar la aceleración
@@ -230,6 +234,7 @@ void Pieza::OnCollision(const GameObject* other)
 	if(other->Type() == "AnimatedGraphic")
 	{
 		SoundManager::Instance()->PauseMusic();
-		Game::Instance()->GetStateMachine()->PushState(new GameOverState());
+		Camera::Instance()->SetTarget(nullptr);
+		Game::Instance()->GetStateMachine()->ChangeState(new GameOverState());
 	}
 }

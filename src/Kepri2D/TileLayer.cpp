@@ -32,7 +32,7 @@ void TileLayer::Update()
 	// La cámara se moverá con la velocidad que le hemos pasado
 	if(m_parallax.GetX() == 1)
 	{
-		Camera::Instance()->Update(m_velocity);
+		//Camera::Instance()->Update();
 	}
 }
 

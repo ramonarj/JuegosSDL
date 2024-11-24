@@ -179,5 +179,8 @@
     <ClInclude Include="..\..\src\Kepri2D\Camera.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Kepri2D\CanvasObject.h">
+      <Filter>Archivos de encabezado\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

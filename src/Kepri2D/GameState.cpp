@@ -3,6 +3,7 @@
 #include "TextureManager.h"
 #include "LevelParser.h"
 #include "ObjectLayer.h"
+#include "Camera.h"
 #include <iostream>
 
 GameState::GameState() : m_pLevel(nullptr)
@@ -13,30 +14,33 @@ GameState::GameState() : m_pLevel(nullptr)
 
 void GameState::Update()
 {
+	// Actualizar todos los GameObjects
 	if(m_pLevel != nullptr)
 	{
 		m_pLevel->Update();
 	}
 	else
 	{
-		// Actualizar los GameObjects
 		for (GameObject* o : m_gameObjects)
 			o->Update();
 	}
 
 	// Colisiones
 	m_pCollisionManager->Update();
+
+	// Cámara (lo último)
+	Camera::Instance()->Update();
 }
 
 void GameState::Render()
 {
+	// Pintar todos los GameObjects
 	if (m_pLevel != nullptr)
 	{
 		m_pLevel->Render();
 	}
 	else
 	{
-		// Pintar todos los GameObjects
 		for (GameObject* o : m_gameObjects)
 			o->Draw();
 	}

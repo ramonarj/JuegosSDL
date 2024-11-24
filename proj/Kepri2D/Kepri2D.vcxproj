@@ -188,6 +188,7 @@
     <ClInclude Include="..\..\src\Kepri2D\AnimatedGraphic.h" />
     <ClInclude Include="..\..\src\Kepri2D\base64.h" />
     <ClInclude Include="..\..\src\Kepri2D\Camera.h" />
+    <ClInclude Include="..\..\src\Kepri2D\CanvasObject.h" />
     <ClInclude Include="..\..\src\Kepri2D\checkML.h" />
     <ClInclude Include="..\..\src\Kepri2D\Collision.h" />
     <ClInclude Include="..\..\src\Kepri2D\CollisionManager.h" />

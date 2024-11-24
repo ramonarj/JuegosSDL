@@ -12,6 +12,8 @@ bool PauseState::OnEnter()
 	StateParser stateParser;
 	stateParser.ParseState("pause.xml", s_PauseID, &m_gameObjects, &m_textureIDList);
 
+	Camera::Instance()->SetPosition({ 320, 240 });
+
 	// Añade los callbacks a la lista
 	m_callbacks.push_back(0);
 	m_callbacks.push_back(s_resumePlay);

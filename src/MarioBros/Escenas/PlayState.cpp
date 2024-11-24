@@ -18,6 +18,8 @@ bool PlayState::OnEnter()
 
 	// Colocar la cámara donde se quiera
 	Camera::Instance()->SetPosition({ 320, 240 });
+	Camera::Instance()->SetBackgroundColor(0x5077d2ff);
+	Camera::Instance()->SetTarget(&m_gameObjects[0]->GetPosition());
 
 	// Música
 	SoundManager::Instance()->Load("hit.wav", "hit", SOUND_SFX);

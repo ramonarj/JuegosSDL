@@ -29,7 +29,7 @@
   </data>
  </layer>
  <objectgroup id="2" name="Capa de Objetos 1">
-  <object id="1" name="Peon" type="Pieza" x="123" y="209" width="46" height="62">
+  <object id="1" name="Peon" type="Pieza" x="320" y="240" width="46" height="62">
    <properties>
     <property name="animSpeed" type="int" value="0"/>
     <property name="frameHeight" type="int" value="62"/>
@@ -38,7 +38,7 @@
     <property name="textureID" value="piezas"/>
    </properties>
   </object>
-  <object id="10" name="Fuego" type="AnimatedGraphic" x="305.333" y="220.333" width="38" height="39">
+  <object id="10" name="Fuego" type="AnimatedGraphic" x="471.333" y="102.333" width="38" height="39">
    <properties>
     <property name="animSpeed" type="int" value="6"/>
     <property name="frameHeight" type="int" value="95"/>

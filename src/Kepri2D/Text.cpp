@@ -4,6 +4,7 @@
 #include "SDL_ttf.h"
 #include "Game.h"
 #include "InputHandler.h"
+#include "Camera.h"
 
 
 void Text::Load(const LoaderParams* pParams)
@@ -66,16 +67,24 @@ void Text::Update()
 	// (también hay que volver a cambiar la textura)
 	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_UP))
 	{
-		SetFontsize(m_fontSize + 1);
+		Camera::Instance()->SetPosition(Camera::Instance()->GetPosition() + Vector2D(0, -1));
 	}
 	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_DOWN))
 	{
-		SetFontsize(m_fontSize - 1);
+		Camera::Instance()->SetPosition(Camera::Instance()->GetPosition() + Vector2D(0, 1));
 	}
-	if (InputHandler::Instance()->GetKeyUp(SDL_SCANCODE_UP))
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_LEFT))
 	{
-		SetFontsize(50);
+		Camera::Instance()->SetPosition(Camera::Instance()->GetPosition() + Vector2D(-1, 0));
 	}
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_RIGHT))
+	{
+		Camera::Instance()->SetPosition(Camera::Instance()->GetPosition() + Vector2D(1, 0));
+	}
+	//if (InputHandler::Instance()->GetKeyUp(SDL_SCANCODE_UP))
+	//{
+	//	SetFontsize(50);
+	//}
 }
 
 void Text::Clean()

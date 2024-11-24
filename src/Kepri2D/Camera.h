@@ -16,27 +16,26 @@ public:
 	}
 
 	// ?
-	void Update(Vector2D velocity);
+	void Update();
 
 	//Setters
 	/* Establece el objetivo al que seguirá la cámara */
 	inline void SetTarget(Vector2D* target) { m_pTarget = target; }
+
 	/* Mueve la cámara a la posición dada */
 	inline void SetPosition(const Vector2D& position) { m_position = position; }
+
+	/* Cambia el color de fondo de la escena */
+	void SetBackgroundColor(uint32_t color);
 
 	//Getters
 	/* Posición actual de la cámara */
 	const Vector2D GetPosition() const;
 
+	Vector2D WorldToScreen(Vector2D pos);
+
 	// Para destruir la instancia
-	void Clean()
-	{
-		if(s_pInstance != nullptr)
-		{
-			delete s_pInstance;
-			s_pInstance = nullptr;
-		}
-	}
+	void Clean();
 
 private:
 	/* Instancia del singleton */
