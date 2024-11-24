@@ -99,6 +99,9 @@
     <ClCompile Include="..\..\src\Kepri2D\Camera.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Kepri2D\CanvasObject.cpp">
+      <Filter>Archivos de origen\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Kepri2D\checkML.h">

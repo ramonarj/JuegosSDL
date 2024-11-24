@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="60" height="15" tilewidth="32" tileheight="32" infinite="0" parallaxoriginx="-570" parallaxoriginy="0" nextlayerid="6" nextobjectid="14">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="60" height="15" tilewidth="32" tileheight="32" infinite="0" parallaxoriginx="-570" parallaxoriginy="0" nextlayerid="6" nextobjectid="17">
  <properties>
   <property name="fuego" type="file" value="../images/Fuego.png"/>
+  <property name="marco" type="file" value="../images/Marco.png"/>
   <property name="piezas" type="file" value="../images/Piezas.png"/>
+  <property name="reina" type="file" value="../images/Reina.png"/>
  </properties>
  <tileset firstgid="1" name="blocks1" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
   <image source="../images/blocks1.png" width="614" height="376"/>
@@ -29,7 +31,7 @@
   </data>
  </layer>
  <objectgroup id="2" name="Capa de Objetos 1">
-  <object id="1" name="Peon" type="Pieza" x="320" y="240" width="46" height="62">
+  <object id="1" name="Peon" type="Pieza" x="127" y="321" width="46" height="62">
    <properties>
     <property name="animSpeed" type="int" value="0"/>
     <property name="frameHeight" type="int" value="62"/>
@@ -38,13 +40,35 @@
     <property name="textureID" value="piezas"/>
    </properties>
   </object>
-  <object id="10" name="Fuego" type="AnimatedGraphic" x="471.333" y="102.333" width="38" height="39">
+  <object id="10" name="Fuego" type="AnimatedGraphic" x="319.333" y="222.333" width="38" height="39">
    <properties>
     <property name="animSpeed" type="int" value="6"/>
     <property name="frameHeight" type="int" value="95"/>
     <property name="frameWidth" type="int" value="70"/>
     <property name="numFrames" type="int" value="4"/>
     <property name="textureID" value="fuego"/>
+   </properties>
+  </object>
+  <object id="16" name="Marco" type="CanvasObject" x="0" y="0" width="640" height="480">
+   <properties>
+    <property name="frameHeight" type="int" value="480"/>
+    <property name="frameWidth" type="int" value="640"/>
+    <property name="textureID" value="marco"/>
+   </properties>
+  </object>
+  <object id="14" name="Boton" type="MenuButton" x="14" y="417" width="59" height="53">
+   <properties>
+    <property name="frameHeight" type="int" value="50"/>
+    <property name="frameWidth" type="int" value="50"/>
+    <property name="textureID" value="reina"/>
+   </properties>
+  </object>
+  <object id="15" name="Puntuacion" type="Text" x="15.5" y="23.5" width="87" height="37">
+   <properties>
+    <property name="font" value="PressStart2P-Regular.ttf"/>
+    <property name="fontSize" type="int" value="18"/>
+    <property name="text" value="Score: 0"/>
+    <property name="textColor" value="0xffffffff"/>
    </properties>
   </object>
  </objectgroup>

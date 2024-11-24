@@ -1,7 +1,7 @@
 #ifndef __KEPRI_TEXT__
 #define __KEPRI_TEXT__
 
-#include "GameObject.h"
+#include "CanvasObject.h"
 #include "GameObjectFactory.h"
 
 static std::string FONTS_PATH = "../../bin/assets/fonts/";
@@ -10,11 +10,11 @@ struct SDL_Texture;
 struct _TTF_Font;
 
 /* GameObject usado para renderizar texto */
-class Text : public GameObject
+class Text : public CanvasObject
 {
 public: 
 	/* Constructora por defecto */
-	Text() : GameObject(), m_pFont(nullptr), m_fontSize(0), m_color(0), m_texture(nullptr) {}
+	Text() : CanvasObject(), m_pFont(nullptr), m_fontSize(0), m_color(0), m_texture(nullptr) {}
 
 
 	// Heredados de GameObject

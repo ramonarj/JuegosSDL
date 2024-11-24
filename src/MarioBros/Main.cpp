@@ -26,6 +26,7 @@ int main(int argc, char* args[])
 	if (Game::Instance()->Init("Mario Bros", 100, 100, 640, 480, false))
 	{
 		// 2) Registrar los tipos de entidades que vamos a usar
+		GameObjectFactory::Instance()->RegisterType("CanvasObject", new CanvasObjectCreator());
 		GameObjectFactory::Instance()->RegisterType("MenuButton", new MenuButtonCreator());
 		GameObjectFactory::Instance()->RegisterType("Pieza", new PiezaCreator());
 		GameObjectFactory::Instance()->RegisterType("AnimatedGraphic", new AnimatedGraphicCreator());

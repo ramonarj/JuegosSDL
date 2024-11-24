@@ -1,10 +1,10 @@
 #ifndef __MENUBUTTON__
 #define __MENUBUTTON__
 
-#include "GameObject.h"
+#include "CanvasObject.h"
 #include "GameObjectFactory.h"
 
-class MenuButton : public GameObject
+class MenuButton : public CanvasObject
 {
 public:
 	/* Constructora por defecto */

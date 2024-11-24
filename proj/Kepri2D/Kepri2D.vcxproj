@@ -166,6 +166,7 @@
     <ClCompile Include="..\..\src\Kepri2D\AnimatedGraphic.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\base64.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\Camera.cpp" />
+    <ClCompile Include="..\..\src\Kepri2D\CanvasObject.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\CollisionManager.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\Game.cpp" />
     <ClCompile Include="..\..\src\Kepri2D\GameObject.cpp" />

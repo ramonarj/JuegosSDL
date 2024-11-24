@@ -36,22 +36,20 @@ void GameObject::Draw()
 {
 	// Transformamos las coordenadas reales del GameObject en píxeles en rango de nuestra ventana
 	// (de acuerdo a la posición de la cámara)
-	Vector2D cameraPos = Camera::Instance()->GetPosition();
-	int screenPosX = Game::Instance()->GetGameWidth() / 2 + (m_position.GetX() - cameraPos.GetX());
-	int screenPosY = Game::Instance()->GetGameHeight() / 2 + (m_position.GetY() - cameraPos.GetY());
+	Vector2D screenPos = Camera::Instance()->WorldToScreen(m_position);
 	/* Esto de invertir la imagen en función de la velocidad será deseable según 
 	el juego que hagamos creo yo */
 	// Entidad moviéndose hacia la derecha
 	if (m_velocity.GetX() >= 0)
 	{
-		TextureManager::Instance()->DrawFrame(m_textureID, screenPosX, screenPosY,
+		TextureManager::Instance()->DrawFrame(m_textureID, screenPos.GetX(), screenPos.GetY(),
 			m_width, m_height, m_frameWidth, m_frameHeight, m_textureRow, m_textureCol,  
 			Game::Instance()->GetRenderer(), m_angle, m_alpha);
 	}
 	// " " hacia la izquierda
 	else
 	{
-		TextureManager::Instance()->DrawFrame(m_textureID, screenPosX, screenPosY,
+		TextureManager::Instance()->DrawFrame(m_textureID, screenPos.GetX(), screenPos.GetY(),
 			m_width, m_height, m_frameWidth, m_frameHeight, m_textureRow, m_textureCol,
 			Game::Instance()->GetRenderer(), m_angle, m_alpha, SDL_FLIP_HORIZONTAL);
 	}

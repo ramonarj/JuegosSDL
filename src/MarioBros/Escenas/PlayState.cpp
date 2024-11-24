@@ -30,7 +30,7 @@ bool PlayState::OnEnter()
 	// Iniciar colisiones entre la pieza y el fuego
 	m_pCollisionManager->SetCollidableObject(m_gameObjects[0], true);
 	m_pCollisionManager->SetCollidableObject(m_gameObjects[1], true);
-	m_pCollisionManager->VisibleColliders(true);
+	//m_pCollisionManager->VisibleColliders(true);
 
 	std::cout << "entering PlayState\n";
 	return true;

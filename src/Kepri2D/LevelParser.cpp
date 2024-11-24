@@ -194,10 +194,11 @@ void LevelParser::ParseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 		if (e->Value() == std::string("object"))
 		{
 			// Parámetros para LoaderParams con sus valores por defecto
-			int x, y, width, height, frameWidth, frameHeight, numFrames, animSpeed, callbackID;
-			x = y = width = height = frameWidth = frameHeight = callbackID = 0;
+			int x, y, width, height, frameWidth, frameHeight, numFrames, animSpeed, callbackID, fontSize;
+			x = y = width = height = frameWidth = frameHeight = callbackID = fontSize = 0;
+			uint32_t textColor = 0;
 			numFrames = animSpeed = 1;
-			std::string textureID;
+			std::string textureID, text, font;
 
 			// La X e Y la cogemos directamente del nodo del objeto
 			e->Attribute("x", &x);
@@ -244,13 +245,33 @@ void LevelParser::ParseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							{
 								property->Attribute("value", &animSpeed);
 							}
+							// Todo esto para textos
+							else if (property->Attribute("name") == std::string("text"))
+							{
+								text = property->Attribute("value");
+							}
+							else if (property->Attribute("name") == std::string("font"))
+							{
+								font = property->Attribute("value");
+							}
+							else if (property->Attribute("name") == std::string("fontSize"))
+							{
+								property->Attribute("value", &fontSize);
+							}
+							else if (property->Attribute("name") == std::string("textColor"))
+							{
+								std::string colorStr = property->Attribute("value");
+								std::stringstream ss;
+								ss << std::hex << colorStr;
+								ss >> textColor;
+							}
 						}
 					}
 				}
 			}
 			// Inicializamos el GameObject y lo añadimos a la lista
 			LoaderParams* pParams = new LoaderParams(x, y, width, height, frameWidth, frameHeight,
-				textureID, numFrames, callbackID, animSpeed);
+				textureID, numFrames, callbackID, animSpeed, text, font, fontSize, textColor);
 			pGameObject->Load(pParams);
 			pObjectLayer->GetGameObjects()->push_back(pGameObject);
 
