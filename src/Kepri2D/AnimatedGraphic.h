@@ -3,7 +3,6 @@
 
 #include "GameObject.h"
 #include "GameObjectFactory.h"
-#include "../../dependencies/SDL2-2.30.9/include/SDL.h"
 
 class AnimatedGraphic : public GameObject
 {
@@ -12,12 +11,12 @@ public:
 	AnimatedGraphic() : GameObject(), m_numFrames(1), m_animSpeed(0) {}
 
 	/* Heredados */
-	virtual void Load(const LoaderParams* pParams);
+	virtual void Load(const LoaderParams* pParams) override;
 
 	// Obligado
-	virtual std::string Type() const { return "AnimatedGraphic"; }
+	virtual std::string Type() const override{ return "AnimatedGraphic"; }
 
-	virtual void Update();
+	virtual void Update() override;
 
 protected:
 
@@ -30,7 +29,7 @@ protected:
 
 class AnimatedGraphicCreator : public BaseCreator
 {
-	GameObject* CreateGameObject() const
+	GameObject* CreateGameObject() const override
 	{
 		return new AnimatedGraphic();
 	}

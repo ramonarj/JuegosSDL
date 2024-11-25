@@ -20,6 +20,7 @@ bool PlayState::OnEnter()
 	Camera::Instance()->SetPosition({ 320, 240 });
 	Camera::Instance()->SetBackgroundColor(0x5077d2ff);
 	Camera::Instance()->SetTarget(&m_gameObjects[0]->GetPosition());
+	Camera::Instance()->SetLimits({320, 240}, {1600, 240});
 
 	// Música
 	SoundManager::Instance()->Load("hit.wav", "hit", SOUND_SFX);

@@ -10,16 +10,16 @@ public:
 
 	/* Constructora */
 	Pieza() : GameObject() {}
-	virtual void Load(const LoaderParams* pParams);
+	virtual void Load(const LoaderParams* pParams) override;
 
 	/* Heredadas*/
 	/* Por ahora, es una prueba de movimiento */
-	virtual void Update();
+	virtual void Update() override;
 
-	void OnCollision(const GameObject* other);
+	void OnCollision(const GameObject* other) override;
 
 	// Obligado
-	virtual std::string Type() const { return "Pieza"; }
+	virtual std::string Type() const override{ return "Pieza"; }
 
 private:
 	// Para el input

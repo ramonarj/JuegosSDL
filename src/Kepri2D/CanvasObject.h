@@ -12,14 +12,14 @@ public:
 	CanvasObject() : GameObject(){}
 	virtual ~CanvasObject() {}
 
-	virtual std::string Type() const { return "CanvasObject"; }
+	virtual std::string Type() const override{ return "CanvasObject"; }
 
-	void Draw();
+	void Draw() override;
 };
 
 class CanvasObjectCreator : public BaseCreator
 {
-	GameObject* CreateGameObject() const
+	GameObject* CreateGameObject() const override
 	{
 		return new CanvasObject();
 	}

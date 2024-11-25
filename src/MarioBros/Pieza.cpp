@@ -183,6 +183,10 @@ void Pieza::InputConTeclado()
 	{
 		m_velocity = Vector2D(m_velocity.GetX(), -15);
 	}*/
+
+	// Quitar los límites de la cámara
+	if (InputHandler::Instance()->GetKey(SDL_SCANCODE_L))
+		Camera::Instance()->SetLimits({-FLT_MAX, -FLT_MAX}, {FLT_MAX, FLT_MAX});
 }
 
 void Pieza::HandleInput()

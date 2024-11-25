@@ -9,13 +9,13 @@ class MenuButton : public CanvasObject
 public:
 	/* Constructora por defecto */
 	MenuButton() : m_callback(nullptr), m_bReleased(false), m_callbackID(0){}
-	void Load(const LoaderParams* pParams);
+	void Load(const LoaderParams* pParams) override;
 
 	// Heredadas
-	virtual void Update();
+	virtual void Update() override;
 
 	// Obligado
-	virtual std::string Type() const { return "MenuButton"; }
+	virtual std::string Type() const override { return "MenuButton"; }
 
 	/* Getter */
 	int GetCallbackID() { return m_callbackID; }
@@ -42,7 +42,7 @@ private:
 
 class MenuButtonCreator : public BaseCreator
 {
-	GameObject* CreateGameObject() const
+	GameObject* CreateGameObject() const override
 	{
 		return new MenuButton();
 	}

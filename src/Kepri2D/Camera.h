@@ -32,7 +32,11 @@ public:
 	/* Posición actual de la cámara */
 	const Vector2D GetPosition() const;
 
-	Vector2D WorldToScreen(Vector2D pos);
+	/* Convierte una posición global en una coordenada de la pantalla */
+	Vector2D WorldToScreen(const Vector2D& pos);
+
+	/* Fija unos límites para que la cámara no se salga del rectángulo dado */
+	void SetLimits(const Vector2D& upperLeft, const Vector2D& lowerRight);
 
 	// Para destruir la instancia
 	void Clean();
@@ -42,7 +46,8 @@ private:
 	static Camera* s_pInstance;
 
 	/* Constructora y destructora privadas */
-	Camera() : m_position(0,0), m_pTarget(nullptr) {}
+	Camera() : m_position(0,0), m_pTarget(nullptr),
+		m_lowerLimit(-FLT_MAX, -FLT_MAX), m_upperLimit(FLT_MAX, FLT_MAX){}
 	~Camera(){}
 
 	/* Posición de la cámara */
@@ -50,6 +55,10 @@ private:
 
 	/* Posición del objetivo */
 	Vector2D* m_pTarget;
+
+	/* Límites de la cámara; son mutables en cualquier momento */
+	Vector2D m_lowerLimit;
+	Vector2D m_upperLimit;
 };
 
 #endif

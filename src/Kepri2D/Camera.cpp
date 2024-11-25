@@ -27,10 +27,14 @@ void Camera::Update()
 		m_position = *m_pTarget;
 
 		// Límites de la cámara
-		if (m_position.GetX() < Game::Instance()->GetGameWidth() / 2)
-			m_position.SetX(Game::Instance()->GetGameWidth() / 2);
-		if (m_position.GetY() < Game::Instance()->GetGameHeight() / 2)
-			m_position.SetY(Game::Instance()->GetGameHeight() / 2);
+		if (m_position.GetX() < m_lowerLimit.GetX())
+			m_position.SetX(m_lowerLimit.GetX());
+		else if(m_position.GetX() > m_upperLimit.GetX())
+			m_position.SetX(m_upperLimit.GetX());
+		if (m_position.GetY() < m_lowerLimit.GetY())
+			m_position.SetY(m_lowerLimit.GetY());
+		else if (m_position.GetY() > m_upperLimit.GetY())
+			m_position.SetY(m_upperLimit.GetY());
 		//std::cout << *m_pTarget << std::endl;
 	}
 
@@ -56,9 +60,15 @@ void Camera::Clean()
 	}
 }
 
-Vector2D Camera::WorldToScreen(Vector2D pos)
+Vector2D Camera::WorldToScreen(const Vector2D& pos)
 {
 	int screenX = Game::Instance()->GetGameWidth() / 2 + (pos.GetX() - m_position.GetX());
 	int screenY = Game::Instance()->GetGameHeight() / 2 + (pos.GetY() - m_position.GetY());
 	return Vector2D(screenX, screenY);
+}
+
+void Camera::SetLimits(const Vector2D& upperLeft, const Vector2D& lowerRight)
+{
+	m_lowerLimit = upperLeft;
+	m_upperLimit = lowerRight;
 }

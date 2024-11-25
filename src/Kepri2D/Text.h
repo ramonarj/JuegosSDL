@@ -18,14 +18,14 @@ public:
 
 
 	// Heredados de GameObject
-	void Load(const LoaderParams* pParams);
+	void Load(const LoaderParams* pParams) override;
 
-	void Draw();
-	void Update();
-	void Clean();
+	void Draw() override;
+	void Update() override;
+	void Clean() override;
 
 	// Obligado
-	virtual std::string Type() const { return "Text"; }
+	virtual std::string Type() const override{ return "Text"; }
 
 	// Setters
 	/* Cambia el color del texto al color dado, 1 byte por canal (0xrrggbbaa) */
@@ -59,7 +59,7 @@ private:
 
 class TextCreator : public BaseCreator
 {
-	GameObject* CreateGameObject() const
+	GameObject* CreateGameObject() const override
 	{
 		return new Text();
 	}
